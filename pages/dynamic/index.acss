@@ -1,0 +1,75 @@
+.page{
+  padding: 10px 15px;
+}
+.dynamic-item{
+  padding-bottom: 20px;
+}
+.left-wrap{
+  flex-shrink: 0;
+}
+.avatar{
+  width: 36px;
+  height: 36px;
+  border-radius: 5px;
+}
+.right-wrap{
+  width: calc(100% - 36px);
+  padding-left: 10px;
+}
+.user-name{
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+  color: #333;
+}
+.publish-time{
+
+  font-size: 13px;
+  line-height: 16px;
+  color: #777;
+
+}
+.words{
+   padding: 10px 0;
+  font-size: 13px;
+  line-height: 19px;
+  color: #333;
+  word-break: break-all;
+}
+.picture-wrap .picture{
+width: 147px;
+height: 147px;
+margin:0 5px 5px 0;
+border-radius: 2px;
+}
+.picture-wrap .picture:nth-child(2n){
+  margin-right: 0;
+}
+.interaction-wrap{
+  padding-top: 14px;
+/* padding-left: 10px; */
+}
+.interaction-wrap .interaction-item{
+  margin-right: 34px;
+}
+.interaction-wrap .icon{
+  width: 18px;
+  height: 18px
+}
+.interaction-wrap .num{
+  margin-left: 5px;
+  font-size: 12px;
+  /* line-height: 21px; */
+  color: #777;
+}
+.comment-wrap .support{
+  padding: 5px 10px;
+  font-size: 10px;
+  line-height: 21px;  
+  color: #333;
+}
+.comment-wrap .support .fabulous{
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+}

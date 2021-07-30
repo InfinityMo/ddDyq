@@ -1,0 +1,35 @@
+{
+  "pages": [
+    "pages/dynamic/index",
+    "pages/suggest/index",
+    "pages/user/index"
+  ],
+  "window": {
+    "defaultTitle": "联恩论坛"
+  },
+  "tabBar": {
+    "textColor": "#404040",
+    "selectedColor": "#3296FA",
+    "backgroundColor": "#F5F5F9",
+    "items": [
+      {
+        "pagePath": "pages/dynamic/index",
+        "icon": "image/system/dynamic.png",
+        "activeIcon": "image/system/dynamicActive.png",
+        "name": "动态"
+      },
+      {
+        "pagePath": "pages/suggest/index",
+        "icon": "image/system/suggest.png",
+        "activeIcon": "image/system/suggestActive.png",
+        "name": "意见栏"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "icon": "image/system/user.png",
+        "activeIcon": "image/system/userActive.png",
+        "name": "我的"
+      }
+    ]
+  }
+}
