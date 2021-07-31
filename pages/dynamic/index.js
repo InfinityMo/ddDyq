@@ -33,7 +33,7 @@ Page({
         time:'2021-07-29 12:09'
       },
       dynamic:{
-        words:'我爱北京天安门',
+        words:'我和我的祖国，一刻也不能分割',
         pics:[
           "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fattach.bbs.miui.com%2Fforum%2F201312%2F03%2F165526ophx4l6c6ll3cnpl.jpg&refer=http%3A%2F%2Fattach.bbs.miui.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1630220827&t=02df669605ae13018c02bccf72734c7e",
           "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fattach.bbs.miui.com%2Fforum%2F201401%2F23%2F095609lsejfi4thjrrwydj.jpg&refer=http%3A%2F%2Fattach.bbs.miui.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1630220854&t=21af5cb840ce709c786421c74cd724d9"
@@ -43,12 +43,33 @@ Page({
         support:['infinity'],
         comments:[
           {
+            name:'mark',
+            text:'无论我走到哪里，都流出一首赞歌'
+          },
+          {
             name:'infinity',
-            text:'1111'
+            reply:'mark',
+            text:'我歌唱每一座高山，我歌唱每一条河，袅袅炊烟小小村落，路上一道辙'
           },
            {
             name:'json',
             text:'6666'
+          },
+           {
+            name:'json2',
+            text:'6666'
+          },
+           {
+            name:'json3',
+            text:'7777'
+          },
+           {
+            name:'json4',
+            text:'8888'
+          },
+           {
+            name:'json5',
+            text:'9999'
           }
         ]
       }
