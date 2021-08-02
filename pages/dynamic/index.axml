@@ -1,6 +1,6 @@
 <view class="page">
   <scroll-view class="scroll-wrap" scroll-y="{{true}}" >
-    <view class="flex dynamic-item" a:for="{{dynamics}}" a:for-item="list">
+    <view class="flex dynamic-item" a:for="{{dynamics}}" a:for-item="list" key="{{list.id}}">
       <view class="left-wrap">
         <image class="avatar" mode="scaleToFill" src="{{list.user.avatar}}"/>
       </view>
@@ -25,11 +25,12 @@
         </view>
         <!-- 点赞、操作 -->
         <view class="flex-item-center interaction-wrap">
-          <view class="flex-item-center interaction-item">
-            <image class="icon" mode="scaleToFill" src="/image/system/thumb.png"/>
+          <view class="flex-item-center interaction-item" data-id="{{list.id}}" onTap="toSupport">
+            <image a:if="{{list.interaction.ownSupport}}" class="icon" mode="scaleToFill" src="/image/system/thumbActive.png"/>
+            <image a:else class="icon" mode="scaleToFill" src="/image/system/thumb.png"/>
             <text class="num" a:if="{{list.interaction.support.length>0}}">{{list.interaction.support.length}}</text>
           </view>
-          <view class="flex-item-center interaction-item">
+          <view class="flex-item-center interaction-item" onTap="toComment">
             <image class="icon" mode="scaleToFill" src="/image/system/comment.png"/>
             <text class="num" a:if="{{list.interaction.comments.length>0}}">{{list.interaction.comments.length}}</text>
           </view>
@@ -42,17 +43,21 @@
         <view class="comment-wrap">
           <view class="flex-item-center support">
           <image class="fabulous" mode="scaleToFill" src="/image/system/fabulous.png"/> 
-          <text>{{list.interaction.support.join('，')}}</text>
+          <text a:if="{{list.interaction.support.length>0}}" a:for="{{list.interaction.support}}"
+           a:for-index="supportIndex">{{item.name}}{{supportIndex===list.interaction.support.length-1 ? '':'，'}}</text>
           </view>
           <view class="comment" a:if="{{list.interaction.comments.length>0}}">
             <view class="comment-item" a:for="{{list.interaction.comments}}" a:for-item="comment" key="{{item}}">
-              <text a:if="{{comment.reply}}"><text class="reply-user">{{comment.reply}}</text><text class="reply">回复</text><text class="reply-user">{{comment.name}}：</text>{{comment.text}}</text>
-              <text a:else><text>{{comment.name}}：</text>{{comment.text}}</text>
+              <text onTap="toComment" a:if="{{comment.reply}}"><text class="reply-user">{{comment.reply}}</text><text class="reply">回复</text><text class="reply-user">{{comment.name}}：</text>{{comment.text}}</text>
+              <text onTap="toComment" a:else><text class="reply-user">{{comment.name}}：</text>{{comment.text}}</text>
             </view>
-             <view class="all-comment-btn" a:if="{{list.interaction.comments.length>5}}">查看全部</view>
           </view>
         </view>
       </view>
     </view>
   </scroll-view>
+  <view class="flex-item-center flex-between text-wrap" hidden="{{!isShowInput}}">
+   <input class="input-text" maxlength="200" placeholder="请输入" onFocus="onFocus" onBlur="onBlur" focus="{{focus}}"   adjust-position />
+   <button>发布</button>
+  </view>
 </view>
