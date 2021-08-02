@@ -5,7 +5,9 @@
     "pages/user/index"
   ],
   "window": {
-    "defaultTitle": "联恩论坛"
+    "defaultTitle": "畅言",
+    "supportColorScheme":["light","dark"],
+    "pullRefresh":true
   },
   "tabBar": {
     "textColor": "#404040",

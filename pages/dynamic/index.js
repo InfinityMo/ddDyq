@@ -3,9 +3,11 @@ Page({
     focus: false,
     inputHeight: '',
     isShowInput: false,
+    placeholder: '',
     dynamics: [{
-      id:1,
+      id: '1',
       user: {
+        userId: 'affefgweq',
         avatar: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201812%2F30%2F20181230144326_yzofb.thumb.700_0.jpg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1630221724&t=0e232873ac2da8a226c1082e8994e226',
         name: '测试用户1',
         time: '2021-07-21 19:01'
@@ -20,30 +22,33 @@ Page({
       interaction: {
         support: [
           {
-            userId:'123',
-            name:'infinity' 
-          },{
-            userId:'456',
-            name:'test' 
-          },{
-            userId:'678',
-            name:'jack'  
+            userId: '123',
+            name: 'infinity'
+          }, {
+            userId: '456',
+            name: 'test'
+          }, {
+            userId: '678',
+            name: 'jack'
           }],
-        ownSupport:1,
+        ownSupport: 1,
         comments: [
           {
             name: 'infinity',
+            userId: 'uuytu',
             text: '1111'
           },
           {
             name: 'json',
+            userId: 'iuyiuy',
             text: '2222'
           }
         ]
       }
     }, {
-      id:2,
+      id: '2',
       user: {
+        userId: 'grewrwerw',
         avatar: '/image/user/cat.png',
         name: '测试用户2',
         time: '2021-07-29 12:09'
@@ -57,38 +62,46 @@ Page({
       },
       interaction: {
         support: [{
-          userId:'234',
-          name:'wink'
+          userId: '234',
+          name: 'wink'
         }],
-        ownSupport:0,
+        ownSupport: 0,
         comments: [
           {
             name: 'mark',
+            userId: 'werwr',
             text: '无论我走到哪里，都流出一首赞歌'
           },
           {
             name: 'infinity',
+            userId: 'rrew',
             reply: 'mark',
+            replyId: 'trtret',
             text: '我歌唱每一座高山，我歌唱每一条河，袅袅炊烟小小村落，路上一道辙'
           },
           {
             name: 'json',
+            userId: 'tre',
             text: '6666'
           },
           {
             name: 'json2',
+            userId: 'yrty',
             text: '6666'
           },
           {
             name: 'json3',
+            userId: 'ytrytr',
             text: '7777'
           },
           {
             name: 'json4',
+            userId: 'uir',
             text: '8888'
           },
           {
             name: 'json5',
+            userId: 'iuyiy',
             text: '9999'
           }
         ]
@@ -96,34 +109,37 @@ Page({
     }
     ]
   },
-  toSupport(event){
+  toSupport(event) {
     const id = event.target.dataset.id
-    const findIndex = this.data.dynamics.findIndex(item=>item.id===id)
-    if(findIndex>=0){
-    const ownSupport = `dynamics[${findIndex}].interaction.ownSupport`
-    const support = `dynamics[${findIndex}].interaction.support`
-    const value = this.data.dynamics[findIndex].interaction.ownSupport===0 ? 1:0
-    const supportArr = this.data.dynamics[findIndex].interaction.support
-    if(value){
-      this.setData({
-        [ownSupport]:value,
-        [support]:[{ userId:'234',name:'xxx'},...supportArr]
+    const findIndex = this.data.dynamics.findIndex(item => item.id === id)
+    if (findIndex >= 0) {
+      const ownSupport = `dynamics[${findIndex}].interaction.ownSupport`
+      const support = `dynamics[${findIndex}].interaction.support`
+      const value = this.data.dynamics[findIndex].interaction.ownSupport === 0 ? 1 : 0
+      const supportArr = this.data.dynamics[findIndex].interaction.support
+      if (value) {
+        this.setData({
+          [ownSupport]: value,
+          [support]: [{ userId: '234', name: 'xxx' }, ...supportArr]
         })
-     }
+      }
     }
   },
-  toComment(){
-     this.onFocus()
+  toComment(event) {
+    const authorId = event.target.dataset.authorId
+    const authorName = event.target.dataset.authorName
+    this.setData({ placeholder: `回复${authorName}` })
+    this.onFocus()
   },
-  onFocus(){
-    this.setData({focus: true,isShowInput:true})
+  onFocus() {
+    this.setData({ focus: true, isShowInput: true })
   },
-  onBlur(){
-     this.setData({focus: false,isShowInput:false})  
+  onBlur() {
+    this.setData({ focus: false, isShowInput: false })
   },
-   onKeyboardHide() {
-     this.onBlur()
-    }
+  onKeyboardHide() {
+    this.onBlur()
+  },
   // onLoad (query) {
   //   // 页面加载
   //   console.info(`Page onLoad with query: ${JSON.stringify(query)}`);
@@ -143,9 +159,12 @@ Page({
   // onTitleClick () {
   //   // 标题被点击
   // },
-  // onPullDownRefresh () {
-  //   // 页面被下拉
-  // },
+  onPullDownRefresh () {
+    setTimeout(()=>{
+      dd.stopPullDownRefresh()
+    },2000)
+    // 页面被下拉
+  },
   // onReachBottom () {
   //   // 页面被拉到底部
   // },
