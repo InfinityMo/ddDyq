@@ -1,6 +1,21 @@
 Page({
-  data:{
-  fileLists:[]
+  data: {
+    fileLists: []
+  },
+  selectPicture() {
+    dd.chooseImage({
+      sourceType:['camera','album'],
+      count: 9,
+      success: (res) => {
+        this.setData({
+          fileLists:[...res.filePaths]
+        })
+        // dd.alert({
+        //   title: '选中的图片',
+        //   content: JSON.stringify(res.filePaths)
+        // })
+      }
+    })
   },
   onLoad(query) {
     // 页面加载

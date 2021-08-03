@@ -1,11 +1,9 @@
 <view class="page">
-  <textarea maxlength="500"  auto-height placeholder="说点想说的吧..." />
+  <textarea class="text-area" maxlength="500"  auto-height placeholder="说点想说的吧..." />
   <view class="flex pic-wrap">
-    <view >
-      <image class="img-item" mode="scaleToFill" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201812%2F30%2F20181230144326_yzofb.thumb.700_0.jpg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1630221724&t=0e232873ac2da8a226c1082e8994e226"/>
-    </view>
-    <view class="add-wrap flex-justify-center flex-item-center">
-    <image class="add" mode="scaleToFill" src="/image/system/add.png"/>
+    <image class="img-item" a:for="{{fileLists}}" a:for-item="pic" mode="scaleToFill" src="{{pic}}"/>
+    <view class="img-item add-wrap flex-justify-center flex-item-center" a:if="{{fileLists.length<9}}" onTap="selectPicture">
+      <image class="add" mode="scaleToFill" src="/image/system/add.png"/>
     </view>
   </view>
 </view>
