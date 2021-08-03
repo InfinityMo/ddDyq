@@ -1,1 +1,4 @@
-{}
+{
+  "pullRefresh": true,
+  "allowsBounceVertical": "YES"
+}

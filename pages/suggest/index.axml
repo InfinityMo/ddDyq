@@ -1,4 +1,38 @@
-<view>
-
- </view>
-</view>
+<view class="page">
+  <!-- 问题反馈 -->
+  <view class="adopt-wrap" a:if="{{adoptSuggests .length>0}}">
+    <text class="head-title">上月建议板问题反馈</text>
+    <view class="adopt-item" a:for="{{adoptSuggests}}" a:for-item="suggest">
+      <!-- title -->
+      <view class="flex-item-center">
+        <text class="top">TOP-{{index+1}}</text>
+        <text class="sub-title">{{suggest.title}}</text>
+      </view>
+      <!-- content-->
+      <view class="content ell2">{{suggest.content}}</view>
+      <view class="flex-item-center flex-justify-end interaction">
+        <view class="flex-item-center interaction-item">
+          <image a:if="{{suggest.isSelfSupport==='1'}}" class="icon" mode="scaleToFill" src="/image/system/thumbActive.png"/>
+          <image a:else class="icon" mode="scaleToFill" src="/image/system/thumb.png"/>
+          <text class="num">{{suggest.supportCount}}</text>
+        </view>
+        <view class="flex-item-center interaction-item">
+          <image a:if="{{suggest.isSelfTread==='1'}}" class="icon" mode="scaleToFill" src="/image/system/treadActive.png"/>
+          <image a:else class="icon" mode="scaleToFill" src="/image/system/tread.png"/>
+          <text class="num">{{suggest.treadCount}}</text>
+        </view>
+      </view>
+      <!-- 查看详情 -->
+      <view class="detail">查看详情</view>
+    </view>
+  </view>
+  <!-- 回声箱 -->
+  <view>
+    <text class="head-title">下月建议板发言</text>
+    <!-- 我的 -->
+    <view>
+    <view>我的</view>
+    </view>
+  </view>
+  <view>
+  </view>

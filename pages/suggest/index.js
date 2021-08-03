@@ -1,11 +1,24 @@
 Page({
   data:{
-      tabs:['留言板','回声箱'],
-      tabIndex:0
+     adoptSuggests:[{
+       title:'男卫生间加一个全身镜',
+       content:'经过同事反馈，男性也需要着装整理，所以为了男同胞们的形象，在每一层男卫生间安装一面全身镜，目前已经解决了这个问题',
+       supportCount:'234',
+       isSelfSupport:'1',
+       treadCount:'20',
+       isSelfTread:'0'
+     },{
+       title:'女卫生间多加几个位置',
+       content:'经过同事反馈，女卫生间经常性位置不够，经过与行政部分协调，现已在多层女卫生间中多加了位置，这个问题目前已得到解决',
+       supportCount:'534',
+       isSelfSupport:'0',
+       treadCount:'20',
+       isSelfTread:'1'
+     }]
   },
   onLoad(query) {
     // 页面加载
-    console.info(`Page onLoad with query: ${JSON.stringify(query)}`);
+
   },
   onReady() {
     // 页面加载完成

@@ -1,0 +1,17 @@
+.page {
+  padding: 10px 15px 0 15px;
+}
+
+.pic-wrap {}
+
+.img-item, .add-wrap {
+  /* width: calc((100% - 40px) / 3);
+   height: calc((100% - 40px) / 3); */
+   width: 100px;
+   height: 100px;
+}
+
+.add-wrap .add {
+ width: 45px;
+ height: 45px; 
+}
