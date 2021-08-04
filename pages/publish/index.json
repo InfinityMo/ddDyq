@@ -1,3 +1,6 @@
 {
-  "pullRefresh": false
+  "pullRefresh": false,
+  "usingComponents": {
+    "suspension": "/components/suspension/suspension"
+  }
 }

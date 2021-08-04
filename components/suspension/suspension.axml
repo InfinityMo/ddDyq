@@ -1,0 +1,5 @@
+<view>
+  <movable-area>
+    <movable-view class="movable-view" x="{{x}}" y="{{y}}" direction="all">具名</movable-view>
+  </movable-area>
+</view>

@@ -23,4 +23,5 @@
     </radio-group>
   </view>
   <view class="publish-btn">发布</view>
+  <suspension />
 </view>

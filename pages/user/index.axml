@@ -13,4 +13,5 @@
       <view a:for="{{tabs}}">{{item}}</view>
     </view>
   </view>
+  <suspension />
 </view>
