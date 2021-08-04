@@ -1,15 +1,11 @@
-/**! __CODEPLACEHOLDER_START__ */ /*[PositionForHostEntryCodeBegin]*/ /**! __CODEPLACEHOLDER_END__ */
 if(!self.__appxInited) {
 self.__appxInited = 1;
 
 
 require('./config$');
-require('./importScripts$');
 
-      function getUserAgentInPlatformWeb() {
-        return typeof navigator !== 'undefined' ? navigator.swuserAgent || navigator.userAgent || '' : '';
-      }
-      if(getUserAgentInPlatformWeb() && (getUserAgentInPlatformWeb().indexOf('LyraVM') > 0 || getUserAgentInPlatformWeb().indexOf('AlipayIDE') > 0) ) {
+
+      if( navigator.userAgent && (navigator.userAgent.indexOf('LyraVM') > 0 || navigator.userAgent.indexOf('AlipayIDE') > 0) ) {
         var AFAppX = self.AFAppX.getAppContext ? self.AFAppX.getAppContext().AFAppX : self.AFAppX;
       } else {
         importScripts('https://appx/af-appx.worker.min.js');
@@ -36,10 +32,10 @@ if(AFAppX.registerApp) {
 
 function success() {
 require('../../app');
+require('../../pages/user/index?hash=32d7d2807ed4e666ef03b4b3fe8c38ecf2e34e68');
 require('../../pages/publish/index?hash=32d7d2807ed4e666ef03b4b3fe8c38ecf2e34e68');
 require('../../pages/suggest/index?hash=32d7d2807ed4e666ef03b4b3fe8c38ecf2e34e68');
 require('../../pages/dynamic/index?hash=32d7d2807ed4e666ef03b4b3fe8c38ecf2e34e68');
-require('../../pages/user/index?hash=32d7d2807ed4e666ef03b4b3fe8c38ecf2e34e68');
 }
 self.bootstrapApp ? self.bootstrapApp({ success }) : success();
 }

@@ -1,7 +1,13 @@
 Page({
   data:{
-      tabs:['留言板','回声箱'],
-      tabIndex:0
+      tabs:['我的动态','我的建议'],
+      tabIndex:0,
+      userInfo:{
+        avatar: '/image/user/cat.png',
+        name:'Infinity',
+        userId:'tytrrwrw',
+        company:'上海联恩商钥互联网科技股份有限公司'
+      }
   },
   onLoad(query) {
     // 页面加载

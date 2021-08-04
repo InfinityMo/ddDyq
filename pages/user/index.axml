@@ -1,4 +1,16 @@
 <view>
-
- </view>
+  <view class="top">
+    <!-- user -->
+    <view class="flex user">
+      <!-- 头像 -->
+      <image class="avatar" mode="aspectFill" src="{{userInfo.avatar}}"/>
+      <view>
+        <view class="name">{{userInfo.name}}</view>
+        <view class="company">{{userInfo.company}}</view>
+      </view>
+    </view>
+    <view class="flex">
+      <view a:for="{{tabs}}">{{item}}</view>
+    </view>
+  </view>
 </view>

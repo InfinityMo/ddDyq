@@ -1,7 +1,8 @@
 .page {
-  padding: 10px 15px 0 15px;
+  padding: 10px 15px 50px 15px;
 }
-.text-area{
+
+.text-area {
   margin-bottom: 30px;
   font-size: 13px;
   line-height: 19px;
@@ -13,13 +14,7 @@
 }
 
 .img-item {
-  /* width: calc((100% - 40px) / 3);
-   height: calc((100% - 40px) / 3); */
-  /* width: 100px; */
-  /* width: calc(100px - 40px);
-   height: 100px; */
-  /* width: 111px;
-height: 111px; */
+  position: relative;
   width: calc( (100% - 10px) / 3);
   height: calc( (100vw - 30px) / 3);
   margin: 0 5px 5px 0;
@@ -27,8 +22,21 @@ height: 111px; */
   box-sizing: border-box;
 }
 
+.img-item .img {
+  width: 100%;
+  height: 100%;
+}
+
 .img-item:nth-child(3n) {
   margin: 0 0 5px 0;
+}
+
+.img-delete {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  right: 7px;
+  top: 7px;
 }
 
 .img-item .add {
@@ -38,4 +46,38 @@ height: 111px; */
 
 .add-wrap {
   background-color: #F7F7F7;
+}
+
+.publish-where {
+  padding: 42px 0 12px 0;
+  font-size: 16px;
+  line-height: 21px;
+  color: #191F25;
+  border-bottom: 1px solid #eee;
+}
+
+.radio-item {
+  padding: 18px 0;
+  font-size: 13px;
+  border-bottom: 1px solid #eee;
+}
+
+.radio-item .radio-text {
+  padding-left: 14px;
+  color: #171A1D;
+}
+
+.radio-item .tip {
+  color: #aaa;
+}
+
+.publish-btn {
+  margin-top: 33px;
+  height: 44px;
+  line-height: 44px;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 3px;
+  background-color: #3296FA;
 }

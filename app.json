@@ -1,9 +1,10 @@
 {
   "pages": [
+    "pages/user/index",
     "pages/publish/index",
     "pages/suggest/index",
-    "pages/dynamic/index",
-    "pages/user/index"
+    "pages/dynamic/index"
+    
   ],
   "window": {
     "defaultTitle": "畅言",

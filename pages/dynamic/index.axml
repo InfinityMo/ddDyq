@@ -2,7 +2,7 @@
   <scroll-view class="scroll-wrap" scroll-y="{{true}}">
     <view class="flex dynamic-item" a:for="{{dynamics}}" a:for-item="list" key="{{list.id}}">
       <view class="left-wrap">
-        <image class="avatar" mode="scaleToFill" src="{{list.user.avatar}}"/>
+        <image class="avatar" mode="aspectFill" src="{{list.user.avatar}}"/>
       </view>
       <view class="right-wrap">
         <!-- 用户信息 -->
@@ -19,7 +19,7 @@
           <!-- 图片 -->
           <view a:if="{{list.dynamic.pics.length>0}}">
             <view class="flex picture-wrap">
-              <image class="picture" mode="scaleToFill" a:for="{{list.dynamic.pics}}" src="{{item}}"/>
+              <image class="picture" mode="aspectFill" a:for="{{list.dynamic.pics}}" src="{{item}}"/>
             </view>
           </view>
         </view>
