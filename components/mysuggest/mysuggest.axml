@@ -1,6 +1,5 @@
 <view>
-  <!-- <scroll-view scroll-y="{{true}}" onScrollToUpper="upper" onScrollToLower="lower" onScroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
-      1111
-  </scroll-view> -->
-  <input placeholder="Input" />
+ <scroll-view class="scroll-wrap" scroll-y="{{true}}">
+ 
+ </scroll-view>
 </view>

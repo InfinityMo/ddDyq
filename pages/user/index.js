@@ -2,15 +2,15 @@ import {dynamics} from '../../data/testData'
 Page({
   data: {
     tabs: ["我的动态", "我的建议"],
-    tabIndex: 0,
+    tabIndex: 1,
     userInfo: {
       avatar: "/image/user/cat.png",
       name: "Infinity",
       userId: "tytrrwrw",
       company: "上海联恩商钥互联网科技股份有限公司"
     },
-    mydynamicHide:false,
-    mysuggestHide:true,
+    mydynamicHide:true,
+    mysuggestHide:false,
     dynamics
   },
   tabClick(e) {
