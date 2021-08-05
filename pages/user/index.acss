@@ -1,8 +1,14 @@
-.top{
-  padding: 20px 15px  0 15px;
+.page {
+  /* background-color: #333; */
 }
+
+.top {
+  padding: 20px 15px 1px 15px;
+  border-bottom: 1px solid #eee;
+}
+
 .user {
-padding-bottom: 20px;
+  padding-bottom: 20px;
 }
 
 .user .avatar {
@@ -22,5 +28,27 @@ padding-bottom: 20px;
 .user .company {
   font-size: 12px;
   line-height: 18px;
-  color: #777; 
+  color: #777;
+}
+
+.tabs-wrap {
+  padding: 14px 64px 0 64px;
+  font-size: 15px;
+  line-height: 20px; 
+  color: #777;
+}
+
+.tab {
+  padding-bottom: 10px;
+  box-sizing: border-box;
+  border-bottom: 2px solid transparent
+}
+
+.tab-active {
+  color: #1E1E1E;
+  border-bottom: 2px solid #1E1E1E;
+}
+
+.content{
+  padding: 0 15px;
 }

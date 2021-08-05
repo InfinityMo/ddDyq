@@ -1,0 +1,35 @@
+<view>
+  <scroll-view class="scroll-wrap {{dynamics[0].isCurrentYear!==1 ? 'scroll-other':''}}" scroll-y="{{true}}">
+    <view class="outter" a:for="{{dynamics}}" a:for-item="first">
+      <!-- 年 -->
+      <view class="year" a:if="{{first.isCurrentYear!==1}}">{{first.year}}年</view>
+      <!-- 内容列表 -->
+      <!-- 按月份排列 -->
+      <view class="inner flex" a:for="{{first.list}}" a:for-item="inner">
+        <!-- 日期 -->
+        <view class="date">
+          <view class="day" a:if="{{inner.dateType==='1'}}">今天</view>
+          <view class="day" a:elif="{{inner.dateType==='0'}}">昨天</view>
+          <view a:else>
+            <view class="month-date">{{inner.day}}</view>
+            <text class="month">{{inner.month}}月</text></view>
+        </view>
+        <view>
+          <!-- 对应日期动态 -->
+          <view class="content-wrap flex" a:for="{{inner.list}}">
+            <!-- 图片 -->
+            <view class="content-img" a:if="{{item.imgs.length>0}}">
+              <image a:if="{{item.imgs.length===1}}" class="img one-img" a:for="{{item.imgs}}" a:for-item="img" mode="aspectFill" src="{{img}}"/>
+              <image a:if="{{item.imgs.length===2}}" class="img two-img" a:for="{{item.imgs}}" a:for-item="img" mode="aspectFill" src="{{img}}"/>
+              <image a:if="{{item.imgs.length===4}}" class="img four-img" a:for="{{item.imgs}}" a:for-item="img" mode="aspectFill" src="{{img}}"/>
+            </view>
+            <view class="words-wrap">
+              <view class="ell2 words">{{item.words}}</view>
+              <view class="img-total" a:if="{{item.imgs.length>0}}">共{{item.imgsTotal}}张</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

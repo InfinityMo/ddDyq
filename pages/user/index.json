@@ -1,5 +1,9 @@
 {
+  "pullRefresh": true,
+  "allowsBounceVertical": "YES",
   "usingComponents": {
-    "suspension": "/components/suspension/suspension"
+    "suspension": "/components/suspension/suspension",
+    "mydynamic": "/components/mydynamic/mydynamic",
+    "mysuggest": "/components/mysuggest/mysuggest"
   }
 }

@@ -1,4 +1,5 @@
-<view>
+<!--<import src="/template/mydynamic/index.axml"/><import src="/template/mysuggest/index.axml"/> -->
+<view class="page">
   <view class="top">
     <!-- user -->
     <view class="flex user">
@@ -9,9 +10,17 @@
         <view class="company">{{userInfo.company}}</view>
       </view>
     </view>
-    <view class="flex">
-      <view a:for="{{tabs}}">{{item}}</view>
+    <view class="flex-between-center tabs-wrap">
+      <view a:for="{{tabs}}" class="tab {{tabIndex===index ? 'tab-active':''}}" onTap="tabClick" data-index="{{index}}">{{item}}</view>
     </view>
   </view>
-  <suspension />
+  <view class="content">
+    <!--<template is="mydynamic" data="{{hidden:mydynamicHide,dynamics}}" /><template is="mysuggest" data="{{hidden:mysuggestHide}}" /> -->
+    <view hidden="{{mydynamicHide}}">
+      <mydynamic /></view>
+    <view hidden="{{mysuggestHide}}">
+      <mysuggest /></view>
+  </view>
+  <!-- 悬浮球 -->
+  <!--<suspension /> -->
 </view>

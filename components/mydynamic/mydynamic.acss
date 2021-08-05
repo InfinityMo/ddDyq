@@ -1,0 +1,106 @@
+.scroll-wrap {
+  padding: 20px 0;
+}
+
+.scroll-other {
+  padding: 10px 0 20px 0;
+}
+
+.outter {
+  color: #333;
+}
+
+.year {
+  padding: 10px 0;
+  font-size: 21px;
+  line-height: 21px;
+  font-weight: bold;
+}
+
+.inner {
+  /* padding: 10px 0;  */
+}
+
+.date {
+  flex-shrink: 0;
+  padding-right: 15px;
+}
+
+.content-wrap {
+  margin-bottom: 20px;
+}
+
+.content-img {
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  padding-right: 10px;
+  width: 71px;
+  height: 71px;
+  overflow: hidden
+}
+
+.content-img .img {
+  /* flex-grow:1; */
+  margin: 1px 1px 0 0;
+  border-radius: 2px;
+}
+
+.content-img .img:nth-child(2n) {
+  margin-right: 0
+}
+
+.content-img .img:first-child, .content-img .img:nth-child(2) {
+  margin-top: 0
+}
+
+.one-img {
+  width: 71px;
+  height: 71px;
+  /* border-radius: 2px;  */
+}
+
+.two-img {
+  width: 35px;
+  height: 71px;
+}
+
+.four-img {
+  width: 35px;
+  height: 35px;
+}
+
+.day {
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: bold;
+}
+
+.month-date {
+  font-size: 21px;
+  line-height: 21px;
+  font-weight: bold;
+}
+
+.month {
+  font-size: 12px;
+  line-height: 21px;
+  color: #777;
+}
+
+.words-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.words {
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.img-total {
+  font-size: 11px;
+  line-height: 16px;
+  color: #AAA;
+}
