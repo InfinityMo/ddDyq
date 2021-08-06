@@ -1,0 +1,29 @@
+<view class="month-advise">
+  <view class="rank-title">本月发言排行（{{advises.length}}）</view>
+  <scroll-view class="scroll-view" scroll-y="{{true}}">
+    <!--<view class="history-line flex-between-center"><view class="line"></view><text class="text">以下为历史建议</text><view class="line"></view></view><view a:for="{{historyAdvise}}" a:for-item="first" class="history"><view class="year">{{first.year}}</view><view a:for="{{first.list}}" class="flex-between advise"><view class="date"><view class="month-date">{{item.day}}</view><text class="month">{{item.month}}月</text></view><view class="ell2 suggests">{{item.words}}</view><view><image class="rank-img" a:if="{{item.rank==='1'||item.rank==='2'||item.rank==='3'}}" mode="scaleToFill" src="/image/system/rank{{item.rank}}.png"/><text a:else class="rank-text">{{item.rank}}</text></view></view></view> -->
+    <view a:for="{{advises}}" class="view-wrap">
+      <view class="flex-between-center user-wrap">
+        <view class="flex user">
+          <image mode="scaleToFill" src="/image/user/cat.png"/>
+          <view >
+            <view class="name">{{item.name}}</view>
+            <text class="time">{{item.publishTime}}</text>
+          </view>
+        </view>
+        <view>
+          <image class="rank-img" a:if="{{item.rank==='1'||item.rank==='2'||item.rank==='3'}}" mode="scaleToFill" src="/image/system/rank{{item.rank}}.png"/>
+          <text a:else class="rank-text">{{item.rank}}</text>
+        </view>
+      </view>
+      <view class="flex content-words">
+        <view class="ell3">{{item.words}}</view>
+        <view class="content-support flex-item-center">
+          <image a:if="{{item.isSelfSupport==='1'}}" class="icon" mode="scaleToFill" src="/image/system/thumbActive.png"/>
+          <image a:else class="icon" mode="scaleToFill" src="/image/system/thumb.png"/>
+          <text class="num {{item.isSelfSupport==='1' ?'num-active':''}}">{{item.support}}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

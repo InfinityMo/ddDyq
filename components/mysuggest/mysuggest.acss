@@ -1,0 +1,89 @@
+.page{
+  padding: 10px 0;
+}
+.title {
+  /* padding-bottom: 10px; */
+  padding: 20px 0 10px 0;
+  font-size: 16px;
+  line-height: 24px;
+  color: #333;
+  font-weight: bold;
+}
+
+.advise-wrap {
+  box-sizing: border-box;
+}
+
+.advise {
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.05), 1px 3px 10px rgba(0, 0, 0, 0.15), 2px 4px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+ .advise:last-child {
+  margin-bottom: 0;
+}
+
+.advise .date {
+  flex-shrink: 0;
+  padding-right: 15px;
+}
+
+.history .year {
+  padding: 20px 0 10px 0;
+  font-size: 21px;
+  line-height: 21px;
+  color: #333;
+}
+
+.month-date {
+  font-size: 21px;
+  line-height: 21px;
+  font-weight: bold;
+}
+
+.month {
+  font-size: 12px;
+  line-height: 21px;
+  color: #777;
+}
+
+.suggests {
+  /* max-height: 42px; */
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.rank-img {
+  flex-shrink: 0;
+  margin-left: 10px;
+  width: 32px;
+  height: 32px;
+}
+
+.rank-text {
+  flex-shrink: 0;
+  margin-left: 10px;
+  font-size: 18px;
+  line-height: 21px;
+  color: #777;
+}
+
+/* .history-line {
+  padding-top: 10px;
+} */
+
+.history-line .text {
+  flex-shrink: 0; 
+  padding: 0 10px;
+  font-size: 13px;
+  line-height: 21px;
+  color: #AAA;
+}
+
+.history-line .line {
+  width: 50%;
+  height: 1px;
+  background-color: #eee;
+}

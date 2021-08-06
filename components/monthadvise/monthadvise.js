@@ -1,8 +1,8 @@
-import {dynamics,} from'/data/testData'
+import {advises} from '/data/testData'
 Component({
   mixins: [],
   data: {
-    dynamics
+    advises
   },
   props: {},
   didMount() {},

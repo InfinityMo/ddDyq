@@ -1,0 +1,84 @@
+.month-advise {}
+
+.scroll-view {
+  padding: 15px 15px 0 15px;
+  color: #333;
+}
+
+.rank-title {
+  padding: 20px 15px 0 15px;
+}
+
+.view-wrap {
+  /* margin-left: 20px; */
+  /* width: 300px; */
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.05), 1px 3px 10px rgba(0, 0, 0, 0.15), 2px 4px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  /* border: 1px solid #eee; */
+  box-sizing: border-box;
+}
+
+.view-wrap .user-wrap {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.view-wrap .user image {
+  width: 36px;
+  height: 36px;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+
+.view-wrap .user .name {
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.view-wrap .user .time {
+  font-size: 13px;
+  line-height: 16px;
+  color: #BBBBBB;
+}
+
+.rank-img {
+  flex-shrink: 0;
+  margin-left: 10px;
+  width: 32px;
+  height: 32px;
+}
+
+.rank-text {
+  flex-shrink: 0;
+  margin-left: 10px;
+  font-size: 18px;
+  line-height: 21px;
+  color: #777;
+}
+
+.view-wrap .content-words {
+  padding-top: 10px;
+  align-items: flex-end;
+}
+
+.view-wrap .content-support {
+  flex-shrink: 0;
+  padding-left: 10px;
+}
+
+.view-wrap .content-words .icon {
+  width: 18px;
+  height: 18px
+}
+
+.view-wrap .content-words .num {
+  margin-left: 5px;
+  font-size: 12px;
+  /* line-height: 21px; */
+  color: #BFBFBF;
+}
+.view-wrap .content-words .num-active{
+color: #1890FF; 
+}

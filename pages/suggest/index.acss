@@ -1,8 +1,37 @@
-.page {
+.suggest {
   /* padding: 15px 0; */
+  position: relative;
 }
 
-.adopt-wrap {
+.top {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  border-bottom: 1px solid #eee;
+  z-index: 100;
+}
+
+.tabs-wrap {
+  padding: 14px 64px 1px 64px;
+  font-size: 15px;
+  line-height: 20px;
+  color: #777;
+  background-color: #fff;
+}
+.tab {
+  padding-bottom: 10px;
+  box-sizing: border-box;
+  border-bottom: 2px solid transparent
+}
+
+.tab-active {
+  color: #1E1E1E;
+  border-bottom: 2px solid #1E1E1E;
+} 
+.content{
+  padding: 48px 0 0 0;
+}
+/* .adopt-wrap {
   padding:15px;
   border-bottom: 5px solid #F8F8F8;
 }
@@ -54,7 +83,6 @@
 .interaction .num {
   margin-left: 5px;
   font-size: 12px;
-  /* line-height: 21px; */
   color: #777;
 }
 
@@ -66,4 +94,4 @@
   font-size: 13px;
   line-height: 21px;
   border-top: 1px solid #eee;
-}
+} */

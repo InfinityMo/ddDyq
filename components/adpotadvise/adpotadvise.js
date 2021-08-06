@@ -1,9 +1,6 @@
-import {dynamics,} from'/data/testData'
 Component({
   mixins: [],
-  data: {
-    dynamics
-  },
+  data: {},
   props: {},
   didMount() {},
   didUpdate() {},

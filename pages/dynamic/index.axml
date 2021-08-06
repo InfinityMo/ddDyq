@@ -18,8 +18,9 @@
           <view class="words">{{list.dynamic.words}}</view>
           <!-- 图片 -->
           <view a:if="{{list.dynamic.pics.length>0}}">
-            <view class="flex picture-wrap">
-              <image class="picture" mode="aspectFill" a:for="{{list.dynamic.pics}}" src="{{item}}"/>
+            <view class="flex picture-wrap {{list.dynamic.pics.length===1 ? 'pic-one':''}}">
+              <image class="picture" mode="{{list.dynamic.pics.length===1 ?'widthFix':'aspectFill'}}"
+               a:for="{{list.dynamic.pics}}" src="{{item}}" onTap="previewImg" data-index="{{index}}" data-id="{{list.id}}" />
             </view>
           </view>
         </view>

@@ -1,19 +1,19 @@
 .page {
   position: relative;
+  padding: 0;
 }
 
 .top {
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 20px 15px 1px 15px;
   border-bottom: 1px solid #eee;
   z-index: 100;
-  background-color: #F0F2F5;
 }
 
 .user {
-  padding-bottom: 20px;
+   padding: 20px 15px 20px 15px;
+   background-color: #F8F8F8;
 }
 
 .user .avatar {
@@ -37,10 +37,11 @@
 }
 
 .tabs-wrap {
-  padding: 14px 64px 0 64px;
+  padding: 14px 64px 1px 64px;
   font-size: 15px;
   line-height: 20px; 
   color: #777;
+  background-color: #fff;
 }
 
 .tab {
@@ -55,5 +56,5 @@
 }
 
 .content{
-  padding: 139px 15px 15px 15px;
+  padding: 130px 15px 0 15px;
 }

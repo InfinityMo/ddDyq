@@ -15,7 +15,6 @@
     </view>
   </view>
   <view class="content">
-    <!--<template is="mydynamic" data="{{hidden:mydynamicHide,dynamics}}" /><template is="mysuggest" data="{{hidden:mysuggestHide}}" /> -->
     <view hidden="{{mydynamicHide}}">
       <mydynamic /></view>
     <view hidden="{{mysuggestHide}}">

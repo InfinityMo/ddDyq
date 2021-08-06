@@ -1,22 +1,23 @@
-import {dynamics} from '../../data/testData'
+import { dynamics } from "/data/testData";
 Page({
   data: {
     tabs: ["我的动态", "我的建议"],
-    tabIndex: 1,
+    tabIndex: 0,
+    mydynamicHide: false,
+    mysuggestHide: true,
     userInfo: {
       avatar: "/image/user/cat.png",
       name: "Infinity",
       userId: "tytrrwrw",
       company: "上海联恩商钥互联网科技股份有限公司"
     },
-    mydynamicHide:true,
-    mysuggestHide:false,
     dynamics
   },
   tabClick(e) {
     const tabIndex = e.target.dataset.index;
-   tabIndex===0 ? 
-   this.setData({ tabIndex,mydynamicHide:false, mysuggestHide:true}):this.setData({ tabIndex,mydynamicHide:true, mysuggestHide:false})
+    tabIndex === 0
+      ? this.setData({ tabIndex, mydynamicHide: false, mysuggestHide: true })
+      : this.setData({ tabIndex, mydynamicHide: true, mysuggestHide: false });
   },
   onLoad(query) {
     // 页面加载

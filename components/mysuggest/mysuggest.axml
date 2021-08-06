@@ -1,5 +1,43 @@
-<view>
- <scroll-view class="scroll-wrap" scroll-y="{{true}}">
- 
- </scroll-view>
+<view class="page">
+  <view class="advise-wrap" a:if="{{nowAdvise.length>0}}">
+    <view class="title">本月建议</view>
+    <view a:for="{{nowAdvise}}" class="flex-between advise">
+      <!-- 日期 -->
+      <view class="date">
+        <view class="month-date">{{item.day}}</view>
+        <text class="month">{{item.month}}月</text>
+      </view>
+      <!-- 内容 -->
+      <view class="ell2 suggests">{{item.words}}</view>
+      <!-- 排名 -->
+      <view>
+        <image class="rank-img" a:if="{{item.rank==='1'||item.rank==='2'||item.rank==='3'}}" mode="scaleToFill" src="/image/system/rank{{item.rank}}.png"/>
+        <text a:else class="rank-text">{{item.rank}}</text>
+      </view>
+    </view>
+  </view>
+  <scroll-view class="scroll-wrap" scroll-y="{{true}}">
+    <view class="history-line flex-between-center">
+      <view class="line"></view>
+      <text class="text">以下为历史建议</text>
+      <view class="line"></view>
+    </view>
+    <view a:for="{{historyAdvise}}" a:for-item="first" class="history">
+      <view class="year">{{first.year}}</view>
+      <view a:for="{{first.list}}" class="flex-between advise">
+        <!-- 日期 -->
+        <view class="date">
+          <view class="month-date">{{item.day}}</view>
+          <text class="month">{{item.month}}月</text>
+        </view>
+        <!-- 内容 -->
+        <view class="ell2 suggests">{{item.words}}</view>
+        <!-- 排名 -->
+        <view>
+          <image class="rank-img" a:if="{{item.rank==='1'||item.rank==='2'||item.rank==='3'}}" mode="scaleToFill" src="/image/system/rank{{item.rank}}.png"/>
+          <text a:else class="rank-text">{{item.rank}}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
 </view>

@@ -1,38 +1,14 @@
-<view class="page">
-  <!-- 问题反馈 -->
-  <view class="adopt-wrap" a:if="{{adoptSuggests .length>0}}">
-    <text class="head-title">上月建议板问题反馈</text>
-    <view class="adopt-item" a:for="{{adoptSuggests}}" a:for-item="suggest">
-      <!-- title -->
-      <view class="flex-item-center">
-        <text class="top">TOP-{{index+1}}</text>
-        <text class="sub-title">{{suggest.title}}</text>
-      </view>
-      <!-- content-->
-      <view class="content ell2">{{suggest.content}}</view>
-      <view class="flex-item-center flex-justify-end interaction">
-        <view class="flex-item-center interaction-item">
-          <image a:if="{{suggest.isSelfSupport==='1'}}" class="icon" mode="scaleToFill" src="/image/system/thumbActive.png"/>
-          <image a:else class="icon" mode="scaleToFill" src="/image/system/thumb.png"/>
-          <text class="num">{{suggest.supportCount}}</text>
-        </view>
-        <view class="flex-item-center interaction-item">
-          <image a:if="{{suggest.isSelfTread==='1'}}" class="icon" mode="scaleToFill" src="/image/system/treadActive.png"/>
-          <image a:else class="icon" mode="scaleToFill" src="/image/system/tread.png"/>
-          <text class="num">{{suggest.treadCount}}</text>
-        </view>
-      </view>
-      <!-- 查看详情 -->
-      <view class="detail">查看详情</view>
+<!--<view class="page"><view class="adopt-wrap" a:if="{{adoptSuggests .length>0}}"><text class="head-title">上月建议板问题反馈</text><view class="adopt-item" a:for="{{adoptSuggests}}" a:for-item="suggest"><view class="flex-item-center"><text class="top">TOP-{{index+1}}</text><text class="sub-title">{{suggest.title}}</text></view><view class="content ell2">{{suggest.content}}</view><view class="flex-item-center flex-justify-end interaction"><view class="flex-item-center interaction-item"><image a:if="{{suggest.isSelfSupport==='1'}}" class="icon" mode="scaleToFill" src="/image/system/thumbActive.png"/><image a:else class="icon" mode="scaleToFill" src="/image/system/thumb.png"/><text class="num">{{suggest.supportCount}}</text></view><view class="flex-item-center interaction-item"><image a:if="{{suggest.isSelfTread==='1'}}" class="icon" mode="scaleToFill" src="/image/system/treadActive.png"/><image a:else class="icon" mode="scaleToFill" src="/image/system/tread.png"/><text class="num">{{suggest.treadCount}}</text></view></view><view class="detail">查看详情</view></view></view><view><text class="head-title">下月建议板发言</text><view><view>我的</view></view></view><view></view> -->
+<view class="suggest">
+  <view class="top">
+    <view class="flex-between-center tabs-wrap">
+      <view a:for="{{tabs}}" class="tab {{tabIndex===index ? 'tab-active':''}}" onTap="tabClick" data-index="{{index}}">{{item}}</view>
     </view>
   </view>
-  <!-- 回声箱 -->
-  <view>
-    <text class="head-title">下月建议板发言</text>
-    <!-- 我的 -->
-    <view>
-    <view>我的</view>
-    </view>
+  <view class="content">
+    <view hidden="{{adpotAdvise}}">
+      <adpotadvise /></view>
+    <view hidden="{{monthAdvise}}">
+      <monthadvise /></view>
   </view>
-  <view>
-  </view>
+</view>
