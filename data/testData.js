@@ -243,7 +243,55 @@ export const frontdynamic = [
     }
   }
 ];
-
+export const frontdynamicInfo = [  {
+    id: "1",
+    user: {
+      userId: "affefgweq",
+      avatar:
+        "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201812%2F30%2F20181230144326_yzofb.thumb.700_0.jpg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1630221724&t=0e232873ac2da8a226c1082e8994e226",
+      name: "测试用户1",
+      time: "2021-07-21 19:01"
+    },
+    dynamic: {
+      words:
+        "我这么一个人，哪懂什么时尚，留过时的发型，唱过时的歌，跳过时的舞，穿过时的衣服。我这么一个人，为了时尚的你，通红着脸，学了几个时兴的姿势。02《镜子》",
+      pics: [
+        "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fattach.bbs.miui.com%2Fforum%2F201312%2F03%2F165526ophx4l6c6ll3cnpl.jpg&refer=http%3A%2F%2Fattach.bbs.miui.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1630220827&t=02df669605ae13018c02bccf72734c7e",
+        "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fattach.bbs.miui.com%2Fforum%2F201401%2F23%2F095609lsejfi4thjrrwydj.jpg&refer=http%3A%2F%2Fattach.bbs.miui.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1630220854&t=21af5cb840ce709c786421c74cd724d9",
+        "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fattach.bbs.miui.com%2Fforum%2F201104%2F16%2F2136492e16kpc6oqcz1rie.jpg&refer=http%3A%2F%2Fattach.bbs.miui.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1630823393&t=5a2d8b078590cc0f3176695775f2de48",
+        "https://img0.baidu.com/it/u=103721101,4076571305&fm=26&fmt=auto&gp=0.jpg"
+      ]
+    },
+    interaction: {
+      support: [
+        {
+          userId: "123",
+          name: "infinity"
+        },
+        {
+          userId: "456",
+          name: "test"
+        },
+        {
+          userId: "678",
+          name: "jack"
+        }
+      ],
+      ownSupport: 1,
+      comments: [
+        {
+          name: "infinity",
+          userId: "uuytu",
+          text: "1111"
+        },
+        {
+          name: "json",
+          userId: "iuyiuy",
+          text: "2222"
+        }
+      ]
+    }
+  }]
 export const dynamics = [
   {
     year: "2021",

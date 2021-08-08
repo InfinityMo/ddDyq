@@ -1,15 +1,19 @@
 {
   "pages": [
-    "pages/suggest/index",
+    "pages/detail/dynamicinfo/index",
     "pages/dynamic/index",
+    "pages/suggest/index",
     "pages/user/index",
     "pages/publish/index"
   ],
   "window": {
     "defaultTitle": "畅言",
-    "supportColorScheme":["light","dark"],
-    "allowsBounceVertical":"NO",
-    "pullRefresh":false
+    "supportColorScheme": [
+      "light",
+      "dark"
+    ],
+    "allowsBounceVertical": "NO",
+    "pullRefresh": false
   },
   "tabBar": {
     "textColor": "#404040",
@@ -28,7 +32,7 @@
         "activeIcon": "image/system/suggestActive.png",
         "name": "意见栏"
       },
-       {
+      {
         "pagePath": "pages/publish/index",
         "icon": "image/system/publish.png",
         "activeIcon": "image/system/publishActive.png",

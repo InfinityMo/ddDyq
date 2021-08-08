@@ -1,12 +1,12 @@
-import { frontdynamic } from "/data/testData";
-import { encodeUrl } from '/utils/funcStore'
+import { frontdynamicInfo } from "/data/testData";
 Page({
   data: {
     focus: false,
     inputHeight: "",
     isShowInput: false,
     placeholder: "",
-    dynamics: frontdynamic
+    dynamics: frontdynamicInfo,
+    isDelete: false
   },
   toSupport(event) {
     const id = event.target.dataset.id;
@@ -51,12 +51,6 @@ Page({
       });
     }
   },
-  // 查看详情
-  toDetail(e) {
-    const id = e.target.dataset.id;
-    const url = encodeUrl('/pages/detail/dynamicinfo/index', { id })
-    dd.navigateTo({ url })
-  },
   // onLoad (query) {
   //   // 页面加载
   //   console.info(`Page onLoad with query: ${JSON.stringify(query)}`);
@@ -76,6 +70,9 @@ Page({
   // onTitleClick () {
   //   // 标题被点击
   // },
+  showDelete() {
+    this.setData({ isDelete: !this.data.isDelete })
+  },
   onPullDownRefresh() {
     setTimeout(() => {
       dd.stopPullDownRefresh();
