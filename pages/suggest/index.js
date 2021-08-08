@@ -1,9 +1,9 @@
 Page({
   data: {
     tabs: ["采纳建议", "本月建议"],
-    tabIndex: 1,
-    adpotAdvise: true,
-    monthAdvise: false,
+    tabIndex: 0,
+    adpotAdvise: false,
+    monthAdvise: true,
     adoptSuggests: [
       {
         title: "男卫生间加一个全身镜",

@@ -1,0 +1,138 @@
+.adopt {
+  padding: 20px 15px;
+}
+
+.take-title {
+  padding-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 21px;
+  color: #333;
+}
+
+.adopt .item {
+  margin-bottom: 30px;
+  background: #FFFFFF;
+  box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.05), 0px 3px 30px rgba(0, 0, 0, 0.15), 2px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.adopt .item:last-child {
+  margin-bottom: 0;
+}
+
+.top-box {
+  padding: 8px 8px 15px 20px;
+}
+
+.adopt .top-wrap {
+  width: 100%;
+  color: #FFF
+}
+
+.adopt .top-box1 {
+  background: linear-gradient(95.94deg, #EED4B0 2.11%, #D4A861 96.97%);
+}
+
+.adopt .top-box2 {
+  background: linear-gradient(97.57deg, #B9BCCB 23.3%, #B1B4C2 96.6%);
+}
+
+.adopt .top-box3 {
+background: linear-gradient(97.57deg, #B9BCCB 23.3%, #B1B4C2 96.6%);
+}
+
+.adopt .top-wrap .title {
+  align-items: flex-end;
+  flex-shrink: 0;
+  padding-top: 12px;
+  font-weight: bold;
+
+}
+
+.adopt .top-wrap .title .sub-title {
+  flex-shrink: 0;
+  font-size: 28px;
+}
+
+
+
+.adopt .top-wrap .title image {
+  width: 16px;
+  height: 4px;
+  margin-left: 10px;
+}
+
+.adopt .user image {
+  width: 36px;
+  height: 36px;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+
+.adopt .user {
+  padding: 22px 0 5px 0;
+}
+
+.adopt .user .user-info {
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: bold;
+}
+
+.adopt .user .user-info text {
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: normal;
+}
+
+.adopt .top-wrap .user-words {
+  font-size: 13px;
+  line-height: 19px;
+}
+
+.top-box .order-bg {
+  width: 127px;
+  height: 122px;
+}
+
+.feed-back {
+  padding: 15px 20px 10px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.feed-back .back-words {
+  font-size: 13px;
+  line-height: 19px;
+  color: #333;
+}
+
+.support-against {
+  padding-top: 10px;
+  font-size: 11px;
+  line-height: 21px;
+}
+
+.support-against image {
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+}
+
+.support-against .support {
+  color: #777
+}
+
+.support-against .against {
+  margin-left: 30px;
+  color: #AAA
+}
+
+.adopt-detail-btn {
+  padding: 10px 0;
+  text-align-last: center;
+  font-size: 13px;
+  line-height: 19px;
+  color: #AAA
+}

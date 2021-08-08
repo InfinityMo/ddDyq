@@ -1,6 +1,9 @@
+import {adpot} from '/data/testData'
 Component({
   mixins: [],
-  data: {},
+  data: {
+    adpot
+  },
   props: {},
   didMount() {},
   didUpdate() {},

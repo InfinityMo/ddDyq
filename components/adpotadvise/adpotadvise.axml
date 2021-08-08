@@ -1,3 +1,40 @@
-<view>
-  New Component
+<view class="adopt">
+<view class="take-title">上月采纳建议</view>
+  <view a:for="{{adpot}}" class="item">
+    <view class="top-box top-box{{item.rank}} flex">
+      <view class="top-wrap">
+        <view class="title flex">
+          <view class="sub-title">TOP-{{item.rank}}</view>
+          <image class="wave" mode="scaleToFill" src="/image/system/order{{item.rank}}-wave.png"/>
+        </view>
+        <view class="user-words">
+          <view class="flex user">
+            <image mode="scaleToFill" src="{{item.avatar}}"/>
+            <view class="user-info">
+              <view>{{item.name}}</view>
+              <text>{{item.time}}</text>
+            </view>
+          </view>
+          <view class="ell2">{{item.words}}</view>
+        </view>
+      </view>
+      <image class="order-bg" mode="scaleToFill" src="/image/system/order{{item.rank}}.png"/>
+    </view>
+    <view class="feed-back">
+      <view class="back-words ell2">{{item.feedback}}</view>
+      <view class="flex flex-justify-end support-against">
+        <view class="flex-item-center support">
+          <image a:if="{{item.isSelfSupport==='1'}}" mode="scaleToFill" src="/image/system/thumbActive.png"/>
+          <image a:else mode="scaleToFill" src="/image/system/thumb.png"/>
+          <text>{{item.support}}</text>
+        </view>
+        <view  class="flex-item-center against">
+          <image a:if="{{item.isSelfAgainst==='1'}}" mode="scaleToFill" src="/image/system/treadActive.png"/>
+          <image a:else mode="scaleToFill" src="/image/system/tread.png"/>
+          <text>{{item.against}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="adopt-detail-btn">查看详情</view>
+  </view>
 </view>

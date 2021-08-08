@@ -453,41 +453,85 @@ export const advises = [
     avatar: "/image/user/cat.png",
     name: "测试用户2",
     publishTime: "2021-07-29 12:09",
-    words:'一个钉钉小程序同时只能保留一个 WebSocket 连接，如果当前已存在 WebSocket 连接，会自动关闭该连接，并重新创建一个新的 WebSocket 连接',
-    support:'200',
-    isSelfSupport:'1',
-    rank:'1'
+    words: '一个钉钉小程序同时只能保留一个 WebSocket 连接，如果当前已存在 WebSocket 连接，会自动关闭该连接，并重新创建一个新的 WebSocket 连接',
+    support: '200',
+    isSelfSupport: '1',
+    rank: '1'
   },
-   {
+  {
     id: "2",
     userId: "grewrwerw",
     avatar: "/image/user/cat.png",
     name: "测试用户2",
     publishTime: "2021-07-29 12:09",
-    words:'一个钉钉小程序同时只能保留一个 WebSocket 连接，如果当前已存在 WebSocket 连接，会自动关闭该连接，并重新创建一个新的 WebSocket 连接',
-    support:'200',
-    isSelfSupport:'0',
-    rank:'3'
+    words: '一个钉钉小程序同时只能保留一个 WebSocket 连接，如果当前已存在 WebSocket 连接，会自动关闭该连接，并重新创建一个新的 WebSocket 连接',
+    support: '200',
+    isSelfSupport: '0',
+    rank: '3'
   },
-   {
+  {
     id: "3",
     userId: "grewrwerw",
     avatar: "/image/user/cat.png",
     name: "测试用户2",
     publishTime: "2021-07-29 12:09",
-    words:'一个钉钉小程序同时只能保留一个 WebSocket 连接，如果当前已存在 WebSocket 连接，会自动关闭该连接，并重新创建一个新的 WebSocket 连接',
-    support:'200',
-    isSelfSupport:'1',
-    rank:'2'
+    words: '一个钉钉小程序同时只能保留一个 WebSocket 连接，如果当前已存在 WebSocket 连接，会自动关闭该连接，并重新创建一个新的 WebSocket 连接',
+    support: '200',
+    isSelfSupport: '1',
+    rank: '2'
   }, {
     id: "4",
     userId: "grewrwerw",
     avatar: "/image/user/cat.png",
     name: "测试用户2",
     publishTime: "2021-07-29 12:09",
-    words:'一个钉钉小程序同时只能保留一个 WebSocket 连接，如果当前已存在 WebSocket 连接，会自动关闭该连接，并重新创建一个新的 WebSocket 连接',
-    support:'200',
-    isSelfSupport:'0',
-    rank:'4'
+    words: '一个钉钉小程序同时只能保留一个 WebSocket 连接，如果当前已存在 WebSocket 连接，会自动关闭该连接，并重新创建一个新的 WebSocket 连接',
+    support: '200',
+    isSelfSupport: '0',
+    rank: '4'
   }
 ];
+
+export const adpot = [
+  {
+    id: '1',
+    rank: '1',
+    userId: "grewrwerw",
+    avatar: "/image/user/cat.png",
+    name: "测试用户1",
+    time: "2021-07-23 12:09",
+    words: 'SJS（safe/subset javascript）是小程序一套自定义脚本语言，可以在 AXML 中使用其构建页面结构。 SJS 是 JavaScript 语言的子集，与 JavaScript 是不同的语言，其语法并不与 JavaScript 一致，请勿将其等同于 JavaScript。',
+    feedback: 'sjs 的运行环境和其他 JavaScript 代码是隔离的，sjs 中不能调用其他 JavaScript 文件中定义的函数，也不能调用小程序提供的 API。',
+    support: '300',
+    isSelfSupport: '0',
+    against: '200',
+    isSelfAgainst: '0'
+  }, 
+  {
+    id: '2',
+    rank: '2',
+    userId: "grewrwerw",
+    avatar: "/image/user/cat.png",
+    name: "测试用户2",
+    time: "2021-07-19 12:09",
+    words: 'ACSS用于描述页面的样式。它是一套样式语言，用于描述 axml 的组件样式，决定 axml 的组件应该怎么显示',
+    feedback: 'sjs 的运行环境和其他 JavaScript 代码是隔离的，sjs 中不能调用其他 JavaScript 文件中定义的函数，也不能调用小程序提供的 API。',
+    support: '300',
+    isSelfSupport: '0',
+    against: '200',
+    isSelfAgainst: '0'
+  }, {
+    id: '3',
+    rank: '3',
+    userId: "grewrwerw",
+    avatar: "/image/user/cat.png",
+    name: "测试用户2",
+    time: "2021-07-21 12:09",
+    words: '为了适应广大的前端开发者，我们的 acss 具有 css 大部分特性。同时为了更适合开发小程序，我们对 css 进行了扩充。',
+    feedback: 'sjs 的运行环境和其他 JavaScript 代码是隔离的，sjs 中不能调用其他 JavaScript 文件中定义的函数，也不能调用小程序提供的 API。',
+    support: '300',
+    isSelfSupport: '0',
+    against: '200',
+    isSelfAgainst: '0'
+  }
+]
