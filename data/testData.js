@@ -8,6 +8,7 @@ export const frontdynamic = [
       name: "测试用户1",
       time: "2021-07-21 19:01"
     },
+    isDelete:'1',
     dynamic: {
       words:
         "我这么一个人，哪懂什么时尚，留过时的发型，唱过时的歌，跳过时的舞，穿过时的衣服。我这么一个人，为了时尚的你，通红着脸，学了几个时兴的姿势。02《镜子》",
@@ -57,6 +58,7 @@ export const frontdynamic = [
       name: "测试用户666",
       time: "2021-07-31 17:01"
     },
+    isDelete:'0',
     dynamic: {
       words:
         "钉钉小程序可以配置 native 渲染的 tabBar 和 titleBar 部分的多语言文案。多语言配置通过小程序全局配置文件和页面配置文件进行注入",
@@ -101,6 +103,7 @@ export const frontdynamic = [
       name: "测试用户777",
       time: "2021-07-31 17:01"
     },
+    isDelete:'0',
     dynamic: {
       words:
         "Page代表应用的一个页面，负责页面展示和交互。每个页面对应一个子目录，一般有多少个页面，就有多少个子目录。它也是一个构造函数，用来生成页面实例",
@@ -145,6 +148,7 @@ export const frontdynamic = [
       name: "测试用户777",
       time: "2021-07-31 17:01"
     },
+    isDelete:'1',
     dynamic: {
       words:
         "Page代表应用的一个页面，负责页面展示和交互。每个页面对应一个子目录，一般有多少个页面，就有多少个子目录。它也是一个构造函数，用来生成页面实例",
@@ -188,6 +192,7 @@ export const frontdynamic = [
       name: "测试用户2",
       time: "2021-07-29 12:09"
     },
+    isDelete:'0',
     dynamic: {
       words:
         "免登是指用户进入应用后，无需输入钉钉用户名和密码，应用程序可自动获取当前用户身份登录系统的流程。企业应用和个人应用的免登授权码均可通过该JSAPI获取",
@@ -243,7 +248,8 @@ export const frontdynamic = [
     }
   }
 ];
-export const frontdynamicInfo = [  {
+export const frontdynamicInfo = [
+  {
     id: "1",
     user: {
       userId: "affefgweq",
@@ -291,7 +297,8 @@ export const frontdynamicInfo = [  {
         }
       ]
     }
-  }]
+  }
+];
 export const dynamics = [
   {
     year: "2021",
@@ -501,10 +508,11 @@ export const advises = [
     avatar: "/image/user/cat.png",
     name: "测试用户2",
     publishTime: "2021-07-29 12:09",
-    words: '一个钉钉小程序同时只能保留一个 WebSocket 连接，如果当前已存在 WebSocket 连接，会自动关闭该连接，并重新创建一个新的 WebSocket 连接',
-    support: '200',
-    isSelfSupport: '1',
-    rank: '1'
+    words:
+      "一个钉钉小程序同时只能保留一个 WebSocket 连接，如果当前已存在 WebSocket 连接，会自动关闭该连接，并重新创建一个新的 WebSocket 连接",
+    support: "200",
+    isSelfSupport: "1",
+    rank: "1"
   },
   {
     id: "2",
@@ -512,10 +520,11 @@ export const advises = [
     avatar: "/image/user/cat.png",
     name: "测试用户2",
     publishTime: "2021-07-29 12:09",
-    words: '一个钉钉小程序同时只能保留一个 WebSocket 连接，如果当前已存在 WebSocket 连接，会自动关闭该连接，并重新创建一个新的 WebSocket 连接',
-    support: '200',
-    isSelfSupport: '0',
-    rank: '3'
+    words:
+      "整个小程序框架系统分为逻辑层（App Service）和 视图层（View）。小程序提供了自己的视图层描述语言 AXML 和 ACSS，以及基于 JavaScript 的逻辑层框架，并在视图层与逻辑层间提供了数据传输和事件系统，让开发者能够专注于数据与逻辑。一个钉钉小程序同时只能保留一个 WebSocket 连接，如果当前已存在 WebSocket 连接，会自动关闭该连接，并重新创建一个新的 WebSocket 连接",
+    support: "200",
+    isSelfSupport: "0",
+    rank: "3"
   },
   {
     id: "3",
@@ -523,63 +532,120 @@ export const advises = [
     avatar: "/image/user/cat.png",
     name: "测试用户2",
     publishTime: "2021-07-29 12:09",
-    words: '一个钉钉小程序同时只能保留一个 WebSocket 连接，如果当前已存在 WebSocket 连接，会自动关闭该连接，并重新创建一个新的 WebSocket 连接',
-    support: '200',
-    isSelfSupport: '1',
-    rank: '2'
-  }, {
+    words:
+      "一个钉钉小程序同时只能保留一个 WebSocket 连接，如果当前已存在 WebSocket 连接，会自动关闭该连接，并重新创建一个新的 WebSocket 连接",
+    support: "200",
+    isSelfSupport: "1",
+    rank: "2"
+  },
+  {
     id: "4",
     userId: "grewrwerw",
     avatar: "/image/user/cat.png",
     name: "测试用户2",
     publishTime: "2021-07-29 12:09",
-    words: '一个钉钉小程序同时只能保留一个 WebSocket 连接，如果当前已存在 WebSocket 连接，会自动关闭该连接，并重新创建一个新的 WebSocket 连接',
-    support: '200',
-    isSelfSupport: '0',
-    rank: '4'
+    words:
+      "一个钉钉小程序同时只能保留一个 WebSocket 连接，如果当前已存在 WebSocket 连接，会自动关闭该连接，并重新创建一个新的 WebSocket 连接",
+    support: "200",
+    isSelfSupport: "0",
+    rank: "4"
   }
 ];
 
 export const adpot = [
   {
-    id: '1',
-    rank: '1',
+    id: "1",
+    rank: "1",
     userId: "grewrwerw",
     avatar: "/image/user/cat.png",
     name: "测试用户1",
     time: "2021-07-23 12:09",
-    words: 'SJS（safe/subset javascript）是小程序一套自定义脚本语言，可以在 AXML 中使用其构建页面结构。 SJS 是 JavaScript 语言的子集，与 JavaScript 是不同的语言，其语法并不与 JavaScript 一致，请勿将其等同于 JavaScript。',
-    feedback: 'sjs 的运行环境和其他 JavaScript 代码是隔离的，sjs 中不能调用其他 JavaScript 文件中定义的函数，也不能调用小程序提供的 API。',
-    support: '300',
-    isSelfSupport: '0',
-    against: '200',
-    isSelfAgainst: '0'
-  }, 
+    words:
+      "SJS（safe/subset javascript）是小程序一套自定义脚本语言，可以在 AXML 中使用其构建页面结构。 SJS 是 JavaScript 语言的子集，与 JavaScript 是不同的语言，其语法并不与 JavaScript 一致，请勿将其等同于 JavaScript。",
+    feedback:
+      "sjs 的运行环境和其他 JavaScript 代码是隔离的，sjs 中不能调用其他 JavaScript 文件中定义的函数，也不能调用小程序提供的 API。",
+    support: "300",
+    isSelfSupport: "0",
+    against: "200",
+    isSelfAgainst: "0"
+  },
   {
-    id: '2',
-    rank: '2',
+    id: "2",
+    rank: "2",
     userId: "grewrwerw",
     avatar: "/image/user/cat.png",
     name: "测试用户2",
     time: "2021-07-19 12:09",
-    words: 'ACSS用于描述页面的样式。它是一套样式语言，用于描述 axml 的组件样式，决定 axml 的组件应该怎么显示',
-    feedback: 'sjs 的运行环境和其他 JavaScript 代码是隔离的，sjs 中不能调用其他 JavaScript 文件中定义的函数，也不能调用小程序提供的 API。',
-    support: '300',
-    isSelfSupport: '0',
-    against: '200',
-    isSelfAgainst: '0'
-  }, {
-    id: '3',
-    rank: '3',
+    words:
+      "ACSS用于描述页面的样式。它是一套样式语言，用于描述 axml 的组件样式，决定 axml 的组件应该怎么显示",
+    feedback:
+      "sjs 的运行环境和其他 JavaScript 代码是隔离的，sjs 中不能调用其他 JavaScript 文件中定义的函数，也不能调用小程序提供的 API。",
+    support: "300",
+    isSelfSupport: "0",
+    against: "200",
+    isSelfAgainst: "0"
+  },
+  {
+    id: "3",
+    rank: "3",
     userId: "grewrwerw",
     avatar: "/image/user/cat.png",
     name: "测试用户2",
     time: "2021-07-21 12:09",
-    words: '为了适应广大的前端开发者，我们的 acss 具有 css 大部分特性。同时为了更适合开发小程序，我们对 css 进行了扩充。',
-    feedback: 'sjs 的运行环境和其他 JavaScript 代码是隔离的，sjs 中不能调用其他 JavaScript 文件中定义的函数，也不能调用小程序提供的 API。',
-    support: '300',
-    isSelfSupport: '0',
-    against: '200',
-    isSelfAgainst: '0'
+    words:
+      "为了适应广大的前端开发者，我们的 acss 具有 css 大部分特性。同时为了更适合开发小程序，我们对 css 进行了扩充。",
+    feedback:
+      "sjs 的运行环境和其他 JavaScript 代码是隔离的，sjs 中不能调用其他 JavaScript 文件中定义的函数，也不能调用小程序提供的 API。",
+    support: "300",
+    isSelfSupport: "0",
+    against: "200",
+    isSelfAgainst: "0"
   }
-]
+];
+
+export const adpotDeatil = {
+  id: "1",
+  rank: "2",
+  userId: "grewrwerw",
+  avatar: "/image/user/cat.png",
+  name: "测试用户1",
+  time: "2021-07-23 12:09",
+  words:
+    "SJS（safe/subset javascript）是小程序一套自定义脚本语言，可以在 AXML 中使用其构建页面结构。 SJS 是 JavaScript 语言的子集，与 JavaScript 是不同的语言，其语法并不与 JavaScript 一致，请勿将其等同于 JavaScript。",
+  feedback:
+    "sjs 的运行环境和其他 JavaScript 代码是隔离的，sjs 中不能调用其他 JavaScript 文件中定义的函数，也不能调用小程序提供的 API。",
+  support: "300",
+  isSelfSupport: "0",
+  against: "200",
+  isSelfAgainst: "0"
+};
+export const adoptComment = [
+  {
+    id: "1",
+    userId: "grewrwerw",
+    avatar: "/image/user/cat.png",
+    name: "测试用户1",
+    publishTime: "2021-07-29 12:09",
+    words:
+      "建议用户信息保存在前端缓存中（dd.setStorage）或者cookie中，避免每次进入应用都调用钉钉接口进行免登",
+    support: "200",
+    isSelfSupport: "1",
+    against: "200",
+    isSelfAgainst: "0"
+  },
+  {
+    id: "2",
+    userId: "grewrwerw",
+    avatar: "/image/user/cat.png",
+    name: "测试用户1",
+    replyUserId: "34234",
+    replyUserName: "测试用户2",
+    publishTime: "2021-07-29 12:09",
+    words:
+      "为了方便开发者，这四个文件必须具有相同的路径与文件名。开发者写的所有代码最终将会打包成一份 JavaScript 脚本，在小程序启动的时候运行，在小程序结束运行时销毁",
+    support: "200",
+    isSelfSupport: "1",
+    against: "200",
+    isSelfAgainst: "0"
+  }
+];

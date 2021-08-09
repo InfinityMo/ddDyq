@@ -1,17 +1,15 @@
 {
   "pages": [
-    "pages/detail/dynamicinfo/index",
     "pages/dynamic/index",
     "pages/suggest/index",
+    "pages/publish/index",
     "pages/user/index",
-    "pages/publish/index"
+     "pages/detail/feedback/index",
+    "pages/detail/dynamicinfo/index"
   ],
   "window": {
     "defaultTitle": "畅言",
-    "supportColorScheme": [
-      "light",
-      "dark"
-    ],
+    "supportColorScheme": ["light", "dark"],
     "allowsBounceVertical": "NO",
     "pullRefresh": false
   },

@@ -1,4 +1,5 @@
 {
   "pullRefresh": true,
-  "allowsBounceVertical": "YES"
+  "allowsBounceVertical": "YES",
+  "suspension": "/components/suspension/suspension"
 }

@@ -1,3 +1,9 @@
+/* 公共基础样式 */
+
+view, text {
+  word-break: break-all;
+}
+
 .flex {
   display: flex;
 }
@@ -40,13 +46,14 @@
 }
 
 .ell2 {
-   display: -webkit-box;
+  display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
 }
+
 .ell3 {
-   display: -webkit-box;
+  display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;

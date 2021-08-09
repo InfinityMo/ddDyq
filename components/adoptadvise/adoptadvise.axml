@@ -1,5 +1,5 @@
 <view class="adopt">
-<view class="take-title">上月采纳建议</view>
+  <view class="take-title">上月采纳建议</view>
   <view a:for="{{adpot}}" class="item">
     <view class="top-box top-box{{item.rank}} flex">
       <view class="top-wrap">
@@ -28,13 +28,13 @@
           <image a:else mode="scaleToFill" src="/image/system/thumb.png"/>
           <text>{{item.support}}</text>
         </view>
-        <view  class="flex-item-center against">
+        <view class="flex-item-center against">
           <image a:if="{{item.isSelfAgainst==='1'}}" mode="scaleToFill" src="/image/system/treadActive.png"/>
           <image a:else mode="scaleToFill" src="/image/system/tread.png"/>
           <text>{{item.against}}</text>
         </view>
       </view>
     </view>
-    <view class="adopt-detail-btn">查看详情</view>
+    <view class="adopt-detail-btn" data-id="{{item.id}}" onTap="toAdoptDeatil">查看详情</view>
   </view>
 </view>

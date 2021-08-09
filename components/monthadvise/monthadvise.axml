@@ -17,7 +17,7 @@
         </view>
       </view>
       <view class="flex content-words">
-        <view class="ell3">{{item.words}}</view>
+        <view class="words">{{item.words}}</view>
         <view class="content-support flex-item-center">
           <image a:if="{{item.isSelfSupport==='1'}}" class="icon" mode="scaleToFill" src="/image/system/thumbActive.png"/>
           <image a:else class="icon" mode="scaleToFill" src="/image/system/thumb.png"/>

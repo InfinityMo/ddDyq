@@ -8,5 +8,9 @@ Component({
   didMount() { },
   didUpdate() { },
   didUnmount() { },
-  methods: {},
+  methods: {
+    changeSkin(){
+      
+    }
+  },
 });

@@ -19,26 +19,28 @@
           <!-- 图片 -->
           <view a:if="{{list.dynamic.pics.length>0}}">
             <view class="flex picture-wrap {{list.dynamic.pics.length===1 ? 'pic-one':''}}">
-              <image class="picture" mode="{{list.dynamic.pics.length===1 ?'widthFix':'aspectFill'}}"
-               a:for="{{list.dynamic.pics}}" src="{{item}}" onTap="previewImg" data-index="{{index}}" data-id="{{list.id}}" />
+              <image class="picture" mode="{{list.dynamic.pics.length===1 ?'widthFix':'aspectFill'}}" a:for="{{list.dynamic.pics}}" src="{{item}}" onTap="previewImg" data-index="{{index}}" data-id="{{list.id}}" />
             </view>
           </view>
         </view>
         <!-- 点赞、操作 -->
-        <view class="flex-item-center interaction-wrap">
-          <view class="flex-item-center interaction-item" data-id="{{list.id}}" onTap="toSupport">
-            <image a:if="{{list.interaction.ownSupport}}" class="icon" mode="scaleToFill" src="/image/system/thumbActive.png"/>
-            <image a:else class="icon" mode="scaleToFill" src="/image/system/thumb.png"/>
-            <text class="num" a:if="{{list.interaction.support.length>0}}">{{list.interaction.support.length}}</text>
+        <view class="flex-between-center interaction-wrap">
+          <view class="flex-item-center">
+            <view class="flex-item-center interaction-item" data-id="{{list.id}}" onTap="toSupport">
+              <image a:if="{{list.interaction.ownSupport}}" class="icon" mode="scaleToFill" src="/image/system/thumbActive.png"/>
+              <image a:else class="icon" mode="scaleToFill" src="/image/system/thumb.png"/>
+              <text class="num" a:if="{{list.interaction.support.length>0}}">{{list.interaction.support.length}}</text>
+            </view>
+            <view class="flex-item-center interaction-item" data-id="{{list.id}}" data-authorName="{{list.user.name}}" data-authorId="{{list.user.userId}}" onTap="toComment">
+              <image class="icon" mode="scaleToFill" src="/image/system/comment.png"/>
+              <text class="num" a:if="{{list.interaction.comments.length>0}}">{{list.interaction.comments.length}}</text>
+            </view>
+            <view class="flex-item-center interaction-item">
+              <image class="icon" mode="scaleToFill" src="/image/system/forward.png"/>
+              <text class="num">转发</text>
+            </view>
           </view>
-          <view class="flex-item-center interaction-item" data-id="{{list.id}}" data-authorName="{{list.user.name}}" data-authorId="{{list.user.userId}}" onTap="toComment">
-            <image class="icon" mode="scaleToFill" src="/image/system/comment.png"/>
-            <text class="num" a:if="{{list.interaction.comments.length>0}}">{{list.interaction.comments.length}}</text>
-          </view>
-          <view class="flex-item-center interaction-item">
-            <image class="icon" mode="scaleToFill" src="/image/system/forward.png"/>
-            <text class="num">转发</text>
-          </view>
+          <view class="delete" a:if="{{list.isDelete==='1'}}">删除</view>
         </view>
         <!-- 评论 -->
         <view class="comment-wrap">
@@ -65,4 +67,5 @@
     <input class="input-text" maxlength="200" placeholder="{{placeholder}}" onFocus="onFocus" onBlur="onBlur" focus="{{focus}}"   adjust-position />
     <button>发布</button>
   </view>
+     <suspension />
 </view>

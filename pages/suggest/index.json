@@ -2,7 +2,7 @@
   "pullRefresh": true,
   "allowsBounceVertical": "YES",
   "usingComponents": {
-    "adpotadvise": "/components/adpotadvise/adpotadvise",
+    "adpotadvise": "/components/adoptadvise/adoptadvise",
     "monthadvise": "/components/monthadvise/monthadvise"
   }
 }

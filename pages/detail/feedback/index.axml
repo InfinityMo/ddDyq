@@ -1,0 +1,76 @@
+<view class="adopt">
+  <view class="item">
+    <view class="top-box top-box{{adpotDeatil.rank}} flex">
+      <view class="top-wrap">
+        <view class="title flex">
+          <view class="sub-title">TOP-{{adpotDeatil.rank}}</view>
+          <image class="wave" mode="scaleToFill" src="/image/system/order{{adpotDeatil.rank}}-wave.png"/>
+        </view>
+      </view>
+      <image class="order-bg" mode="scaleToFill" src="/image/system/order{{adpotDeatil.rank}}-detail.png"/>
+    </view>
+    <view class="user-words user-words-detail">
+      <view class="flex user">
+        <image mode="scaleToFill" src="{{adpotDeatil.avatar}}"/>
+        <view class="user-info">
+          <view>{{adpotDeatil.name}}</view>
+          <text>{{adpotDeatil.time}}</text>
+        </view>
+      </view>
+      <view class="text">{{adpotDeatil.words}}</view>
+    </view>
+    <view class="feed-back">
+      <view class="title">解决方案</view>
+      <view class="back-words">{{adpotDeatil.feedback}}</view>
+      <view class="flex flex-justify-end support-against">
+        <view class="flex-item-center support">
+          <image a:if="{{adpotDeatil.isSelfSupport==='1'}}" mode="scaleToFill" src="/image/system/thumbActive.png"/>
+          <image a:else mode="scaleToFill" src="/image/system/thumb.png"/>
+          <text>{{adpotDeatil.support}}</text>
+        </view>
+        <view class="flex-item-center against">
+          <image a:if="{{adpotDeatil.isSelfAgainst==='1'}}" mode="scaleToFill" src="/image/system/treadActive.png"/>
+          <image a:else mode="scaleToFill" src="/image/system/tread.png"/>
+          <text>{{adpotDeatil.against}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 评论 -->
+  <view class="comment-box-wrap">
+    <view class="comment-tip-box">评论（{{adoptComment.length}}）</view>
+    <scroll-view class="scroll-adopt" scroll-y="{{true}}">
+      <view class="user-words user-words-detail comment-detail" a:for="{{adoptComment}}">
+        <view class="flex-between-center user">
+          <view class="flex">
+            <image mode="scaleToFill" src="{{item.avatar}}"/>
+            <view class="user-info">
+              <view>{{item.name}}</view>
+              <text>{{item.publishTime}}</text>
+            </view>
+          </view>
+          <view class="flex flex-justify-end support-against comment-support-against">
+            <view class="flex-item-center support">
+              <image a:if="{{item.isSelfSupport==='1'}}" mode="scaleToFill" src="/image/system/thumbActiveSmall.png"/>
+              <image a:else mode="scaleToFill" src="/image/system/thumbSmall.png"/>
+              <text>{{item.support}}</text>
+            </view>
+            <view class="flex-item-center against">
+              <image a:if="{{item.isSelfAgainst==='1'}}" mode="scaleToFill" src="/image/system/treadActiveSmall.png"/>
+              <image a:else mode="scaleToFill" src="/image/system/treadSmall.png"/>
+              <text>{{item.against}}</text>
+            </view>
+          </view>
+        </view>
+        <view class="text reply" onTap="replyComment" data-userId="{{item.userId}}" data-userName="{{item.name}}">
+          <text a:if="{{item.replyUserId}}">回复
+            <text class="reply-user-name">{{item.replyUserName}}：</text></text>{{item.words}}
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="flex-item-center flex-between text-wrap">
+    <input class="input-text" maxlength="200" placeholder="{{placeholder}}" onFocus="onFocus" onBlur="onBlur" focus="{{focus}}"   adjust-position />
+    <button>发布</button>
+  </view>
+</view>

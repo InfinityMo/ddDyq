@@ -40,7 +40,7 @@
 }
 
 .adopt .top-box3 {
-background: linear-gradient(97.57deg, #B9BCCB 23.3%, #B1B4C2 96.6%);
+  background: linear-gradient(97.5deg, #F19B9B 3.21%, #EE9696 98.27%);
 }
 
 .adopt .top-wrap .title {
@@ -48,15 +48,12 @@ background: linear-gradient(97.57deg, #B9BCCB 23.3%, #B1B4C2 96.6%);
   flex-shrink: 0;
   padding-top: 12px;
   font-weight: bold;
-
 }
 
 .adopt .top-wrap .title .sub-title {
   flex-shrink: 0;
   font-size: 28px;
 }
-
-
 
 .adopt .top-wrap .title image {
   width: 16px;
@@ -93,6 +90,7 @@ background: linear-gradient(97.57deg, #B9BCCB 23.3%, #B1B4C2 96.6%);
 }
 
 .top-box .order-bg {
+  flex-shrink: 0;
   width: 127px;
   height: 122px;
 }

@@ -63,6 +63,11 @@
   align-items: flex-end;
 }
 
+.view-wrap .content-words .words {
+  font-size: 13px;
+  line-height: 19px;
+}
+
 .view-wrap .content-support {
   flex-shrink: 0;
   padding-left: 10px;
@@ -79,6 +84,7 @@
   /* line-height: 21px; */
   color: #BFBFBF;
 }
-.view-wrap .content-words .num-active{
-color: #1890FF; 
+
+.view-wrap .content-words .num-active {
+  color: #1890FF;
 }

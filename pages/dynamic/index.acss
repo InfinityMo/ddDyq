@@ -1,4 +1,5 @@
 .page {
+  position: relative;
   padding: 10px 15px;
 }
 
@@ -46,11 +47,13 @@
   color: #333;
   word-break: break-all;
 }
-.picture-wrap{
+
+.picture-wrap {
   flex-wrap: wrap;
 }
+
 .picture-wrap .picture {
-   width: calc( (100% - 4px) / 3);
+  width: calc( (100% - 4px) / 3);
   height: calc( (100vw - 76px) / 3);
   margin: 0 2px 2px 0;
 }
@@ -107,6 +110,12 @@
   margin-right: 5px;
 }
 
+.delete {
+  font-size: 12px;
+  line-height: 21px;
+  color: #1890FF;
+}
+
 .comment {
   margin-top: 5px;
   border-top: 1px solid #E9E9E9;
@@ -159,7 +168,7 @@
   text-align: center;
   color: #FFF;
   background: #3296FA;
-  opacity: 0.28;
+  /* opacity: 0.28; */
   border-radius: 3px;
 }
 
