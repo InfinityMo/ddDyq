@@ -23,5 +23,5 @@
     </radio-group>
   </view>
   <view class="publish-btn">发布</view>
-  <!-- <suspension /> -->
+  <suspension a:if="{{suspensionShow}}" />
 </view>

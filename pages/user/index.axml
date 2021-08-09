@@ -20,6 +20,5 @@
     <view hidden="{{mysuggestHide}}">
       <mysuggest /></view>
   </view>
-  <!-- 悬浮球 -->
-  <!--<suspension /> -->
+  <suspension a:if="{{suspensionShow}}" />
 </view>

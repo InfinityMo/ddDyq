@@ -1,6 +1,7 @@
 import { dynamics } from "/data/testData";
 Page({
   data: {
+    suspensionShow: false,
     tabs: ["我的动态", "我的建议"],
     tabIndex: 0,
     mydynamicHide: false,
@@ -28,9 +29,11 @@ Page({
   },
   onShow() {
     // 页面显示
+    this.setData({ suspensionShow: true });
   },
   onHide() {
     // 页面隐藏
+    this.setData({ suspensionShow: false });
   },
   onUnload() {
     // 页面被关闭

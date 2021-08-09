@@ -1,7 +1,7 @@
 .movable-box-wrap {
   position: fixed;
- bottom: 15px;
- right: 15px; 
+  bottom: 15px;
+  right: 15px; 
   width: 46px;
   height: 46px;
   background: linear-gradient(138.11deg, #01B8F1 15.22%, #2F97FF 15.22%, #689BFF 85.53%);
@@ -9,7 +9,9 @@
   border-radius: 50%;
   z-index: 100000!important;
 }
-
+.movable-box-wrap.noTabBar{
+  bottom: 60px
+}
 .movable-box {
   width: 22px;
   height: 22px;

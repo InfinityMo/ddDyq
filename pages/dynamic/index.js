@@ -2,6 +2,7 @@ import { frontdynamic } from "/data/testData";
 import { encodeUrl } from '/utils/funcStore'
 Page({
   data: {
+    suspensionShow:false,
     focus: false,
     inputHeight: "",
     isShowInput: false,
@@ -64,12 +65,14 @@ Page({
   // onReady () {
   //   // 页面加载完成
   // },
-  // onShow () {
-  //   // 页面显示
-  // },
-  // onHide () {
-  //   // 页面隐藏
-  // },
+  onShow () {
+    // 页面显示
+     this.setData({ suspensionShow: true });
+  },
+  onHide () {
+    // 页面隐藏
+     this.setData({ suspensionShow: false });
+  },
   // onUnload () {
   //   // 页面被关闭
   // },

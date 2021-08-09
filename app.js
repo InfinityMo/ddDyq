@@ -1,4 +1,6 @@
 App({
+  // 是否匿名
+  isAnonymous: true,
   // 冷启动
   onLaunch(options) {
     // 第一次打开

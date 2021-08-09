@@ -1,5 +1,6 @@
 Page({
   data: {
+    suspensionShow: false,
     radios: [
       {
         name: "动态",
@@ -68,9 +69,11 @@ Page({
   },
   onShow() {
     // 页面显示
+    this.setData({ suspensionShow: true });
   },
   onHide() {
     // 页面隐藏
+    this.setData({ suspensionShow: false });
   },
   onUnload() {
     // 页面被关闭

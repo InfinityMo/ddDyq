@@ -1,6 +1,7 @@
-<view class="movable-box-wrap flex-item-center flex-justify-center" onTap="changeSkin">
+<view class="movable-box-wrap flex-item-center flex-justify-center {{noTabBar ? 'noTabBar':''}} " onTap="changeSkin" >
   <!--<movable-area><movable-view class="movable-view" x="{{x}}" y="{{y}}" direction="all">具名</movable-view></movable-area> -->
   <view class="movable-box">
-    <image mode="scaleToFill" src="/image/system/has-name.png"/>
+    <image a:if="{{isAnonymous}}" mode="scaleToFill" src="/image/system/has-name.png"/>
+    <image a:else mode="scaleToFill" src="/image/system/none-name.png"/>
   </view>
 </view>

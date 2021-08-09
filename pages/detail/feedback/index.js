@@ -1,6 +1,7 @@
 import { adpotDeatil, adoptComment } from "/data/testData";
 Page({
   data: {
+    suspensionShow: false,
     adpotDeatil,
     adoptComment,
     placeholder: "一起讨论吧...",
@@ -62,12 +63,14 @@ Page({
   // onReady () {
   //   // 页面加载完成
   // },
-  // onShow () {
-  //   // 页面显示
-  // },
-  // onHide () {
-  //   // 页面隐藏
-  // },
+  onShow() {
+    // 页面显示
+    this.setData({ suspensionShow: true });
+  },
+  onHide() {
+    // 页面隐藏
+    this.setData({ suspensionShow: false });
+  },
   // onUnload () {
   //   // 页面被关闭
   // },

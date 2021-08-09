@@ -11,4 +11,5 @@
     <view hidden="{{monthAdvise}}">
       <monthadvise /></view>
   </view>
+  <suspension a:if="{{suspensionShow}}" />
 </view>

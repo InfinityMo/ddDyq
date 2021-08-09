@@ -1,16 +1,20 @@
+
 Component({
   mixins: [],
   data: {
-    x: 0,
-    y: 0,
+    isAnonymous: false
   },
   props: {},
-  didMount() { },
+  didMount() {
+    this.setData({ isAnonymous: getApp().isAnonymous });
+  },
   didUpdate() { },
-  didUnmount() { },
+  didUnmount() {
+  },
   methods: {
-    changeSkin(){
-      
+    changeSkin() {
+      getApp().isAnonymous = !getApp().isAnonymous;
+      this.setData({ isAnonymous: !this.data.isAnonymous });
     }
   },
 });
