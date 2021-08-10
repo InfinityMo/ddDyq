@@ -94,7 +94,7 @@
 .comment-wrap {
   padding: 5px 10px;
   margin-top: 12px;
-  background-color: #F8F8F8;
+  /* background-color: #F8F8F8; */
   border-radius: 2px;
 }
 
@@ -179,4 +179,18 @@
 
 .text-area span {
   display: none!important;
+}
+
+/* 暗黑模式 */
+
+.dark-mode {
+  color: #fff;
+  background-color: #303030;
+}
+
+.dark-mode .publish-time,.user-name,.words {
+  color: #fff;
+}
+.dark-mode .num,.comment-wrap .support{
+   color: #fff;
 }

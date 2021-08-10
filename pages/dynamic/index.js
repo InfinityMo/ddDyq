@@ -1,8 +1,9 @@
 import { frontdynamic } from "/data/testData";
-import { encodeUrl } from '/utils/funcStore'
+import { encodeUrl } from "/utils/funcStore";
 Page({
   data: {
-    suspensionShow:false,
+    mode: false, //暗黑模式
+    suspensionShow: false,
     focus: false,
     inputHeight: "",
     isShowInput: false,
@@ -55,23 +56,30 @@ Page({
   // 查看详情
   toDetail(e) {
     const id = e.target.dataset.id;
-    const url = encodeUrl('/pages/detail/dynamicinfo/index', { id })
-    dd.navigateTo({ url })
+    const url = encodeUrl("/pages/detail/dynamicinfo/index", { id });
+    dd.navigateTo({ url });
   },
-  // onLoad (query) {
-  //   // 页面加载
-  //   console.info(`Page onLoad with query: ${JSON.stringify(query)}`);
-  // },
+  onLoad(query) {
+    // console.log()
+    // 页面加载
+    // getApp().watch(() => {
+    //   debugger;
+    // });
+  },
   // onReady () {
   //   // 页面加载完成
   // },
-  onShow () {
+  onShow() {
+    this.setData({ mode: getApp().globalData.isAnonymous });
+    getApp().watch(value => {
+      this.setData({ mode: value });
+    });
     // 页面显示
-     this.setData({ suspensionShow: true });
+    this.setData({ suspensionShow: true });
   },
-  onHide () {
+  onHide() {
     // 页面隐藏
-     this.setData({ suspensionShow: false });
+    this.setData({ suspensionShow: false });
   },
   // onUnload () {
   //   // 页面被关闭

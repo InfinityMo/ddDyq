@@ -1,5 +1,6 @@
 Page({
   data: {
+    mode: false, //暗黑模式
     suspensionShow: false,
     tabs: ["采纳建议", "本月建议"],
     tabIndex: 0,
@@ -40,6 +41,10 @@ Page({
   },
   onShow() {
     // 页面显示
+    this.setData({ mode: getApp().globalData.isAnonymous });
+    getApp().watch(value => {
+      this.setData({ mode: value });
+    });
     this.setData({ suspensionShow: true });
   },
   onHide() {

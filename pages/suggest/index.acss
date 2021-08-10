@@ -2,7 +2,9 @@
   /* padding: 15px 0; */
   position: relative;
 }
-
+.dark-mode{
+  background-color: #303030;
+}
 .top {
   position: fixed;
   top: 0;
@@ -95,3 +97,7 @@
   line-height: 21px;
   border-top: 1px solid #eee;
 } */
+
+.commponent-dark{
+  color: #fff;
+}
