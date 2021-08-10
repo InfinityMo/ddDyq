@@ -9,7 +9,7 @@
     <view hidden="{{adpotAdvise}}">
       <adpotadvise /></view>
     <view hidden="{{monthAdvise}}">
-      <monthadvise class="{{mode ? 'commponent-dark':''}}" /></view>
+      <monthadvise className="{{mode ? 'commponent-dark':''}}" /></view>
   </view>
-  <suspension a:if="{{suspensionShow}}" />
+    <suspension isAnonymous="{{mode}}"  />
 </view>

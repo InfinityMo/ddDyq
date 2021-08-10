@@ -4,7 +4,9 @@ Component({
   data: {
     advises
   },
-  props: {},
+  props: {
+    className:''
+  },
   didMount() {},
   didUpdate() {},
   didUnmount() {},

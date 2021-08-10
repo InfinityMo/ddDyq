@@ -1,40 +1,48 @@
 Component({
   mixins: [],
   data: {
-    hidden: true,
-    isAnonymous: false
+    // hidden: true,
+    _isAnonymous: false
   },
-  props: {},
+  props: {
+    isAnonymous: false
+    // onRender: () => { }
+  },
   didMount() {
     const storageData = dd.getStorageSync({ key: "userMode" }).data;
     if (storageData && storageData.isAnonymous) {
       getApp().globalData.isAnonymous = storageData.isAnonymous;
-     // this.setData({ isAnonymous: storageData.isAnonymous });
-      if (storageData.isAnonymous !== this.data.isAnonymous) {
-        this.setData({ isAnonymous: storageData.isAnonymous });
+      // this.setData({ isAnonymous: storageData.isAnonymous });
+      if (storageData.isAnonymous !== this.data._isAnonymous) {
+        this.setData({ _isAnonymous: storageData.isAnonymous });
       }
     } else {
       getApp().globalData.isAnonymous = false;
       //this.setData({ isAnonymous: false });
-      if (this.data.isAnonymous) {
-        this.setData({ isAnonymous: false });
+      if (this.data._isAnonymous) {
+        this.setData({ _isAnonymous: false });
       }
     }
-    this.setData({ hidden: false });
+    setTimeout(() => {
+      console.log(this.data._isAnonymous)
+    }, 1000)
+    // this.setData({ hidden: false });
   },
-  didUpdate() {},
-  didUnmount() {},
+  didUpdate(prevProps) {
+    this.setData({ _isAnonymous: this.props.isAnonymous })
+  },
+  didUnmount() { },
   methods: {
     changeSkin() {
       dd.setStorageSync({
         key: "userMode",
         data: {
-          isAnonymous: !this.data.isAnonymous
+          isAnonymous: !this.data._isAnonymous
         }
       });
       const isAnonymous = getApp().globalData.isAnonymous;
       getApp().globalData.isAnonymous = !isAnonymous;
-      this.setData({ isAnonymous: !isAnonymous });
+      this.setData({ _isAnonymous: !isAnonymous });
     }
   }
 });

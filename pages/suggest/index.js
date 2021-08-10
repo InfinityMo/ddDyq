@@ -42,6 +42,9 @@ Page({
   onShow() {
     // 页面显示
     this.setData({ mode: getApp().globalData.isAnonymous });
+    setTimeout(() => {
+      console.log(this.data.mode)
+    }, 1000)
     getApp().watch(value => {
       this.setData({ mode: value });
     });
@@ -49,7 +52,7 @@ Page({
   },
   onHide() {
     // 页面隐藏
-    this.setData({ suspensionShow: false });
+    // this.setData({ suspensionShow: false });
   },
   onUnload() {
     // 页面被关闭

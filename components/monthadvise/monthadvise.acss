@@ -88,3 +88,8 @@
 .view-wrap .content-words .num-active {
   color: #1890FF;
 }
+
+/* 暗黑模式 */
+.commponent-dark{
+  color: #fff;
+}

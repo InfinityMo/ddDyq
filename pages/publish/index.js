@@ -1,6 +1,6 @@
 Page({
   data: {
-    suspensionShow: false,
+    mode: false, //暗黑模式
     radios: [
       {
         name: "动态",
@@ -69,11 +69,14 @@ Page({
   },
   onShow() {
     // 页面显示
-    this.setData({ suspensionShow: true });
+    this.setData({ mode: getApp().globalData.isAnonymous });
+    getApp().watch(value => {
+      this.setData({ mode: value });
+    });
   },
   onHide() {
     // 页面隐藏
-    this.setData({ suspensionShow: false });
+
   },
   onUnload() {
     // 页面被关闭

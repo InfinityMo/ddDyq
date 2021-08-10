@@ -3,7 +3,6 @@ import { encodeUrl } from "/utils/funcStore";
 Page({
   data: {
     mode: false, //暗黑模式
-    suspensionShow: false,
     focus: false,
     inputHeight: "",
     isShowInput: false,
@@ -74,12 +73,10 @@ Page({
     getApp().watch(value => {
       this.setData({ mode: value });
     });
-    // 页面显示
-    this.setData({ suspensionShow: true });
   },
   onHide() {
     // 页面隐藏
-    this.setData({ suspensionShow: false });
+    // this.setData({ suspensionShow: false });
   },
   // onUnload () {
   //   // 页面被关闭

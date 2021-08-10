@@ -67,5 +67,5 @@
     <input class="input-text" maxlength="200" placeholder="{{placeholder}}" onFocus="onFocus" onBlur="onBlur" focus="{{focus}}"   adjust-position />
     <button>发布</button>
   </view>
-  <suspension a:if="{{suspensionShow}}" />
+  <suspension isAnonymous="{{mode}}"  />
 </view>
