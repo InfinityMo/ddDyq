@@ -1,7 +1,7 @@
 import { dynamics } from "/data/testData";
 Page({
   data: {
-    suspensionShow: false,
+    mode: false, //暗黑模式
     tabs: ["我的动态", "我的建议"],
     tabIndex: 0,
     mydynamicHide: false,
@@ -29,7 +29,10 @@ Page({
   },
   onShow() {
     // 页面显示
-    this.setData({ suspensionShow: true });
+    this.setData({ mode: getApp().globalData.isAnonymous });
+    getApp().watch(value => {
+      this.setData({ mode: value });
+    });
   },
   onHide() {
     // 页面隐藏

@@ -1,4 +1,4 @@
-<view class="page">
+<view class="page {{mode ? 'dark-mode':''}}">
   <scroll-view class="scroll-wrap" scroll-y="{{true}}">
     <view class="flex dynamic-item" a:for="{{dynamics}}" a:for-item="list" key="{{list.id}}">
       <view class="left-wrap">
@@ -67,5 +67,5 @@
     <input class="input-text" maxlength="200" placeholder="{{placeholder}}" onFocus="onFocus" onBlur="onBlur" focus="{{focus}}"   adjust-position />
     <button>发布</button>
   </view>
-  <suspension a:if="{{suspensionShow}}" noTabBar="{{true}}" />
+  <suspension isAnonymous="{{mode}}" noTabBar="{{true}}" />
 </view>

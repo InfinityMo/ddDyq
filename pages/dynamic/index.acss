@@ -1,6 +1,8 @@
 .page {
   position: relative;
+  min-height: 100vh;
   padding: 10px 15px;
+  box-sizing: border-box;
 }
 
 .scroll-wrap {
@@ -169,6 +171,7 @@
   background: #3296FA;
   /* opacity: 0.28; */
   border-radius: 3px;
+  border: none;
 }
 
 .text-area {
@@ -182,16 +185,11 @@
 
 /* 暗黑模式 */
 
-.dark-mode {
-  color: #fff;
-  background-color: #303030;
-}
-
-.dark-mode .right-wrap .publish-time{
+.dark-mode .right-wrap .publish-time, .dark-mode .right-wrap .user-name, .dark-mode .right-wrap .words, .dark-mode .num, .comment-wrap .support {
   color: #fff;
 }
 
-.dark-mode .right-wrap .user-name {
+/* .dark-mode .right-wrap .user-name {
   color: #fff;
 }
 
@@ -201,4 +199,4 @@
 
 .dark-mode .num, .comment-wrap .support {
   color: #fff;
-}
+} */

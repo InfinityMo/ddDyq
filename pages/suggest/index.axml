@@ -7,7 +7,7 @@
   </view>
   <view class="content">
     <view hidden="{{adpotAdvise}}">
-      <adpotadvise /></view>
+      <adpotadvise className="{{mode ? 'commponent-dark':''}}" /></view>
     <view hidden="{{monthAdvise}}">
       <monthadvise className="{{mode ? 'commponent-dark':''}}" /></view>
   </view>

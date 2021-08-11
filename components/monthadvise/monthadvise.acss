@@ -90,6 +90,15 @@
 }
 
 /* 暗黑模式 */
-.commponent-dark{
+
+.commponent-dark {
+  color: #fff;
+}
+
+.commponent-dark .user {
+  color: #fff;
+}
+
+.commponent-dark .content-words {
   color: #fff;
 }

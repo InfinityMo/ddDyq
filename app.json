@@ -9,10 +9,6 @@
   ],
   "window": {
     "defaultTitle": "畅言",
-    "supportColorScheme": [
-      "light",
-      "dark"
-    ],
     "allowsBounceVertical": "NO",
     "pullRefresh": false
   },

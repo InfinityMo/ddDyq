@@ -58,3 +58,10 @@ view, text {
   -webkit-line-clamp: 3;
   overflow: hidden;
 }
+
+/* 暗黑模式 */
+
+.dark-mode {
+  color: #fff;
+  background-color: #303030;
+}

@@ -1,5 +1,4 @@
-<!--<import src="/template/mydynamic/index.axml"/><import src="/template/mysuggest/index.axml"/> -->
-<view class="page">
+<view class="page {{mode ? 'dark-mode':''}}">
   <view class="top">
     <!-- user -->
     <view class="flex user">
@@ -18,7 +17,7 @@
     <view hidden="{{mydynamicHide}}">
       <mydynamic /></view>
     <view hidden="{{mysuggestHide}}">
-      <mysuggest /></view>
+      <mysuggest className="{{mode ? 'mysuggest-dark':''}}" /></view>
   </view>
-  <suspension a:if="{{suspensionShow}}" />
+    <suspension isAnonymous="{{mode}}" />
 </view>

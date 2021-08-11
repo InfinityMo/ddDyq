@@ -1,4 +1,4 @@
-<view class="page">
+<view class="page {{mode ? 'dark-mode':''}}">
   <textarea class="text-area" maxlength="500"  auto-height placeholder="说点想说的吧..." />
   <view class="flex pic-wrap">
     <view class="img-item" a:for="{{fileLists}}" a:for-item="pic">
@@ -17,11 +17,11 @@
           <radio value="{{item.value}}" checked="{{item.checked}}" disabled="{{item.disabled==='1'}}"/>
           <text class="radio-text">{{item.name}}</text>
         </view>
-        <view class="tip" a:if="{{item.value==='1'}}">现在为实名状态</view>
+        <view class="tip" a:if="{{item.value==='1'}}">现在为{{mode ? '匿名':'实名'}}状态</view>
         <view class="tip" a:else>意见板不可配图</view>
       </label>
     </radio-group>
   </view>
-  <view class="publish-btn">发布</view>
-  <suspension isAnonymous="{{mode}}"  />
+  <view class="publish-btn">{{mode ? '匿名':'实名'}}发布</view>
+  <suspension isAnonymous="{{mode}}" />
 </view>

@@ -1,6 +1,8 @@
 .page {
   position: relative;
+  min-height: 100vh;
   padding: 10px 15px;
+  box-sizing: border-box;
 }
 
 .scroll-wrap {
@@ -26,7 +28,7 @@
   padding-left: 10px;
 }
 
-.user-name {
+.right-wrap .user-name {
   font-weight: 500;
   font-size: 15px;
   line-height: 20px;
@@ -34,18 +36,17 @@
   color: #333;
 }
 
-.publish-time {
+.right-wrap .publish-time {
   font-size: 13px;
   line-height: 16px;
   color: #777;
 }
 
-.words {
+.right-wrap .words {
   padding: 10px 0;
   font-size: 13px;
   line-height: 19px;
   color: #333;
-  word-break: break-all;
 }
 
 .picture-wrap {
@@ -94,7 +95,7 @@
 .comment-wrap {
   padding: 5px 10px;
   margin-top: 12px;
-  background-color: #F8F8F8;
+  /* background-color: #F8F8F8; */
   border-radius: 2px;
 }
 
@@ -168,6 +169,7 @@
   text-align: center;
   color: #FFF;
   background: #3296FA;
+  /* opacity: 0.28; */
   border-radius: 3px;
 }
 
@@ -180,20 +182,20 @@
   display: none!important;
 }
 
-/* .delete-wrap{
-  position: relative;
+/* 暗黑模式 */
+
+.dark-mode .right-wrap .publish-time, .dark-mode .right-wrap .user-name, .dark-mode .right-wrap .words, .dark-mode .num, .comment-wrap .support {
+  color: #fff;
 }
 
-.dynamic-delete {
-  position: absolute;
-  top: 0;
-  right: 20px;
-  width: 0;
-  height: 20px;
-  background: #808080;
-  transition: width .5s;
+/* .dark-mode .right-wrap .user-name {
+  color: #fff;
 }
 
-.dynamic-delete-active {
-  width: 50px
+.dark-mode .right-wrap .words {
+  color: #fff;
+}
+
+.dark-mode .num, .comment-wrap .support {
+  color: #fff;
 } */

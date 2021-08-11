@@ -6,138 +6,6 @@
   height: 100%;
 }
 
-.dynamic-item {
-  padding-bottom: 20px;
-}
-
-.left-wrap {
-  flex-shrink: 0;
-}
-
-.avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 5px;
-}
-
-.right-wrap {
-  width: calc(100% - 36px);
-  padding-left: 10px;
-}
-
-.user-name {
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 20px;
-  font-weight: bold;
-  color: #333;
-}
-
-.publish-time {
-  font-size: 13px;
-  line-height: 16px;
-  color: #777;
-}
-
-.words {
-  padding: 10px 0;
-  font-size: 13px;
-  line-height: 19px;
-  color: #333;
-  word-break: break-all;
-}
-
-.picture-wrap {
-  flex-wrap: wrap;
-}
-
-.picture-wrap .picture {
-  width: calc( (100% - 4px) / 3);
-  height: calc( (100vw - 76px) / 3);
-  margin: 0 2px 2px 0;
-}
-
-/* 一张图 */
-
-.pic-one .picture {
-  width: 100%;
-  max-height: 170px;
-  overflow: hidden;
-}
-
-.picture-wrap .picture:nth-child(3n) {
-  margin-right: 0;
-}
-
-.interaction-wrap {
-  padding-top: 14px;
-  /* padding-left: 10px; */
-}
-
-.interaction-wrap .interaction-item {
-  margin-right: 34px;
-}
-
-.interaction-wrap .icon {
-  width: 18px;
-  height: 18px
-}
-
-.interaction-wrap .num {
-  margin-left: 5px;
-  font-size: 12px;
-  /* line-height: 21px; */
-  color: #777;
-}
-
-.comment-wrap {
-  padding: 5px 10px;
-  margin-top: 12px;
-  background-color: #F8F8F8;
-  border-radius: 2px;
-}
-
-.comment-wrap .support {
-  font-size: 13px;
-  line-height: 21px;
-  color: #333;
-}
-
-.comment-wrap .support .fabulous {
-  width: 10px;
-  height: 10px;
-  margin-right: 5px;
-}
-
-.delete {
-  font-size: 12px;
-  line-height: 21px;
-  color: #1890FF;
-}
-
-.comment {
-  margin-top: 5px;
-  border-top: 1px solid #E9E9E9;
-}
-
-.comment .comment-item {
-  padding-top: 5px;
-  font-size: 13px;
-  line-height: 21px;
-}
-
-.comment .reply-user {
-  font-weight: bold;
-}
-
-.all-comment-btn {
-  padding-bottom: 5px;
-  font-size: 13px;
-  line-height: 21px;
-  text-align: center;
-  color: #AAA;
-}
-
 .text-wrap {
   position: fixed;
   width: 100%;
@@ -168,6 +36,7 @@
   color: #FFF;
   background: #3296FA;
   border-radius: 3px;
+  border: none;
 }
 
 .text-area {
@@ -212,9 +81,11 @@
 
 .adopt .item {
   margin-bottom: 30px;
+  color: #333;
   background: #FFFFFF;
   box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.05), 0px 3px 30px rgba(0, 0, 0, 0.15), 2px 4px 20px rgba(0, 0, 0, 0.05);
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .adopt .item:last-child {
@@ -404,4 +275,28 @@
 .reply-user-name {
   color: #1890FF;
   padding-left: 3px;
+}
+
+.dark-mode .comment-tip-box {
+  color: #fff;
+}
+
+.dark-mode .user-words.user-words-detail.comment-detail .text {
+  color: #fff;
+}
+
+.dark-mode .comment-detail.user-words-detail .user .user-info text {
+  color: #fff;
+}
+
+.dark-mode .input-wrap {
+  background-color: #303030;
+}
+
+.dark-mode .support-against .support {
+  color: #fff
+}
+
+.dark-mode .support-against .against {
+  color: #fff
 }

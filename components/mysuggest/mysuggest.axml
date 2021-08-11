@@ -1,4 +1,4 @@
-<view class="page">
+<view class="page {{className}}">
   <view class="advise-wrap" a:if="{{nowAdvise.length>0}}">
     <view class="title">本月建议</view>
     <view a:for="{{nowAdvise}}" class="flex-between advise">
@@ -10,7 +10,7 @@
       <!-- 内容 -->
       <view class="ell2 suggests">{{item.words}}</view>
       <!-- 排名 -->
-      <view>
+      <view class="rank-text-wrap">
         <image class="rank-img" a:if="{{item.rank==='1'||item.rank==='2'||item.rank==='3'}}" mode="scaleToFill" src="/image/system/rank{{item.rank}}.png"/>
         <text a:else class="rank-text">{{item.rank}}</text>
       </view>
@@ -33,7 +33,7 @@
         <!-- 内容 -->
         <view class="ell2 suggests">{{item.words}}</view>
         <!-- 排名 -->
-        <view>
+        <view class="rank-text-wrap">
           <image class="rank-img" a:if="{{item.rank==='1'||item.rank==='2'||item.rank==='3'}}" mode="scaleToFill" src="/image/system/rank{{item.rank}}.png"/>
           <text a:else class="rank-text">{{item.rank}}</text>
         </view>

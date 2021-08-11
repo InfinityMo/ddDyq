@@ -76,7 +76,7 @@ Page({
   },
   onHide() {
     // 页面隐藏
-    // this.setData({ suspensionShow: false });
+    // this.setData({ mode: getApp().globalData.isAnonymous });
   },
   // onUnload () {
   //   // 页面被关闭

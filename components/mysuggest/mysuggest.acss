@@ -1,6 +1,7 @@
-.page{
+.page {
   padding: 10px 0;
 }
+
 .title {
   /* padding-bottom: 10px; */
   padding: 20px 0 10px 0;
@@ -21,7 +22,7 @@
   border-radius: 4px;
 }
 
- .advise:last-child {
+.advise:last-child {
   margin-bottom: 0;
 }
 
@@ -34,7 +35,6 @@
   padding: 20px 0 10px 0;
   font-size: 21px;
   line-height: 21px;
-  color: #333;
 }
 
 .month-date {
@@ -55,16 +55,17 @@
   line-height: 21px;
 }
 
-.rank-img {
+.rank-text-wrap {
   flex-shrink: 0;
   margin-left: 10px;
+}
+
+.rank-img {
   width: 32px;
   height: 32px;
 }
 
 .rank-text {
-  flex-shrink: 0;
-  margin-left: 10px;
   font-size: 18px;
   line-height: 21px;
   color: #777;
@@ -75,7 +76,7 @@
 } */
 
 .history-line .text {
-  flex-shrink: 0; 
+  flex-shrink: 0;
   padding: 0 10px;
   font-size: 13px;
   line-height: 21px;
@@ -86,4 +87,7 @@
   width: 50%;
   height: 1px;
   background-color: #eee;
+}
+.mysuggest-dark .title{
+  color: #fff;
 }

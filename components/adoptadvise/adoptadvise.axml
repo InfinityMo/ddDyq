@@ -1,4 +1,4 @@
-<view class="adopt">
+<view class="adopt {{className}}">
   <view class="take-title">上月采纳建议</view>
   <view a:for="{{adpot}}" class="item">
     <view class="top-box top-box{{item.rank}} flex">

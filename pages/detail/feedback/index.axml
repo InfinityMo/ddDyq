@@ -1,4 +1,4 @@
-<view class="adopt">
+<view class="adopt {{mode ? 'dark-mode':''}}">
   <view class="item">
     <view class="top-box top-box{{adpotDeatil.rank}} flex">
       <view class="top-wrap">
@@ -69,9 +69,9 @@
       </view>
     </scroll-view>
   </view>
-  <view class="flex-item-center flex-between text-wrap">
+  <view class="flex-item-center flex-between text-wrap input-wrap">
     <input class="input-text" maxlength="200" placeholder="{{placeholder}}" onFocus="onFocus" onBlur="onBlur" focus="{{focus}}"   adjust-position />
     <button>发布</button>
   </view>
-  <suspension a:if="{{suspensionShow}}" noTabBar="{{true}}" />
+  <suspension isAnonymous="{{mode}}" noTabBar="{{true}}" />
 </view>

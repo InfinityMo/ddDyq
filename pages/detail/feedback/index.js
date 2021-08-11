@@ -1,7 +1,7 @@
 import { adpotDeatil, adoptComment } from "/data/testData";
 Page({
   data: {
-    suspensionShow: false,
+    mode: false, //暗黑模式
     adpotDeatil,
     adoptComment,
     placeholder: "一起讨论吧...",
@@ -65,7 +65,10 @@ Page({
   // },
   onShow() {
     // 页面显示
-    this.setData({ suspensionShow: true });
+    this.setData({ mode: getApp().globalData.isAnonymous });
+    getApp().watch(value => {
+      this.setData({ mode: value });
+    });
   },
   onHide() {
     // 页面隐藏

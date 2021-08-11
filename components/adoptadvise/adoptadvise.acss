@@ -134,3 +134,13 @@
   line-height: 19px;
   color: #AAA
 }
+
+/* 暗黑模式 */
+
+.commponent-dark {
+  color: #fff;
+}
+
+.commponent-dark .take-title {
+  color: #fff;
+}

@@ -1,7 +1,7 @@
 import { frontdynamicInfo } from "/data/testData";
 Page({
   data: {
-    suspensionShow: false,
+    mode: false, //暗黑模式
     focus: false,
     inputHeight: "",
     isShowInput: false,
@@ -60,8 +60,10 @@ Page({
   //   // 页面加载完成
   // },
   onShow() {
-    // 页面显示
-    this.setData({ suspensionShow: true });
+    this.setData({ mode: getApp().globalData.isAnonymous });
+    getApp().watch(value => {
+      this.setData({ mode: value });
+    });
   },
   onHide() {
     // 页面隐藏
@@ -74,7 +76,7 @@ Page({
   //   // 标题被点击
   // },
   showDelete() {
-    this.setData({ isDelete: !this.data.isDelete })
+    this.setData({ isDelete: !this.data.isDelete });
   },
   onPullDownRefresh() {
     setTimeout(() => {
