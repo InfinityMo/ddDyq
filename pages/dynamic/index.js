@@ -7,6 +7,7 @@ Page({
     inputHeight: "",
     isShowInput: false,
     placeholder: "",
+    shareId: '',
     dynamics: frontdynamic
   },
   toSupport(event) {
@@ -31,6 +32,21 @@ Page({
     const authorName = event.target.dataset.authorName;
     this.setData({ placeholder: `回复${authorName}` });
     this.onFocus();
+  },
+  // 转发
+  sharehandle(e) {
+    const shareId = e.target.dataset.id;
+    this.setData({ shareId })
+    // this.onShareAppMessage(id)
+  },
+  onShareAppMessage(option) {
+    const id = this.data.shareId
+    const path = id ? `pages/detail/dynamicinfo/index?id=${id}` : 'pages/dynamic/index'
+    // 返回自定义分享信息
+    return {
+      title: "动态",
+      path
+    };
   },
   onFocus() {
     this.setData({ focus: true, isShowInput: true });

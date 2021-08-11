@@ -91,6 +91,12 @@
   /* line-height: 21px; */
   color: #777;
 }
+button[plain]{ 
+  border:0 
+} 
+.share-btn{
+  border: none;
+}
 
 .comment-wrap {
   padding: 5px 10px;
@@ -187,6 +193,11 @@
 
 .dark-mode .right-wrap .publish-time, .dark-mode .right-wrap .user-name, .dark-mode .right-wrap .words, .dark-mode .num, .comment-wrap .support {
   color: #fff;
+}
+
+.dark-mode .share-btn {
+  color: #fff;
+  background-color: #303030;
 }
 
 /* .dark-mode .right-wrap .user-name {

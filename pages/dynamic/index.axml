@@ -35,10 +35,11 @@
               <image class="icon" mode="scaleToFill" src="/image/system/comment.png"/>
               <text class="num" a:if="{{list.interaction.comments.length>0}}">{{list.interaction.comments.length}}</text>
             </view>
-            <view class="flex-item-center interaction-item">
+            <button open-type="share" plain="{{true}}" hover-class="none" class="flex-item-center interaction-item share-btn" onTap="sharehandle" data-id="{{list.id}}">
               <image class="icon" mode="scaleToFill" src="/image/system/forward.png"/>
               <text class="num">转发</text>
-            </view>
+            </button>
+            <!--<view class="flex-item-center interaction-item" onTap="sharehandle" data-id="{{list.id}}"></view> -->
           </view>
           <view class="delete" a:if="{{list.isDelete==='1'}}">删除</view>
         </view>
