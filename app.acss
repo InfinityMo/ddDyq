@@ -63,5 +63,14 @@ view, text {
 
 .dark-mode {
   color: #fff;
-  background-color: #303030;
+  background-color: #1E1E1E;
+}
+
+/* 全局css */
+
+.num-support-active {
+  color: #1890FF!important;
+}
+.num-against-active{
+   color: #f66970!important; 
 }

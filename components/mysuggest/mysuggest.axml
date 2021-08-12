@@ -8,12 +8,13 @@
         <text class="month">{{item.month}}月</text>
       </view>
       <!-- 内容 -->
-      <view class="ell2 suggests">{{item.words}}</view>
+      <view class="suggests">{{item.words}}</view>
       <!-- 排名 -->
       <view class="rank-text-wrap">
         <image class="rank-img" a:if="{{item.rank==='1'||item.rank==='2'||item.rank==='3'}}" mode="scaleToFill" src="/image/system/rank{{item.rank}}.png"/>
         <text a:else class="rank-text">{{item.rank}}</text>
       </view>
+      <image class="anonymous-tip" a:if="{{item.isAnonymous==='1'}}" mode="scaleToFill" src="/image/system/isAnonymous.png"/>
     </view>
   </view>
   <scroll-view class="scroll-wrap" scroll-y="{{true}}">
@@ -31,12 +32,13 @@
           <text class="month">{{item.month}}月</text>
         </view>
         <!-- 内容 -->
-        <view class="ell2 suggests">{{item.words}}</view>
+        <view class="suggests">{{item.words}}</view>
         <!-- 排名 -->
         <view class="rank-text-wrap">
           <image class="rank-img" a:if="{{item.rank==='1'||item.rank==='2'||item.rank==='3'}}" mode="scaleToFill" src="/image/system/rank{{item.rank}}.png"/>
           <text a:else class="rank-text">{{item.rank}}</text>
         </view>
+        <image class="anonymous-tip" a:if="{{item.isAnonymous==='1'}}" mode="scaleToFill" src="/image/system/isAnonymous.png"/>
       </view>
     </view>
   </scroll-view>

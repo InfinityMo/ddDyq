@@ -13,7 +13,7 @@
           <view class="publish-time">{{list.user.time}}</view>
         </view>
         <!-- 动态 -->
-        <view>
+        <view class="words-pic-wrap">
           <!-- 文字 -->
           <view class="words">{{list.dynamic.words}}</view>
           <!-- 图片 -->
@@ -29,7 +29,7 @@
             <view class="flex-item-center interaction-item" data-id="{{list.id}}" onTap="toSupport">
               <image a:if="{{list.interaction.ownSupport}}" class="icon" mode="scaleToFill" src="/image/system/thumbActive.png"/>
               <image a:else class="icon" mode="scaleToFill" src="/image/system/thumb.png"/>
-              <text class="num" a:if="{{list.interaction.support.length>0}}">{{list.interaction.support.length}}</text>
+              <text class="num {{list.interaction.ownSupport ? 'num-support-active':''}}" a:if="{{list.interaction.support.length>0}}">{{list.interaction.support.length}}</text>
             </view>
             <view class="flex-item-center interaction-item" data-id="{{list.id}}" data-authorName="{{list.user.name}}" data-authorId="{{list.user.userId}}" onTap="toComment">
               <image class="icon" mode="scaleToFill" src="/image/system/comment.png"/>

@@ -26,12 +26,12 @@
         <view class="flex-item-center support">
           <image a:if="{{adpotDeatil.isSelfSupport==='1'}}" mode="scaleToFill" src="/image/system/thumbActive.png"/>
           <image a:else mode="scaleToFill" src="/image/system/thumb.png"/>
-          <text>{{adpotDeatil.support}}</text>
+          <text class="{{item.isSelfSupport==='1' ? 'num-support-active':''}}">{{adpotDeatil.support}}</text>
         </view>
         <view class="flex-item-center against">
           <image a:if="{{adpotDeatil.isSelfAgainst==='1'}}" mode="scaleToFill" src="/image/system/treadActive.png"/>
           <image a:else mode="scaleToFill" src="/image/system/tread.png"/>
-          <text>{{adpotDeatil.against}}</text>
+          <text class="{{item.isSelfAgainst==='1' ? 'num-against-active':''}}">{{adpotDeatil.against}}</text>
         </view>
       </view>
     </view>
@@ -53,12 +53,12 @@
             <view class="flex-item-center support">
               <image a:if="{{item.isSelfSupport==='1'}}" mode="scaleToFill" src="/image/system/thumbActiveSmall.png"/>
               <image a:else mode="scaleToFill" src="/image/system/thumbSmall.png"/>
-              <text>{{item.support}}</text>
+              <text class="{{item.isSelfSupport==='1' ? 'num-support-active':''}}">{{item.support}}</text>
             </view>
             <view class="flex-item-center against">
               <image a:if="{{item.isSelfAgainst==='1'}}" mode="scaleToFill" src="/image/system/treadActiveSmall.png"/>
               <image a:else mode="scaleToFill" src="/image/system/treadSmall.png"/>
-              <text>{{item.against}}</text>
+              <text class="{{item.isSelfAgainst==='1' ? 'num-against-active':''}}">{{item.against}}</text>
             </view>
           </view>
         </view>

@@ -7,25 +7,43 @@ Page({
     inputHeight: "",
     isShowInput: false,
     placeholder: "",
-    shareId: '',
+    shareId: "",
     dynamics: frontdynamic
   },
   toSupport(event) {
-    const id = event.target.dataset.id;
-    const findIndex = this.data.dynamics.findIndex(item => item.id === id);
-    if (findIndex >= 0) {
-      const ownSupport = `dynamics[${findIndex}].interaction.ownSupport`;
-      const support = `dynamics[${findIndex}].interaction.support`;
-      const value =
-        this.data.dynamics[findIndex].interaction.ownSupport === 0 ? 1 : 0;
-      const supportArr = this.data.dynamics[findIndex].interaction.support;
-      if (value) {
-        this.setData({
-          [ownSupport]: value,
-          [support]: [{ userId: "234", name: "xxx" }, ...supportArr]
-        });
+    dd.getNetworkType({
+      success: res => {
+        // dd.alert({
+        //   title: `${res.networkAvailable} - ${res.networkType}`
+        // });
+        if (res.networkAvailable) {
+          const id = event.target.dataset.id;
+          const findIndex = this.data.dynamics.findIndex(
+            item => item.id === id
+          );
+          if (findIndex >= 0) {
+            const ownSupport = `dynamics[${findIndex}].interaction.ownSupport`;
+            const support = `dynamics[${findIndex}].interaction.support`;
+            const value =
+              this.data.dynamics[findIndex].interaction.ownSupport === 0
+                ? 1
+                : 0;
+            const supportArr = this.data.dynamics[findIndex].interaction
+              .support;
+            this.setData({
+              [ownSupport]: value,
+              [support]: [{ userId: "234", name: "xxx" }, ...supportArr]
+            });
+          }
+        } else {
+          dd.showToast({
+            type: "fail",
+            content: "网络有问题",
+            duration: 3000
+          });
+        }
       }
-    }
+    });
   },
   toComment(event) {
     const authorId = event.target.dataset.authorId;
@@ -36,12 +54,14 @@ Page({
   // 转发
   sharehandle(e) {
     const shareId = e.target.dataset.id;
-    this.setData({ shareId })
+    this.setData({ shareId });
     // this.onShareAppMessage(id)
   },
   onShareAppMessage(option) {
-    const id = this.data.shareId
-    const path = id ? `pages/detail/dynamicinfo/index?id=${id}` : 'pages/dynamic/index'
+    const id = this.data.shareId;
+    const path = id
+      ? `pages/detail/dynamicinfo/index?id=${id}`
+      : "pages/dynamic/index";
     // 返回自定义分享信息
     return {
       title: "动态",
@@ -85,6 +105,13 @@ Page({
   //   // 页面加载完成
   // },
   onShow() {
+    // dd.getNetworkType({
+    //   success: res => {
+    //     dd.alert({
+    //       title: `${res.networkAvailable} - ${res.networkType}`
+    //     });
+    //   }
+    // });
     this.setData({ mode: getApp().globalData.isAnonymous });
     getApp().watch(value => {
       this.setData({ mode: value });

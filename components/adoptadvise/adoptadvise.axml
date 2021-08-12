@@ -26,12 +26,12 @@
         <view class="flex-item-center support">
           <image a:if="{{item.isSelfSupport==='1'}}" mode="scaleToFill" src="/image/system/thumbActive.png"/>
           <image a:else mode="scaleToFill" src="/image/system/thumb.png"/>
-          <text>{{item.support}}</text>
+          <text class="{{item.isSelfSupport==='1' ? 'num-support-active':''}}">{{item.support}}</text>
         </view>
         <view class="flex-item-center against">
           <image a:if="{{item.isSelfAgainst==='1'}}" mode="scaleToFill" src="/image/system/treadActive.png"/>
           <image a:else mode="scaleToFill" src="/image/system/tread.png"/>
-          <text>{{item.against}}</text>
+          <text class="{{item.isSelfAgainst==='1' ? 'num-against-active':''}}">{{item.against}}</text>
         </view>
       </view>
     </view>

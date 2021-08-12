@@ -64,11 +64,9 @@
 }
 
 .dark-mode .tabs-wrap {
-  background-color: #303030;
+  background-color: #1E1E1E;
   color: #fff;
 }
-
-.dark-mode .tab {}
 
 .dark-mode .tab-active {
   color: #fff;
@@ -76,7 +74,7 @@
 }
 
 .dark-mode .user {
-  background-color: #303030;
+  background-color: #1E1E1E;
 }
 
 .dark-mode .user .company, .dark-mode .user .name {

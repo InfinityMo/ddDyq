@@ -9,23 +9,35 @@ App({
     this.globalData.isAnonymous = storageData ? storageData.isAnonymous : false;
     // 第一次打开
     // options.query == {number:1}
-    const updateManager = dd.getUpdateManager();
-    updateManager.onCheckForUpdate(function (res) {
-      // 请求完新版本信息的回调
-      console.log(res.hasUpdate) // 是否有更新
-    })
-    updateManager.onUpdateReady(function(ret) {
-      dd.confirm({
-        title: "更新提示",
-        content: "新版本已经准备好，是否重启应用？",
-        success: function(res) {
-          if (res.confirm) {
-            // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
-            updateManager.applyUpdate();
-          }
-        }
+    // dd.getNetworkType({
+    //   success: res => {
+    //     dd.alert({
+    //       title: `${res.networkAvailable} - ${res.networkType}`
+    //     });
+    //   }
+    // });
+    try {
+      const updateManager = dd.getUpdateManager();
+      updateManager.onCheckForUpdate(function(res) {
+        // 请求完新版本信息的回调
+        // console.log(res.hasUpdate); // 是否有更新
       });
-    });
+      updateManager.onUpdateReady(function(ret) {
+        dd.confirm({
+          title: "更新提示",
+          content: "新版本已经准备好，是否重启应用？",
+          confirmButtonText: "是",
+          cancelButtonText: "否",
+          success: function(res) {
+            if (res.confirm) {
+              // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+              updateManager.applyUpdate();
+            }
+          }
+        });
+      });
+    } catch (err) {}
+
     // updateManager.onUpdateFailed(function () {
     //   // 新版本下载失败
     // })

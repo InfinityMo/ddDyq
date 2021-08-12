@@ -76,7 +76,6 @@ Page({
   },
   onHide() {
     // 页面隐藏
-
   },
   onUnload() {
     // 页面被关闭
@@ -89,13 +88,5 @@ Page({
   },
   onReachBottom() {
     // 页面被拉到底部
-  },
-  onShareAppMessage() {
-    // 返回自定义分享信息
-    return {
-      title: "My App",
-      desc: "My App description",
-      path: "pages/index/index"
-    };
   }
 });

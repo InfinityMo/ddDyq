@@ -20,7 +20,7 @@
 .avatar {
   width: 36px;
   height: 36px;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
 .right-wrap {
@@ -42,6 +42,10 @@
   color: #777;
 }
 
+.words-pic-wrap {
+  padding-right: 25px;
+}
+
 .right-wrap .words {
   padding: 10px 0;
   font-size: 13px;
@@ -55,7 +59,7 @@
 
 .picture-wrap .picture {
   width: calc( (100% - 4px) / 3);
-  height: calc( (100vw - 76px) / 3);
+  height: calc( (100vw - 101px) / 3);
   margin: 0 2px 2px 0;
 }
 
@@ -91,21 +95,24 @@
   /* line-height: 21px; */
   color: #777;
 }
-button[plain]{ 
-  border:0 
-} 
-.share-btn{
+
+button[plain] {
+  border: 0
+}
+
+.share-btn {
   border: none;
 }
 
 .comment-wrap {
-  padding: 5px 10px;
+  padding: 5px 0;
   margin-top: 12px;
-  /* background-color: #F8F8F8; */
-  border-radius: 2px;
+  background-color: #F8F8F8;
+  border-radius: 4px;
 }
 
-.comment-wrap .support {
+.right-wrap .comment-wrap .support {
+  padding: 0 10px;
   font-size: 13px;
   line-height: 21px;
   color: #333;
@@ -124,6 +131,7 @@ button[plain]{
 }
 
 .comment {
+  padding: 0 10px;
   margin-top: 5px;
   border-top: 1px solid #E9E9E9;
 }
@@ -152,7 +160,8 @@ button[plain]{
   left: 0;
   bottom: 0;
   padding: 8px 15px;
-  background: #fff;
+  background-color: #fff;
+  border-top: 1px solid #eee;
   box-sizing: border-box;
 }
 
@@ -191,13 +200,32 @@ button[plain]{
 
 /* 暗黑模式 */
 
-.dark-mode .right-wrap .publish-time, .dark-mode .right-wrap .user-name, .dark-mode .right-wrap .words, .dark-mode .num, .comment-wrap .support {
+.dark-mode .right-wrap .publish-time, .dark-mode .right-wrap .user-name, .dark-mode .right-wrap .words, .dark-mode .num {
   color: #fff;
+}
+.dark-mode .comment-wrap .support{
+  color: #fff;
+}
+.dark-mode .comment-wrap {
+  background-color: #303030;
+}
+
+.dark-mode .comment-wrap .comment {
+  border-top: 1px solid #444;
 }
 
 .dark-mode .share-btn {
   color: #fff;
-  background-color: #303030;
+  background-color: #1E1E1E;
+}
+
+.dark-mode .text-wrap {
+  border-top: 1px solid #444;
+  background-color: #1E1E1E;
+}
+
+.dark-mode .text-wrap .input-text {
+  background-color: #333;
 }
 
 /* .dark-mode .right-wrap .user-name {

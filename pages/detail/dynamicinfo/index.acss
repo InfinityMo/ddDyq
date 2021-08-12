@@ -20,7 +20,7 @@
 .avatar {
   width: 36px;
   height: 36px;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
 .right-wrap {
@@ -42,6 +42,10 @@
   color: #777;
 }
 
+.words-pic-wrap {
+  padding-right: 25px;
+}
+
 .right-wrap .words {
   padding: 10px 0;
   font-size: 13px;
@@ -55,7 +59,7 @@
 
 .picture-wrap .picture {
   width: calc( (100% - 4px) / 3);
-  height: calc( (100vw - 76px) / 3);
+  height: calc( (100vw - 101px) / 3);
   margin: 0 2px 2px 0;
 }
 
@@ -93,13 +97,14 @@
 }
 
 .comment-wrap {
-  padding: 5px 10px;
+  padding: 5px 0;
   margin-top: 12px;
-  /* background-color: #F8F8F8; */
-  border-radius: 2px;
+  background-color: #F8F8F8;
+  border-radius: 4px;
 }
 
 .comment-wrap .support {
+  padding: 0 10px;
   font-size: 13px;
   line-height: 21px;
   color: #333;
@@ -118,6 +123,7 @@
 }
 
 .comment {
+  padding: 0 10px;
   margin-top: 5px;
   border-top: 1px solid #E9E9E9;
 }
@@ -146,6 +152,7 @@
   left: 0;
   bottom: 0;
   padding: 8px 15px;
+  border-top: 1px solid #eee;
   background: #fff;
   box-sizing: border-box;
 }

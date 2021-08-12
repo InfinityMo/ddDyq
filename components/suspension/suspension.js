@@ -4,7 +4,8 @@ Component({
     _isAnonymous: false
   },
   props: {
-    isAnonymous: false
+    isAnonymous: false,
+    isShowInput:false
   },
   didMount() {
     const storageData = dd.getStorageSync({ key: "userMode" }).data;

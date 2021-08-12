@@ -8,7 +8,7 @@ export const frontdynamic = [
       name: "测试用户1",
       time: "2021-07-21 19:01"
     },
-    isDelete:'1',
+    isDelete: "1",
     dynamic: {
       words:
         "我这么一个人，哪懂什么时尚，留过时的发型，唱过时的歌，跳过时的舞，穿过时的衣服。我这么一个人，为了时尚的你，通红着脸，学了几个时兴的姿势。02《镜子》",
@@ -58,7 +58,7 @@ export const frontdynamic = [
       name: "测试用户666",
       time: "2021-07-31 17:01"
     },
-    isDelete:'0',
+    isDelete: "0",
     dynamic: {
       words:
         "钉钉小程序可以配置 native 渲染的 tabBar 和 titleBar 部分的多语言文案。多语言配置通过小程序全局配置文件和页面配置文件进行注入",
@@ -103,7 +103,7 @@ export const frontdynamic = [
       name: "测试用户777",
       time: "2021-07-31 17:01"
     },
-    isDelete:'0',
+    isDelete: "0",
     dynamic: {
       words:
         "Page代表应用的一个页面，负责页面展示和交互。每个页面对应一个子目录，一般有多少个页面，就有多少个子目录。它也是一个构造函数，用来生成页面实例",
@@ -148,7 +148,7 @@ export const frontdynamic = [
       name: "测试用户777",
       time: "2021-07-31 17:01"
     },
-    isDelete:'1',
+    isDelete: "1",
     dynamic: {
       words:
         "Page代表应用的一个页面，负责页面展示和交互。每个页面对应一个子目录，一般有多少个页面，就有多少个子目录。它也是一个构造函数，用来生成页面实例",
@@ -192,7 +192,7 @@ export const frontdynamic = [
       name: "测试用户2",
       time: "2021-07-29 12:09"
     },
-    isDelete:'0',
+    isDelete: "0",
     dynamic: {
       words:
         "免登是指用户进入应用后，无需输入钉钉用户名和密码，应用程序可自动获取当前用户身份登录系统的流程。企业应用和个人应用的免登授权码均可通过该JSAPI获取",
@@ -428,7 +428,8 @@ export const nowAdvise = [
     month: "08",
     day: "05",
     words: "希望公司多组织运动会这一类的！比如篮球乒乓球羽毛球之类的都可以",
-    rank: "3"
+    rank: "3",
+    isAnonymous: "1"
   },
   {
     id: "2",
@@ -437,7 +438,8 @@ export const nowAdvise = [
     day: "04",
     words:
       "小程序根目录下的 app.json 文件用来对钉钉小程序进行全局配置，决定页面文件的路径、窗口表现、设置网络超时时间、设置多 tab 等。文件内容为一个 JSON 对象。",
-    rank: "1"
+    rank: "1",
+    isAnonymous: "0"
   },
   {
     id: "2",
@@ -446,7 +448,8 @@ export const nowAdvise = [
     day: "03",
     words:
       "同时也有一些新的基础能力会跟随新引擎逐步开放，例如：Native 地图组件，Native Video 播放器，同层渲染能力",
-    rank: "2"
+    rank: "2",
+    isAnonymous: "0"
   },
   {
     id: "2",
@@ -455,7 +458,8 @@ export const nowAdvise = [
     day: "02",
     words:
       "Android 使用独立的 V8 JS 引擎替换了之前 ServiceWorker，用于运行小程序 JS 代码。",
-    rank: "999 "
+    rank: "999 ",
+    isAnonymous: "0"
   }
 ];
 export const historyAdvise = [
@@ -468,14 +472,16 @@ export const historyAdvise = [
         day: "05",
         words:
           "Page() 接受一个 object 作为参数，该参数用来指定页面的初始数据、生命周期函数、事件处理函数等",
-        rank: "3"
+        rank: "3",
+        isAnonymous: "0"
       },
       {
         id: "2",
         month: "07",
         day: "04",
         words: "App()接受一个Object作为参数，用来配置小程序的生命周期回调等。",
-        rank: "1"
+        rank: "1",
+        isAnonymous: "1"
       }
     ]
   },
@@ -488,14 +494,16 @@ export const historyAdvise = [
         day: "05",
         words:
           "Page() 接受一个 object 作为参数，该参数用来指定页面的初始数据、生命周期函数、事件处理函数等",
-        rank: "3"
+        rank: "3",
+        isAnonymous: "0"
       },
       {
         id: "2",
         month: "03",
         day: "04",
         words: "App()接受一个Object作为参数，用来配置小程序的生命周期回调等。",
-        rank: "2"
+        rank: "2",
+        isAnonymous: "0"
       }
     ]
   }
@@ -524,7 +532,7 @@ export const advises = [
       "整个小程序框架系统分为逻辑层（App Service）和 视图层（View）。小程序提供了自己的视图层描述语言 AXML 和 ACSS，以及基于 JavaScript 的逻辑层框架，并在视图层与逻辑层间提供了数据传输和事件系统，让开发者能够专注于数据与逻辑。一个钉钉小程序同时只能保留一个 WebSocket 连接，如果当前已存在 WebSocket 连接，会自动关闭该连接，并重新创建一个新的 WebSocket 连接",
     support: "200",
     isSelfSupport: "0",
-    rank: "3"
+    rank: "2"
   },
   {
     id: "3",
@@ -536,7 +544,7 @@ export const advises = [
       "一个钉钉小程序同时只能保留一个 WebSocket 连接，如果当前已存在 WebSocket 连接，会自动关闭该连接，并重新创建一个新的 WebSocket 连接",
     support: "200",
     isSelfSupport: "1",
-    rank: "2"
+    rank: "3"
   },
   {
     id: "4",
@@ -565,7 +573,7 @@ export const adpot = [
     feedback:
       "sjs 的运行环境和其他 JavaScript 代码是隔离的，sjs 中不能调用其他 JavaScript 文件中定义的函数，也不能调用小程序提供的 API。",
     support: "300",
-    isSelfSupport: "0",
+    isSelfSupport: "1",
     against: "200",
     isSelfAgainst: "0"
   },
@@ -583,7 +591,7 @@ export const adpot = [
     support: "300",
     isSelfSupport: "0",
     against: "200",
-    isSelfAgainst: "0"
+    isSelfAgainst: "1"
   },
   {
     id: "3",
@@ -615,7 +623,7 @@ export const adpotDeatil = {
   feedback:
     "sjs 的运行环境和其他 JavaScript 代码是隔离的，sjs 中不能调用其他 JavaScript 文件中定义的函数，也不能调用小程序提供的 API。",
   support: "300",
-  isSelfSupport: "0",
+  isSelfSupport: "1",
   against: "200",
   isSelfAgainst: "0"
 };
@@ -646,6 +654,6 @@ export const adoptComment = [
     support: "200",
     isSelfSupport: "1",
     against: "200",
-    isSelfAgainst: "0"
+    isSelfAgainst: "1"
   }
 ];

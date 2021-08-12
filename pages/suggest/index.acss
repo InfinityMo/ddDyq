@@ -3,9 +3,11 @@
   position: relative;
   height: 100%;
 }
+
 /* .dark-mode{
   background-color: #303030;
 } */
+
 .top {
   position: fixed;
   top: 0;
@@ -21,6 +23,7 @@
   color: #777;
   background-color: #fff;
 }
+
 .tab {
   padding-bottom: 10px;
   box-sizing: border-box;
@@ -30,10 +33,22 @@
 .tab-active {
   color: #1E1E1E;
   border-bottom: 2px solid #1E1E1E;
-} 
-.content{
+}
+
+.content {
   padding: 48px 0 0 0;
 }
+
+.dark-mode .tabs-wrap {
+  background-color: #1E1E1E;
+  color: #fff;
+}
+
+.dark-mode .tab-active {
+  color: #fff;
+  border-bottom: 2px solid #fff;
+}
+
 /* .adopt-wrap {
   padding:15px;
   border-bottom: 5px solid #F8F8F8;
@@ -98,4 +113,3 @@
   line-height: 21px;
   border-top: 1px solid #eee;
 } */
-

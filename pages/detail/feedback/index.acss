@@ -13,6 +13,7 @@
   bottom: 0;
   padding: 8px 15px;
   background: #fff;
+  border-top: 1px solid #eee;
   box-sizing: border-box;
 }
 
@@ -83,7 +84,7 @@
   margin-bottom: 30px;
   color: #333;
   background: #FFFFFF;
-  box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.05), 0px 3px 30px rgba(0, 0, 0, 0.15), 2px 4px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 6px 8px #E8E9ED, 2px 4px 16px rgba(232, 233, 237, 0.3), -2px 4px 16px rgba(232, 233, 237, 0.3), 0px -0.5px 1px rgba(232, 233, 237, 0.8);
   border-radius: 10px;
   overflow: hidden;
 }
@@ -188,7 +189,7 @@
 .adopt .comment-detail .user image {
   width: 30px;
   height: 30px;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
 .adopt .comment-detail.user-words-detail .user .user-info {
@@ -290,7 +291,7 @@
 }
 
 .dark-mode .input-wrap {
-  background-color: #303030;
+  background-color: #1E1E1E;
 }
 
 .dark-mode .support-against .support {

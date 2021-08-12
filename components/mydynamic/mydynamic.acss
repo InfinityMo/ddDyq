@@ -43,7 +43,7 @@
 .content-img .img {
   /* flex-grow:1; */
   margin: 1px 1px 0 0;
-  border-radius: 2px;
+  /* border-radius: 2px; */
 }
 
 .content-img .img:nth-child(2n) {
