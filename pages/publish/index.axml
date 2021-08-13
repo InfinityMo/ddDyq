@@ -1,5 +1,5 @@
 <view class="page {{mode ? 'dark-mode':''}}">
-  <textarea class="text-area" maxlength="500"  auto-height placeholder="说点想说的吧..." />
+  <textarea class="text-area" maxlength="500"  auto-height placeholder="说点想说的吧..." onInput="textareaInput" />
   <view class="flex pic-wrap">
     <view class="img-item" a:for="{{fileLists}}" a:for-item="pic">
       <image class="img" onTap="previewImg" data-index="{{index}}" mode="aspectFill" src="{{pic}}"/>
@@ -22,6 +22,6 @@
       </label>
     </radio-group>
   </view>
-  <view class="publish-btn">{{mode ? '匿名':'实名'}}发布</view>
+  <view class="publish-btn {{!textareaFocus ? 'btn-disabled':''}}">{{mode ? '匿名':'实名'}}发布</view>
   <suspension isAnonymous="{{mode}}" />
 </view>

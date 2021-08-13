@@ -14,7 +14,7 @@
   /* width: 300px; */
   padding: 15px;
   margin-bottom: 15px;
-  box-shadow: 0px 6px 8px #E8E9ED, 2px 4px 16px rgba(232, 233, 237, 0.3), -2px 4px 16px rgba(232, 233, 237, 0.3), 0px -0.5px 1px rgba(232, 233, 237, 0.8);
+  box-shadow: 0px 8px 10px rgba(80, 85, 105, 0.09), 2px 4px 16px rgba(80, 85, 105, 0.04), -2px 4px 16px rgba(80, 85, 105, 0.03), 0px -0.5px 1px rgba(80, 85, 105, 0.1);
   border-radius: 5px;
   /* border: 1px solid #eee; */
   box-sizing: border-box;
@@ -98,7 +98,9 @@
 .commponent-dark .user {
   color: #fff;
 }
-
+.commponent-dark .view-wrap{
+  background-color: #444;
+}
 .commponent-dark .content-words {
   color: #fff;
 }

@@ -1,6 +1,7 @@
 Page({
   data: {
     mode: false, //暗黑模式
+    textareaFocus: false,
     radios: [
       {
         name: "动态",
@@ -60,6 +61,13 @@ Page({
       this.setData({ fileLists: [] });
     }
     this.setData({ radioCheck: e.detail.value });
+  },
+  textareaInput(e) {
+    // 多行文本获取焦点
+    const value = e.detail.value.trim();
+    value.length > 0
+      ? this.setData({ textareaFocus: true })
+      : this.setData({ textareaFocus: false });
   },
   onLoad(query) {
     // 页面加载

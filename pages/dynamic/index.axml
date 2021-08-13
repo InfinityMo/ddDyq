@@ -64,8 +64,10 @@
       </view>
     </view>
   </scroll-view>
-  <view class="flex-item-center flex-between text-wrap" hidden="{{!isShowInput}}">
-    <input class="input-text" maxlength="200" placeholder="{{placeholder}}" onFocus="onFocus" onBlur="onBlur" focus="{{focus}}"   adjust-position />
+  <view class="flex-item-center flex-item-end text-wrap" hidden="{{!isShowInput}}">
+    <view class="input-text-box-wrap">
+      <textarea class="input-text" fixed="{{true}}" auto-height="{{true}}" show-count="{{false}}" maxlength="200" placeholder="{{placeholder}}" onFocus="onFocus" onBlur="onBlur" focus="{{focus}}"   adjust-position />
+    </view>
     <button>发布</button>
   </view>
   <suspension isAnonymous="{{mode}}" isShowInput="{{isShowInput}}" />

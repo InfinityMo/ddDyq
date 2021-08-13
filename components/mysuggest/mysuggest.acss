@@ -19,7 +19,7 @@
   position: relative;
   padding: 10px 15px;
   margin-bottom: 20px;
-  box-shadow: 0px 6px 8px #E8E9ED, 2px 4px 16px rgba(232, 233, 237, 0.3), -2px 4px 16px rgba(232, 233, 237, 0.3), 0px -0.5px 1px rgba(232, 233, 237, 0.8);
+  box-shadow: 0px 8px 10px rgba(80, 85, 105, 0.09), 2px 4px 16px rgba(80, 85, 105, 0.04), -2px 4px 16px rgba(80, 85, 105, 0.03), 0px -0.5px 1px rgba(80, 85, 105, 0.1);
   border-radius: 4px;
 }
 
@@ -93,10 +93,14 @@
 .mysuggest-dark .title {
   color: #fff;
 }
-.anonymous-tip{
+
+.anonymous-tip {
   position: absolute;
   width: 22px;
   height: 22px;
   right: 0;
   bottom: 0
+}
+.mysuggest-dark  .advise {
+  background-color: #444;
 }

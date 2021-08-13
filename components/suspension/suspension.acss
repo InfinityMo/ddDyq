@@ -10,10 +10,10 @@
   z-index: 100000!important;
 }
 .movable-box-wrap.noTabBar{
-  bottom: 63px
+  bottom: 78px
 }
 .movable-box-wrap.has-input{
-  bottom: 63px;
+  bottom: 78px;
 }
 .movable-box {
   width: 22px;

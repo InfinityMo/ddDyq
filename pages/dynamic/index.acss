@@ -165,19 +165,29 @@ button[plain] {
   box-sizing: border-box;
 }
 
-.input-text {
+.input-text-box-wrap {
   flex-grow: 1;
-  padding-left: 15px;
-  height: 28px;
-  font-size: 13px;
-  line-height: 28px;
+  padding: 5px 0;
   background: #F4F4F4;
   border-radius: 4px;
 }
 
+.input-text {
+  flex-grow: 1;
+  max-height: 80px!important;
+  padding: 0 5px;
+  font-size: 13px;
+  line-height: 18px;
+  background: #F4F4F4;
+  border-radius: 4px;
+  box-sizing: border-box;
+  overflow-y: scroll
+}
+
 .text-wrap button {
-  width: 44px;
+  width: 52px;
   height: 32px;
+  flex-shrink: 0;
   margin-left: 15px;
   font-size: 14px;
   line-height: 32px;
@@ -203,9 +213,11 @@ button[plain] {
 .dark-mode .right-wrap .publish-time, .dark-mode .right-wrap .user-name, .dark-mode .right-wrap .words, .dark-mode .num {
   color: #fff;
 }
-.dark-mode .comment-wrap .support{
+
+.dark-mode .comment-wrap .support {
   color: #fff;
 }
+
 .dark-mode .comment-wrap {
   background-color: #303030;
 }
@@ -224,7 +236,12 @@ button[plain] {
   background-color: #1E1E1E;
 }
 
+.dark-mode .text-wrap .input-text-box-wrap {
+  background-color: #333;
+}
+
 .dark-mode .text-wrap .input-text {
+  color: #fff;
   background-color: #333;
 }
 

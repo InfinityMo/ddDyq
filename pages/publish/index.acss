@@ -85,20 +85,28 @@
   border-radius: 5px;
   background-color: #3296FA;
 }
-
+.btn-disabled{
+  pointer-events: none;
+  opacity: 0.3
+}
 /* 暗黑模式 */
 
 .dark-mode .publish-where {
   color: #fff;
-  ;
 }
 
 .dark-mode .radio-item .radio-text {
   color: #fff;
-  ;
 }
 
 .dark-mode .radio-item .tip {
   color: #fff;
-  ;
+}
+
+.dark-mode .text-area {
+  color: #fff;
+  background-color: #1E1E1E;
+}
+.dark-mode .add-wrap{
+  background-color: #303030;
 }

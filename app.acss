@@ -27,7 +27,10 @@ view, text {
   display: flex;
   align-items: center;
 }
-
+.flex-item-end {
+  display: flex;
+  align-items: flex-end;
+}
 .flex-between {
   display: flex;
   justify-content: space-between;
@@ -71,6 +74,7 @@ view, text {
 .num-support-active {
   color: #1890FF!important;
 }
-.num-against-active{
-   color: #f66970!important; 
+
+.num-against-active {
+  color: #f66970!important;
 }
