@@ -22,6 +22,6 @@
       </label>
     </radio-group>
   </view>
-  <view class="publish-btn {{!textareaFocus ? 'btn-disabled':''}}">{{mode ? '匿名':'实名'}}发布</view>
+  <view class="publish-btn {{!textareaFocus ? 'btn-disabled':''}}" onTap="publish">{{mode ? '匿名':'实名'}}发布</view>
   <suspension isAnonymous="{{mode}}" />
 </view>

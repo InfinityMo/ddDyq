@@ -1,3 +1,5 @@
+import request from "/common/request/request";
+import { upload } from "/common/utils/utils";
 Page({
   data: {
     mode: false, //暗黑模式
@@ -68,6 +70,41 @@ Page({
     value.length > 0
       ? this.setData({ textareaFocus: true })
       : this.setData({ textareaFocus: false });
+  },
+  publish() {
+    // this.data.fileLists
+    const filePath = this.data.fileLists[0];
+    console.log(filePath);
+    // console.log(filePath);
+    // request.post(
+    //   {
+    //     url: "longhua/upload",
+    //     formData: { content: "111111", isDynamic: 1 },
+    //     filePath
+    //   },
+    //   true
+    // );
+    // request.upload({
+    //     url: "longhua/upload",
+    //     filePath,
+    //     formData: { content: "666", isDynamic: "0" }
+    //   })
+    //   .then(res => {
+    //     console.log(res);
+    //   });
+    dd.uploadFile({
+      url: `${getApp().globalData.host}/longhua/upload`,
+      fileType: "image",
+      fileName: "file",
+      filePath: filePath,
+      formData: { content: "666", isDynamic: false },
+      success: res => {
+        dd.alert({ title: `上传成功：${JSON.stringify(res)}` });
+      },
+      fail: function(res) {
+        dd.alert({ title: `上传失败：${JSON.stringify(res)}` });
+      }
+    });
   },
   onLoad(query) {
     // 页面加载

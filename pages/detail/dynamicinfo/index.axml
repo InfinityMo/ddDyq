@@ -15,7 +15,7 @@
         <!-- 动态 -->
         <view class="words-pic-wrap">
           <!-- 文字 -->
-          <view class="words">{{list.dynamic.words}}</view>
+          <view class="words" onTap="toDetail" data-id="{{list.id}}">{{list.dynamic.words}}</view>
           <!-- 图片 -->
           <view a:if="{{list.dynamic.pics.length>0}}">
             <view class="flex picture-wrap {{list.dynamic.pics.length===1 ? 'pic-one':''}}">
@@ -35,12 +35,13 @@
               <image class="icon" mode="scaleToFill" src="/image/system/comment.png"/>
               <text class="num" a:if="{{list.interaction.comments.length>0}}">{{list.interaction.comments.length}}</text>
             </view>
-            <view class="flex-item-center interaction-item">
+            <button open-type="share" plain="{{true}}" hover-class="none" class="flex-item-center interaction-item share-btn" onTap="sharehandle" data-id="{{list.id}}">
               <image class="icon" mode="scaleToFill" src="/image/system/forward.png"/>
               <text class="num">转发</text>
-            </view>
+            </button>
+            <!--<view class="flex-item-center interaction-item" onTap="sharehandle" data-id="{{list.id}}"></view> -->
           </view>
-          <view class="delete">删除</view>
+          <view class="delete" a:if="{{list.isDelete==='1'}}">删除</view>
         </view>
         <!-- 评论 -->
         <view class="comment-wrap">
@@ -63,9 +64,12 @@
       </view>
     </view>
   </scroll-view>
-  <view class="flex-item-center flex-between text-wrap" hidden="{{!isShowInput}}">
-    <input class="input-text" maxlength="200" placeholder="{{placeholder}}" onFocus="onFocus" onBlur="onBlur" focus="{{focus}}"   adjust-position />
+  <view class="flex-item-center flex-item-end text-wrap" hidden="{{!isShowInput}}" style="position:{{pos}}">
+    <view class="input-text-box-wrap">
+      <textarea class="input-text" fixed="{{true}}" auto-height="{{true}}" show-count="{{false}}" maxlength="200" placeholder="{{placeholder}}" onFocus="onFocus" onBlur="onBlur" focus="{{focus}}" adjust-positio="{{true}}" />
+    </view>
     <button>发布</button>
   </view>
-  <suspension isAnonymous="{{mode}}" noTabBar="{{true}}" />
+ <suspension isAnonymous="{{mode}}" noTabBar="{{true}}" />
+  
 </view>

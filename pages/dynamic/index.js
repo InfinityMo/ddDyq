@@ -1,5 +1,6 @@
 import { frontdynamic } from "/data/testData";
-import { encodeUrl } from "/utils/funcStore";
+import { encodeUrl } from "/common/utils/utils";
+import request from "/common/request/request";
 Page({
   data: {
     mode: false, //暗黑模式
@@ -101,9 +102,12 @@ Page({
     //   debugger;
     // });
   },
-  // onReady () {
-  //   // 页面加载完成
-  // },
+  onReady() {
+    // 页面加载完成
+    request.get({ url: "longhua/test",params:{content:'567'} }).then(res => {
+      console.log(res);
+    });
+  },
   onShow() {
     // dd.getNetworkType({
     //   success: res => {

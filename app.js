@@ -1,5 +1,6 @@
 App({
   globalData: {
+      host: 'http://172.165.251.4:8083'
     // isAnonymous: true
   },
   // isAnonymous: true,

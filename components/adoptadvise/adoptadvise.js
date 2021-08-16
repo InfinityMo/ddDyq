@@ -1,5 +1,5 @@
 import { adpot } from "/data/testData";
-import { encodeUrl } from '/utils/funcStore'
+import { encodeUrl } from '/common/utils/utils'
 Component({
   mixins: [],
   data: {
