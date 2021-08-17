@@ -48,7 +48,10 @@
             <text a:if="{{list.interaction.support.length>0}}" a:for="{{list.interaction.support}}" a:for-index="supportIndex">{{item.name}}{{supportIndex===list.interaction.support.length-1 ? '':'，'}}</text>
           </view>
           <view class="comment" a:if="{{list.topic.comments.length>0}}">
-            <view class="comment-item" a:for="{{list.topic.comments}}" a:for-item="comment" key="{{item}}" onTap="toComment" data-id="{{comment.id}}" data-authorName="{{comment.commentUserName ? comment.commentUserName:comment.username}}">
+            <view class="comment-item" a:for="{{list.topic.comments}}"
+             a:for-item="comment" key="{{item}}" onTap="toComment" 
+             data-topicId="{{comment.topicId}}" 
+             data-authorName="{{comment.username}}">
               <text a:if="{{comment.commentId}}">
                 <text class="reply-user">{{comment.username}}</text>
                 <text class="reply">回复</text>
