@@ -1,5 +1,5 @@
 <view class="page {{mode ? 'dark-mode':''}}">
-  <textarea class="text-area" maxlength="500"  auto-height placeholder="说点想说的吧..." onInput="textareaInput" />
+  <textarea class="text-area" name="content" controlled="{{true}}" enableNative="{{false}}" value="{{content}}" maxlength="500"  auto-height placeholder="说点想说的吧..." onInput="textareaInput" />
   <view class="flex pic-wrap">
     <view class="img-item" a:for="{{fileLists}}" a:for-item="pic">
       <image class="img" onTap="previewImg" data-index="{{index}}" mode="aspectFill" src="{{pic}}"/>
@@ -11,7 +11,7 @@
   </view>
   <view class="publish-where">发布在哪儿？</view>
   <view>
-    <radio-group class="radio-group" name="lib" onChange="radioChange">
+    <radio-group class="radio-group" name="radio" onChange="radioChange">
       <label class="radio-item flex-between-center" a:for="{{radios}}" key="label-{{index}}">
         <view class="flex-item-center">
           <radio value="{{item.value}}" checked="{{item.checked}}" disabled="{{item.disabled==='1'}}"/>
@@ -22,6 +22,6 @@
       </label>
     </radio-group>
   </view>
-  <view class="publish-btn {{!textareaFocus ? 'btn-disabled':''}}" onTap="publish">{{mode ? '匿名':'实名'}}发布</view>
+  <button class="publish-btn {{!textareaFocus ? 'btn-disabled':''}}" onTap="submit">{{mode ? '匿名':'实名'}}发布</button>
   <suspension isAnonymous="{{mode}}" />
 </view>

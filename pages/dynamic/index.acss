@@ -141,7 +141,6 @@ button[plain] {
   font-size: 13px;
   line-height: 21px;
 }
-
 .comment .reply-user {
   font-weight: bold;
 }

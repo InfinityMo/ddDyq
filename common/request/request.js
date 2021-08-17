@@ -1,5 +1,5 @@
 import { ddToast, ddLoading, encodeUrl } from "/common/utils/utils";
-const http = {
+const request = {
   // 通用get方法
   get(options, isLoading = true) {
     if (isLoading) ddLoading.show("加载中...");
@@ -18,7 +18,7 @@ const http = {
           ddLoading.hide();
         },
         fail: err => {
-          debugger
+          debugger;
           reject(err);
           ddLoading.hide();
           handleError(err);
@@ -57,23 +57,35 @@ const http = {
       });
     });
   },
-  upload(options, isLoading = true) {
-    // if (isLoading) ddLoading.show("加载中...");
+  mock(options, isLoading = true) {
+    if (isLoading) ddLoading.show("加载中...");
     return new Promise((resolve, reject) => {
-      debugger;
-      dd.uploadFile({
-        url: `${getApp().globalData.host}/${options.url}`,
-        fileType: "image",
-        fileName: "file",
-        filePath: options.filePath,
-        formData: JSON.stringify(options.formData),
-        success: res => {
-          dd.alert({ title: `上传成功：${JSON.stringify(res)}` });
-        },
-        fail: function(res) {
-          dd.alert({ title: `上传失败：${JSON.stringify(res)}` });
-        }
-      });
+     resolve(require('/mock/dynamic.json').details)
+     ddLoading.hide()
+      // dd.httpRequest({
+      //   // 拼接完整请求地址
+      //   url: `/mock/${options.url}.json`,
+      //   method: "POST",
+      //   // 请求参数
+      //   data:
+      //     options.params !== undefined
+      //       ? JSON.stringify(options.params)
+      //       : JSON.stringify({}),
+      //   // 请求头
+      //   headers: {
+      //     Authorization: getApp().globalData.token || "",
+      //     "Content-Type": "application/json;charset=UTF-8"
+      //   },
+      //   success: res => {
+      //     resolve(res.data);
+      //     ddLoading.hide();
+      //   },
+      //   fail: err => {
+      //     reject(err);
+      //     handleError(err);
+      //     // ddLoading.hide();
+      //   }
+      // });
     });
   }
 };
@@ -106,4 +118,4 @@ const handleError = err => {
   ddToast({ type: "fail", text: message });
 };
 
-export default http;
+export default request;

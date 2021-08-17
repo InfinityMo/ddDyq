@@ -52,13 +52,16 @@ Page({
       });
     }
   },
-  // onLoad (query) {
-  //   // 页面加载
-  //   console.info(`Page onLoad with query: ${JSON.stringify(query)}`);
-  // },
+  onLoad (query) {
+    // 页面加载
+    console.info(`Page onLoad with query: ${JSON.stringify(query)}`);
+  },
   // onReady () {
   //   // 页面加载完成
   // },
+  getDynamicData(){
+    
+  },
   onShow() {
     this.setData({ mode: getApp().globalData.isAnonymous });
     getApp().watch(value => {

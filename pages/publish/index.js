@@ -1,5 +1,5 @@
 import request from "/common/request/request";
-import { upload } from "/common/utils/utils";
+import { ddToast } from "/common/utils/utils";
 Page({
   data: {
     mode: false, //暗黑模式
@@ -18,7 +18,9 @@ Page({
       }
     ],
     radioCheck: "1",
-    fileLists: []
+    content: "",
+    fileLists: [],
+    filesPath:[]
   },
   selectPicture() {
     dd.chooseImage({
@@ -65,45 +67,39 @@ Page({
     this.setData({ radioCheck: e.detail.value });
   },
   textareaInput(e) {
-    // 多行文本获取焦点
     const value = e.detail.value.trim();
     value.length > 0
-      ? this.setData({ textareaFocus: true })
+      ? this.setData({ textareaFocus: true, content: value })
       : this.setData({ textareaFocus: false });
   },
-  publish() {
-    // this.data.fileLists
-    const filePath = this.data.fileLists[0];
-    console.log(filePath);
-    // console.log(filePath);
-    // request.post(
-    //   {
-    //     url: "longhua/upload",
-    //     formData: { content: "111111", isDynamic: 1 },
-    //     filePath
-    //   },
-    //   true
-    // );
-    // request.upload({
-    //     url: "longhua/upload",
-    //     filePath,
-    //     formData: { content: "666", isDynamic: "0" }
-    //   })
-    //   .then(res => {
-    //     console.log(res);
-    //   });
-    dd.uploadFile({
-      url: `${getApp().globalData.host}/longhua/upload`,
-      fileType: "image",
-      fileName: "file",
-      filePath: filePath,
-      formData: { content: "666", isDynamic: false },
-      success: res => {
-        dd.alert({ title: `上传成功：${JSON.stringify(res)}` });
-      },
-      fail: function(res) {
-        dd.alert({ title: `上传失败：${JSON.stringify(res)}` });
-      }
+  submit(e) {
+    if (this.data.fileLists.length > 0) {
+      this.upload().then(res => {});
+    }
+  },
+  reset() {},
+  upload(count = 0) {
+    return new Promise(resolve => {
+      const filePath = this.data.fileLists[count];
+      dd.uploadFile({
+        url: `${getApp().globalData.host}/longhua/upload`,
+        fileType: "image",
+        fileName: "file",
+        filePath,
+        success: res => {
+          count++;
+          this.setData({filesPath:[res.data,...this.data.filesPath]})
+          count >= this.data.fileLists.length
+            ? resolve(res.data)
+            : this.upload(count, res.data);
+          // dd.alert({ title: `上传成功：${JSON.stringify(res)}` });
+        },
+        fail: function(res) {
+          ddToast({ type: "fail", text: "上传失败" });
+          resolve(false);
+          // dd.alert({ title: `上传失败：${JSON.stringify(res)}` });
+        }
+      });
     });
   },
   onLoad(query) {

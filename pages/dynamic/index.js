@@ -9,7 +9,8 @@ Page({
     isShowInput: false,
     placeholder: "",
     shareId: "",
-    dynamics: frontdynamic
+    total: 0,
+    dynamics: []
   },
   toSupport(event) {
     dd.getNetworkType({
@@ -47,7 +48,6 @@ Page({
     });
   },
   toComment(event) {
-    const authorId = event.target.dataset.authorId;
     const authorName = event.target.dataset.authorName;
     this.setData({ placeholder: `回复${authorName}` });
     this.onFocus();
@@ -78,14 +78,15 @@ Page({
   onKeyboardHide() {
     this.onBlur();
   },
+  // 预览图片
   previewImg(e) {
     const index = e.target.dataset.index || 0;
     const id = e.target.dataset.id || 0;
-    const target = this.data.dynamics.filter(item => item.id === id)[0];
+    const target = this.data.dynamics.filter(item => item.topic.id === id)[0];
     if (target) {
       dd.previewImage({
         current: index,
-        urls: [...target.dynamic.pics]
+        urls: [...target.topic.avatars]
       });
     }
   },
@@ -101,12 +102,18 @@ Page({
     // getApp().watch(() => {
     //   debugger;
     // });
+    this.getDynamicData();
   },
   onReady() {
     // 页面加载完成
     // request.get({ url: "longhua/test",params:{content:'567'} }).then(res => {
     //   console.log(res);
     // });
+  },
+  getDynamicData() {
+    request.mock({ url: "dynamic" }).then(res => {
+      this.setData({ total: res.allTopicsNum, dynamics: [...res.topics] });
+    });
   },
   onShow() {
     // dd.getNetworkType({
