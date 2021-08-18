@@ -1,37 +1,37 @@
 <view class="adopt {{className}}">
   <view class="take-title">上月采纳建议</view>
   <view a:for="{{adpot}}" class="item">
-    <view class="top-box top-box{{item.rank}} flex">
+    <view class="top-box top-box{{item.ranking}} flex">
       <view class="top-wrap">
         <view class="title flex">
-          <view class="sub-title">TOP-{{item.rank}}</view>
-          <image class="wave" mode="scaleToFill" src="/image/system/order{{item.rank}}-wave.png"/>
+          <view class="sub-title">TOP-{{item.ranking}}</view>
+          <image class="wave" mode="scaleToFill" src="/image/system/order{{item.ranking}}-wave.png"/>
         </view>
         <view class="user-words">
           <view class="flex user">
-            <image mode="scaleToFill" src="{{item.avatar}}"/>
+            <image mode="scaleToFill" src="{{item.user.avatar}}"/>
             <view class="user-info">
-              <view>{{item.name}}</view>
-              <text>{{item.time}}</text>
+              <view>{{item.user.anonymousName}}</view>
+              <text>{{item.inTime}}</text>
             </view>
           </view>
-          <view class="ell2">{{item.words}}</view>
+          <view class="ell2">{{item.content}}</view>
         </view>
       </view>
-      <image class="order-bg" mode="scaleToFill" src="/image/system/order{{item.rank}}.png"/>
+      <image class="order-bg" mode="scaleToFill" src="/image/system/order{{item.ranking}}.png"/>
     </view>
     <view class="feed-back">
-      <view class="back-words ell2">{{item.feedback}}</view>
+      <view class="back-words ell2">{{item.solution}}</view>
       <view class="flex flex-justify-end support-against">
         <view class="flex-item-center support">
-          <image a:if="{{item.isSelfSupport==='1'}}" mode="scaleToFill" src="/image/system/thumbActive.png"/>
+          <image a:if="{{item.isCurrentUserUp}}" mode="scaleToFill" src="/image/system/thumbActive.png"/>
           <image a:else mode="scaleToFill" src="/image/system/thumb.png"/>
-          <text class="{{item.isSelfSupport==='1' ? 'num-support-active':''}}">{{item.support}}</text>
+          <text class="{{item.isCurrentUserUp ? 'num-support-active':''}}">{{item.upCount}}</text>
         </view>
         <view class="flex-item-center against">
-          <image a:if="{{item.isSelfAgainst==='1'}}" mode="scaleToFill" src="/image/system/treadActive.png"/>
+          <image a:if="{{item.isCurrentUserDown}}" mode="scaleToFill" src="/image/system/treadActive.png"/>
           <image a:else mode="scaleToFill" src="/image/system/tread.png"/>
-          <text class="{{item.isSelfAgainst==='1' ? 'num-against-active':''}}">{{item.against}}</text>
+          <text class="{{item.isCurrentUserDown ? 'num-against-active':''}}">{{item.downCount}}</text>
         </view>
       </view>
     </view>

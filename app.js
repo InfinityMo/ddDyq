@@ -1,6 +1,6 @@
 App({
   globalData: {
-    host: 'http://172.165.251.4:8083'
+    host: "http://172.165.251.4:8083"
     // isAnonymous: true
   },
   // isAnonymous: true,
@@ -8,11 +8,10 @@ App({
   onLaunch(options) {
     // 获取authodCode
     dd.getAuthCode({
-      success: function (res) {
-        console.log(res)
+      success: function(res) {
+        console.log(res);
       },
-      fail: function (err) {
-      }
+      fail: function(err) {}
     });
     const storageData = dd.getStorageSync({ key: "userMode" }).data;
     this.globalData.isAnonymous = storageData ? storageData.isAnonymous : false;
@@ -27,17 +26,20 @@ App({
     // });
     try {
       const updateManager = dd.getUpdateManager();
-      updateManager.onCheckForUpdate(function (res) {
+      updateManager.onCheckForUpdate(function(res) {
+        dd.alert({
+          title: JSON.stringify(res)
+        });
         // 请求完新版本信息的回调
         // console.log(res.hasUpdate); // 是否有更新
       });
-      updateManager.onUpdateReady(function (ret) {
+      updateManager.onUpdateReady(function(ret) {
         dd.confirm({
           title: "更新提示",
           content: "新版本已经准备好，是否重启应用？",
           confirmButtonText: "是",
           cancelButtonText: "否",
-          success: function (res) {
+          success: function(res) {
             if (res.confirm) {
               // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
               updateManager.applyUpdate();
@@ -45,11 +47,8 @@ App({
           }
         });
       });
-    } catch (err) { }
-
-    // updateManager.onUpdateFailed(function () {
-    //   // 新版本下载失败
-    // })
+      updateManager.onUpdateFailed(function() {});
+    } catch (err) {}
   },
   onShow(options) {
     // 从后台被 scheme 重新打开
@@ -72,16 +71,16 @@ App({
     //   });
     // }
   },
-  watch: function (method) {
+  watch: function(method) {
     const obj = this.globalData;
     Object.defineProperty(obj, "isAnonymous", {
       configurable: true, //描述属性是否配置，以及可否删除
       enumerable: true, //描述属性是否会出现在for in 或者 Object.keys()的遍历中
-      set: function (value) {
+      set: function(value) {
         this._isAnonymous = value;
         method(value);
       },
-      get: function () {
+      get: function() {
         // 在其他界面调用getApp().globalData.name的时候，这里就会执行。
         return this._isAnonymous;
       }

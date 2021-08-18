@@ -60,8 +60,8 @@ const request = {
   mock(options, isLoading = true) {
     if (isLoading) ddLoading.show("加载中...");
     return new Promise((resolve, reject) => {
-     resolve(require('/mock/dynamic.json').details)
-     ddLoading.hide()
+      resolve(require("/mock/" + options.url + ".json").details);
+      ddLoading.hide();
       // dd.httpRequest({
       //   // 拼接完整请求地址
       //   url: `/mock/${options.url}.json`,

@@ -1,14 +1,24 @@
-import {advises} from '/data/testData'
+// import { advises } from "/data/testData";
+import request from "/common/request/request";
 Component({
   mixins: [],
   data: {
-    advises
+    advises:[]
   },
   props: {
-    className:''
+    className: ""
   },
-  didMount() {},
+  didMount() {
+    this.getCurrentData();
+  },
   didUpdate() {},
   didUnmount() {},
-  methods: {},
+  methods: {
+    getCurrentData() {
+      request.mock({ url: "suggest", params: { type: "current", pageNo:1 } })
+        .then(res => {
+          this.setData({ advises: [...res.opinion] });
+        });
+    }
+  }
 });

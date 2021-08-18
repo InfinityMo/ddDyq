@@ -70,7 +70,7 @@
 
 .view-wrap .content-support {
   flex-shrink: 0;
-  padding-left: 10px;
+  padding-top: 10px;
 }
 
 .view-wrap .content-words .icon {

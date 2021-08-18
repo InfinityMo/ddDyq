@@ -1,0 +1,47 @@
+{
+  "code": 200,
+  "description": "SUCCESS",
+  "details": {
+    "opinion": {
+      "id": 1,
+      "content": "想要公司安排个对象",
+      "solutionId": 20,
+      "ranking":1,
+      "solution": "公司举办线下交友会",
+      "upCount": 3000,
+      "downCount": 200,
+      "inTime": 1548992281000,
+      "modifyTime": 1548992296000,
+      "isCurrentUserUp": true,
+      "isCurrentUserDown": true,
+      "isAnonymous": true,
+      "user": {
+        "id": 1,
+        "username": "tomoya",
+        "avatar": "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201812%2F30%2F20181230144326_yzofb.thumb.700_0.jpg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1630221724&t=0e232873ac2da8a226c1082e8994e226",
+        "anonymousName": "hhh01"
+      }
+    },
+    "solutionComment": [
+      {
+        "id": 1,
+        "content": "强烈建议安排对象",
+        "commentId": 3,
+        "commentUserName": "test03",
+        "upCount": 600,
+        "downCount": 200,
+        "inTime": 1548992281000,
+        "modifyTime": 1548992296000,
+        "isCurrentUserUp": true,
+        "isCurrentUserDown": true,
+        "user": {
+          "id": 1,
+          "username": "tomoya",
+          "avatar": "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201812%2F30%2F20181230144326_yzofb.thumb.700_0.jpg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1630221724&t=0e232873ac2da8a226c1082e8994e226",
+          "anonymousName": "hhh01"
+        }
+      }
+    ],
+    "solutionCommentCount": 1
+  }
+}

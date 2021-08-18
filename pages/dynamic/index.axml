@@ -35,7 +35,7 @@
             </view>
             <button open-type="share" plain="{{true}}" hover-class="none" class="flex-item-center interaction-item share-btn" onTap="sharehandle" data-id="{{list.topic.id}}">
               <image class="icon" mode="scaleToFill" src="/image/system/forward.png"/>
-              <text class="num">转发</text>
+              <text class="num">分享</text>
             </button>
             <!--<view class="flex-item-center interaction-item" onTap="sharehandle" data-id="{{list.id}}"></view> -->
           </view>

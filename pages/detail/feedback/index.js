@@ -1,9 +1,9 @@
-import { adpotDeatil, adoptComment } from "/data/testData";
+import request from "/common/request/request";
 Page({
   data: {
     mode: false, //暗黑模式
-    adpotDeatil,
-    adoptComment,
+    adpotDeatil: {},
+    adoptComment: [],
     placeholder: "一起讨论吧...",
     focus: false
   },
@@ -56,13 +56,24 @@ Page({
       });
     }
   },
+  getDetailData() {
+    request
+      .mock({ url: "suggestDetail", params: { id: "1", pageNo: 1 } })
+      .then(res => {
+        this.setData({
+          adpotDeatil: { ...res.opinion },
+          adoptComment: [...res.solutionComment]
+        });
+      });
+  },
   // onLoad (query) {
   //   // 页面加载
   //   console.info(`Page onLoad with query: ${JSON.stringify(query)}`);
   // },
-  // onReady () {
-  //   // 页面加载完成
-  // },
+  onReady() {
+    // 页面加载完成
+    this.getDetailData();
+  },
   onShow() {
     // 页面显示
     this.setData({ mode: getApp().globalData.isAnonymous });
