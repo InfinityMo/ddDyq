@@ -1,4 +1,3 @@
-import { frontdynamic } from "/data/testData";
 import { encodeUrl } from "/common/utils/utils";
 import request from "/common/request/request";
 Page({
@@ -66,7 +65,9 @@ Page({
     // 返回自定义分享信息
     return {
       title: "动态",
-      imageUrl:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201605%2F10%2F20160510001106_2YjCN.thumb.700_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631869211&t=e83f3049c646769768f51ba6144ec26a',
+      desc:'如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示',
+      imageUrl:
+        "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201605%2F10%2F20160510001106_2YjCN.thumb.700_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631869211&t=e83f3049c646769768f51ba6144ec26a",
       path
     };
   },

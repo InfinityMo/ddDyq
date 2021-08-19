@@ -1,20 +1,17 @@
+import request from "/common/request/request";
 App({
   globalData: {
-    host: "http://172.165.251.4:8083"
-    // isAnonymous: true
+    host: "http://47.100.240.53:80"
   },
-  // isAnonymous: true,
   // 冷启动
   onLaunch(options) {
-    // 获取authodCode
-    dd.getAuthCode({
-      success: function(res) {
-        console.log(res);
-      },
-      fail: function(err) {}
-    });
+    // 从内存中获取用户的模式
     const storageData = dd.getStorageSync({ key: "userMode" }).data;
     this.globalData.isAnonymous = storageData ? storageData.isAnonymous : false;
+    // 获取authodCode
+    this.getAuthCode();
+    // 更新app
+    this.updateApp();
     // 第一次打开
     // options.query == {number:1}
     // dd.getNetworkType({
@@ -24,31 +21,6 @@ App({
     //     });
     //   }
     // });
-    try {
-      const updateManager = dd.getUpdateManager();
-      updateManager.onCheckForUpdate(function(res) {
-        dd.alert({
-          title: JSON.stringify(res)
-        });
-        // 请求完新版本信息的回调
-        // console.log(res.hasUpdate); // 是否有更新
-      });
-      updateManager.onUpdateReady(function(ret) {
-        dd.confirm({
-          title: "更新提示",
-          content: "新版本已经准备好，是否重启应用？",
-          confirmButtonText: "是",
-          cancelButtonText: "否",
-          success: function(res) {
-            if (res.confirm) {
-              // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
-              updateManager.applyUpdate();
-            }
-          }
-        });
-      });
-      updateManager.onUpdateFailed(function() {});
-    } catch (err) {}
   },
   onShow(options) {
     // 从后台被 scheme 重新打开
@@ -71,6 +43,42 @@ App({
     //   });
     // }
   },
+  getAuthCode() {
+    dd.getAuthCode({
+      success: res => {
+        const { authCode } = res;
+        this.getUserInfo(authCode);
+      },
+      fail: function(err) {}
+    });
+  },
+  getUserInfo(authCode) {
+    request.post({ url: "userInfo", params: { authCode } });
+  },
+  updateApp() {
+    try {
+      const updateManager = dd.getUpdateManager();
+      updateManager.onCheckForUpdate(function(res) {
+        // 请求完新版本信息的回调
+        // console.log(res.hasUpdate); // 是否有更新
+      });
+      updateManager.onUpdateReady(function(ret) {
+        dd.confirm({
+          title: "更新提示",
+          content: "新版本已经准备好，是否重启应用？",
+          confirmButtonText: "是",
+          cancelButtonText: "否",
+          success: function(res) {
+            if (res.confirm) {
+              // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+              updateManager.applyUpdate();
+            }
+          }
+        });
+      });
+      updateManager.onUpdateFailed(function() {});
+    } catch (err) {}
+  },
   watch: function(method) {
     const obj = this.globalData;
     Object.defineProperty(obj, "isAnonymous", {
@@ -81,7 +89,7 @@ App({
         method(value);
       },
       get: function() {
-        // 在其他界面调用getApp().globalData.name的时候，这里就会执行。
+        // 在其他界面调用getApp().globalData.isAnonymous的时候，这里就会执行。
         return this._isAnonymous;
       }
     });

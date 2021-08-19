@@ -7,14 +7,15 @@ const request = {
       dd.httpRequest({
         // 拼接完整请求地址
         url: encodeUrl(
-          `${getApp().globalData.host}/${options.url}`,
+          `${getApp().globalData.host}/api/${options.url}`,
           options.params
         ),
         method: "GET",
+        timeout: 2000,
         // 请求头
-        headers: { Authorization: getApp().globalData.token || "" },
+        headers: { token: getApp().globalData.token || "" },
         success: res => {
-          resolve(res.data);
+          res.code === 200 ? resolve(res.data) : handleError({ error: 19 });
           ddLoading.hide();
         },
         fail: err => {
@@ -33,8 +34,9 @@ const request = {
     return new Promise((resolve, reject) => {
       dd.httpRequest({
         // 拼接完整请求地址
-        url: `${getApp().globalData.host}/${options.url}`,
+        url: `${getApp().globalData.host}/api/${options.url}`,
         method: "POST",
+        timeout: 2000,
         // 请求参数
         data:
           options.params !== undefined
@@ -42,11 +44,12 @@ const request = {
             : JSON.stringify({}),
         // 请求头
         headers: {
-          Authorization: getApp().globalData.token || "",
+          token: getApp().globalData.token || "",
           "Content-Type": "application/json;charset=UTF-8"
         },
         success: res => {
-          resolve(res.data);
+          
+          res.code === 200 ? resolve(res.data) : handleError({ error: 19 });
           ddLoading.hide();
         },
         fail: err => {

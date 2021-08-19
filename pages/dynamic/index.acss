@@ -112,10 +112,11 @@ button[plain] {
 }
 
 .right-wrap .comment-wrap .support {
-  padding: 0 10px;
+  padding: 0 10px 5px 10px;
   font-size: 13px;
   line-height: 21px;
   color: #333;
+  border-bottom: 1px solid #E9E9E9;
 }
 
 .comment-wrap .support .fabulous {
@@ -132,8 +133,8 @@ button[plain] {
 
 .comment {
   padding: 0 10px;
-  margin-top: 5px;
-  border-top: 1px solid #E9E9E9;
+  /* margin-top: 5px;
+  border-top: 1px solid #E9E9E9; */
 }
 
 .comment .comment-item {
@@ -214,15 +215,16 @@ button[plain] {
 
 .dark-mode .comment-wrap .support {
   color: #fff;
+  border-bottom: 1px solid #444;
 }
 
 .dark-mode .comment-wrap {
   background-color: #303030;
 }
 
-.dark-mode .comment-wrap .comment {
+/* .dark-mode .comment-wrap .comment {
   border-top: 1px solid #444;
-}
+} */
 
 .dark-mode .share-btn {
   color: #fff;
