@@ -20,7 +20,8 @@ Page({
     radioCheck: "1",
     content: "",
     fileLists: [],
-    filesPath:[]
+    filesPath: [],
+    imgPaths: [] //服务器返回的路径
   },
   selectPicture() {
     dd.chooseImage({
@@ -79,23 +80,27 @@ Page({
   },
   reset() {},
   upload(count = 0) {
+    let that = this
     return new Promise(resolve => {
-      const filePath = this.data.fileLists[count];
+      const filePath = that.data.fileLists[count];
       dd.uploadFile({
-        url: `${getApp().globalData.host}/longhua/upload`,
+        url: `${getApp().globalData.host}/api/upload`,
         fileType: "image",
         fileName: "file",
+        header: { token: getApp().globalData.token || "" },
         filePath,
         success: res => {
           count++;
-          this.setData({filesPath:[res.data,...this.data.filesPath]})
-          count >= this.data.fileLists.length
-            ? resolve(res.data)
-            : this.upload(count, res.data);
-          // dd.alert({ title: `上传成功：${JSON.stringify(res)}` });
+          that.setData({ filesPath: [res.data, ...that.data.filesPath] });
+          if (count >= that.data.fileLists.length) {
+            resolve(true);
+          } else {
+            that.upload(count);
+          }
         },
         fail: function(res) {
           ddToast({ type: "fail", text: "上传失败" });
+          that.setData({ filesPath: [] });
           resolve(false);
           // dd.alert({ title: `上传失败：${JSON.stringify(res)}` });
         }

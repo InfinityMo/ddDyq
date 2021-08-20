@@ -15,11 +15,12 @@ const request = {
         // 请求头
         headers: { token: getApp().globalData.token || "" },
         success: res => {
-          res.code === 200 ? resolve(res.data) : handleError({ error: 19 });
+          res.data && res.data.code === 200
+            ? resolve(res.data.detail)
+            : handleError({ error: 19 });
           ddLoading.hide();
         },
         fail: err => {
-          debugger;
           reject(err);
           ddLoading.hide();
           handleError(err);
@@ -48,9 +49,12 @@ const request = {
           "Content-Type": "application/json;charset=UTF-8"
         },
         success: res => {
-          
-          res.code === 200 ? resolve(res.data) : handleError({ error: 19 });
-          ddLoading.hide();
+          if (res.data && res.data.code !== 201) {
+            resolve(res.data.detail);
+            ddLoading.hide();
+          } else {
+            handleError({ error: 19 });
+          }
         },
         fail: err => {
           reject(err);
@@ -112,7 +116,7 @@ const handleError = err => {
         message = "解码失败";
         break;
       case 19:
-        message = "服务器发生错误";
+        message = "哎呀，服务器似乎出了点问题";
         break;
       default:
         break;

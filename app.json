@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/publish/index",
     "pages/dynamic/index",
     "pages/suggest/index",
-    "pages/publish/index",
+    
     "pages/user/index",
     "pages/detail/feedback/index",
     "pages/detail/dynamicinfo/index"

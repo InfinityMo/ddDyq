@@ -1,8 +1,10 @@
 import request from "/common/request/request";
 App({
   globalData: {
-    host: "http://47.100.240.53:80"
+    host: "http://172.165.255.82:8080",
+    token: ""
   },
+  userData:{},
   // 冷启动
   onLaunch(options) {
     // 从内存中获取用户的模式
@@ -53,7 +55,10 @@ App({
     });
   },
   getUserInfo(authCode) {
-    request.post({ url: "userInfo", params: { authCode } });
+    request.post({ url: "userInfo", params: { authCode } }).then(res => {
+      this.globalData.token = res.token || "";
+      this.userData = {...res.user}
+    });
   },
   updateApp() {
     try {
