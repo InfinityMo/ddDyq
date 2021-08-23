@@ -80,7 +80,7 @@ Page({
   },
   reset() {},
   upload(count = 0) {
-    let that = this
+    let that = this;
     return new Promise(resolve => {
       const filePath = that.data.fileLists[count];
       dd.uploadFile({
@@ -88,7 +88,7 @@ Page({
         fileType: "image",
         fileName: "file",
         header: { token: getApp().globalData.token || "" },
-        filePath,
+        filePath: filePath,
         success: res => {
           count++;
           that.setData({ filesPath: [res.data, ...that.data.filesPath] });

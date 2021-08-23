@@ -1,7 +1,7 @@
 import request from "/common/request/request";
 App({
   globalData: {
-    host: "http://172.165.255.82:8080",
+    host: "http://42510579yw.imdo.co",
     token: ""
   },
   userData:{},
