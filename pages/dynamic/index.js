@@ -9,6 +9,7 @@ Page({
     placeholder: "",
     shareId: "",
     total: 0,
+    pageNo: 1,
     dynamics: []
   },
   toSupport(event) {
@@ -65,7 +66,8 @@ Page({
     // 返回自定义分享信息
     return {
       title: "动态",
-      desc:'如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示',
+      desc:
+        "如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示",
       imageUrl:
         "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201605%2F10%2F20160510001106_2YjCN.thumb.700_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631869211&t=e83f3049c646769768f51ba6144ec26a",
       path
@@ -99,23 +101,18 @@ Page({
     dd.navigateTo({ url });
   },
   onLoad(query) {
-    // console.log()
     // 页面加载
-    // getApp().watch(() => {
-    //   debugger;
-    // });
     this.getDynamicData();
   },
   onReady() {
     // 页面加载完成
-    // request.get({ url: "longhua/test",params:{content:'567'} }).then(res => {
-    //   console.log(res);
-    // });
   },
   getDynamicData() {
-    request.mock({ url: "dynamic" }).then(res => {
-      this.setData({ total: res.allTopicsNum, dynamics: [...res.topics] });
-    });
+    request
+      .get({ url: "dynamic", params: { pageNo: this.data.pageNo } })
+      .then(res => {
+        this.setData({ total: res.allTopicsNum, dynamics: [...res.topics] });
+      });
   },
   onShow() {
     // dd.getNetworkType({

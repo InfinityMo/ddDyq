@@ -75,10 +75,31 @@ Page({
   },
   submit(e) {
     if (this.data.fileLists.length > 0) {
-      this.upload().then(res => {});
+      this.upload().then(res => {
+        if (res) {
+          console.log(this.data.filesPath);
+          this.publish();
+        }
+      });
     }
   },
-  reset() {},
+  publish() {
+    request
+      .post({
+        url: "add",
+        params: {
+          content: this.data.content,
+          avatar: this.data.filesPath.join(),
+          isDynamic: this.data.radioCheck === "1",
+          isAnonymous: getApp().globalData.isAnonymous
+        }
+      })
+      .then(res => {
+        dd.switchTab({
+          url: "/pages/dynamic/index"
+        });
+      });
+  },
   upload(count = 0) {
     let that = this;
     return new Promise(resolve => {
@@ -88,18 +109,32 @@ Page({
         fileType: "image",
         fileName: "file",
         header: { token: getApp().globalData.token || "" },
-        filePath: filePath,
-        success: res => {
-          count++;
-          that.setData({ filesPath: [res.data, ...that.data.filesPath] });
-          if (count >= that.data.fileLists.length) {
-            resolve(true);
+        filePath,
+        success: response => {
+          const res = JSON.parse(response.data);
+          if (res.code === 200) {
+            count++;
+            that.setData({
+              filesPath: [res.detail.urls[0], ...that.data.filesPath]
+            });
+            if (count >= that.data.fileLists.length) {
+              resolve(true);
+            } else {
+              that.upload(count);
+            }
+          } else if (res.code === 203) {
+            that.setData({ filesPath: [] });
+            ddToast({ type: "fail", text: "请检查图片是否合法" });
+          } else if (res.data.code === 210) {
+            that.setData({ filesPath: [] });
+            ddToast({ type: "fail", text: "图片格式不支持" });
           } else {
-            that.upload(count);
+            that.setData({ filesPath: [] });
+            ddToast({ type: "fail", text: "哎呀，服务器似乎出了点问题" });
           }
         },
         fail: function(res) {
-          ddToast({ type: "fail", text: "上传失败" });
+          ddToast({ type: "fail", text: "哎呀，服务器似乎出了点问题" });
           that.setData({ filesPath: [] });
           resolve(false);
           // dd.alert({ title: `上传失败：${JSON.stringify(res)}` });
