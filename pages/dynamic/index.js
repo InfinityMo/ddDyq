@@ -13,39 +13,82 @@ Page({
     dynamics: []
   },
   toSupport(event) {
-    dd.getNetworkType({
-      success: res => {
-        // dd.alert({
-        //   title: `${res.networkAvailable} - ${res.networkType}`
-        // });
-        if (res.networkAvailable) {
-          const id = event.target.dataset.id;
-          const findIndex = this.data.dynamics.findIndex(
-            item => item.id === id
-          );
-          if (findIndex >= 0) {
-            const ownSupport = `dynamics[${findIndex}].interaction.ownSupport`;
-            const support = `dynamics[${findIndex}].interaction.support`;
-            const value =
-              this.data.dynamics[findIndex].interaction.ownSupport === 0
-                ? 1
-                : 0;
-            const supportArr = this.data.dynamics[findIndex].interaction
-              .support;
-            this.setData({
-              [ownSupport]: value,
-              [support]: [{ userId: "234", name: "xxx" }, ...supportArr]
-            });
-          }
-        } else {
-          dd.showToast({
-            type: "fail",
-            content: "网络有问题",
-            duration: 3000
-          });
+    const id = event.target.dataset.id;
+    const anonymousName = event.target.dataset.anonymousName;
+    const findIndex = this.data.dynamics.findIndex(
+      item => item.topic.id === id
+    );
+    // debugger
+    if (findIndex >= 0) {
+      const ownSupport = `dynamics[${findIndex}].topic.isCurrentUserUp`;
+      const support = `dynamics[${findIndex}].topic.upIdNames`;
+      const upCount = `dynamics[${findIndex}].topic.upCount`;
+      const value =
+        this.data.dynamics[findIndex].topic.isCurrentUserUp === "0" ? "1" : "0";
+      const supportArr = this.data.dynamics[findIndex].topic.upIdNames;
+      console.log(this.data[upCount])
+      this.setData({
+        [ownSupport]: value,
+        [support]: [
+          {
+            userId: getApp().userData.id,
+            userName: getApp().userData.username
+          },
+          ...supportArr
+        ],
+        [upCount]:
+          value === "1" ? this.data[upCount] + 1 : this.data[upCount] - 1
+      });
+      this.postSupport(id, anonymousName);
+    }
+    // dd.getNetworkType({
+    //   success: res => {
+    //     // dd.alert({
+    //     //   title: `${res.networkAvailable} - ${res.networkType}`
+    //     // });
+    //     if (res.networkAvailable) {
+    //       const id = event.target.dataset.id;
+    //       const findIndex = this.data.dynamics.findIndex(
+    //         item => item.id === id
+    //       );
+    //       if (findIndex >= 0) {
+    //         const ownSupport = `dynamics[${findIndex}].interaction.ownSupport`;
+    //         const support = `dynamics[${findIndex}].interaction.support`;
+    //         const value =
+    //           this.data.dynamics[findIndex].interaction.ownSupport === 0
+    //             ? 1
+    //             : 0;
+    //         const supportArr = this.data.dynamics[findIndex].interaction
+    //           .support;
+    //         this.setData({
+    //           [ownSupport]: value,
+    //           [support]: [{ userId: "234", name: "xxx" }, ...supportArr]
+    //         });
+    //       }
+    //     } else {
+    //       dd.showToast({
+    //         type: "fail",
+    //         content: "网络有问题",
+    //         duration: 3000
+    //       });
+    //     }
+    //   }
+    // });
+  },
+  postSupport(id, anonymousName) {
+    request
+      .post({
+        url: "dynamic/vote",
+        params: {
+          id: id,
+          anonymousName: getApp().globalData.isAnonymous ? anonymousName : "",
+          isAnonymous: getApp().globalData.isAnonymous
         }
-      }
-    });
+      })
+      .then(res => {
+        // this.setData({ total: res.allTopicsNum, dynamics: [...res.topicList] });
+        // dd.stopPullDownRefresh();
+      });
   },
   toComment(event) {
     const authorName = event.target.dataset.authorName;
@@ -72,6 +115,20 @@ Page({
         "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201605%2F10%2F20160510001106_2YjCN.thumb.700_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631869211&t=e83f3049c646769768f51ba6144ec26a",
       path
     };
+  },
+  // 删除
+  deleteHandle(e) {
+    const id = e.target.dataset.id;
+    const findIndex = this.data.dynamics.findIndex(
+      item => item.topic.id === id
+    );
+    if (findIndex >= 0) {
+      this.$spliceData({ dynamics: [findIndex, 1] });
+      request.post({
+        url: "dynamic/delete",
+        params: { id }
+      });
+    }
   },
   onFocus() {
     this.setData({ focus: true, isShowInput: true });
@@ -100,19 +157,33 @@ Page({
     const url = encodeUrl("/pages/detail/dynamicinfo/index", { id });
     dd.navigateTo({ url });
   },
-  onLoad(query) {
-    // 页面加载
-    this.getDynamicData();
-  },
-  onReady() {
-    // 页面加载完成
+  lower(e) {
+    console.log(this.data.dynamics.length, this.data.total);
+    if (this.data.dynamics.length < this.data.total) {
+      this.setData({ pageNo: ++this.data.pageNo }, () => {
+        this.getDynamicData();
+      });
+    }
   },
   getDynamicData() {
     request
       .get({ url: "dynamic", params: { pageNo: this.data.pageNo } })
       .then(res => {
-        this.setData({ total: res.allTopicsNum, dynamics: [...res.topics] });
+        this.setData({
+          total: res.allTopicsNum,
+          dynamics: [...this.data.dynamics, ...res.topicList]
+        });
+        dd.stopPullDownRefresh();
       });
+  },
+  onLoad() {
+    // 页面加载
+    setTimeout(() => {
+      this.getDynamicData();
+    }, 2000);
+  },
+  onReady() {
+    // 页面加载完成
   },
   onShow() {
     // dd.getNetworkType({
@@ -138,9 +209,13 @@ Page({
   //   // 标题被点击
   // },
   onPullDownRefresh() {
-    setTimeout(() => {
-      dd.stopPullDownRefresh();
-    }, 2000);
+    this.setData({ pageNo: 1 }, () => {
+      this.getDynamicData();
+    });
+
+    // setTimeout(() => {
+    //   dd.stopPullDownRefresh();
+    // }, 2000);
     // 页面被下拉
   }
   // onReachBottom () {

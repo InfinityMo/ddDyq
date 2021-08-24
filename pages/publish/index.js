@@ -75,12 +75,10 @@ Page({
   },
   submit(e) {
     if (this.data.fileLists.length > 0) {
-      this.upload().then(res => {
-        if (res) {
-          console.log(this.data.filesPath);
-          this.publish();
-        }
+      dd.showLoading({
+        content: "加载中..."
       });
+      this.upload();
     }
   },
   publish() {
@@ -95,19 +93,27 @@ Page({
         }
       })
       .then(res => {
+        dd.hideLoading();
         dd.switchTab({
-          url: "/pages/dynamic/index"
+          url: "/pages/dynamic/index",
+          success: res => {
+            const page = getCurrentPages().pop();
+            if (page === undefined || page === null) return;
+            page.onLoad();
+          }
         });
       });
   },
   upload(count = 0) {
     let that = this;
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       const filePath = that.data.fileLists[count];
+      //  dd.hideLoading()
       dd.uploadFile({
         url: `${getApp().globalData.host}/api/upload`,
         fileType: "image",
         fileName: "file",
+        hideLoading: true,
         header: { token: getApp().globalData.token || "" },
         filePath,
         success: response => {
@@ -117,20 +123,27 @@ Page({
             that.setData({
               filesPath: [res.detail.urls[0], ...that.data.filesPath]
             });
-            if (count >= that.data.fileLists.length) {
-              resolve(true);
-            } else {
-              that.upload(count);
-            }
+            // that.upload(count);
+            // debugger
+            resolve(count);
+            // if (count >= that.data.fileLists.length) {
+            //   resolve(true);
+            // } else {
+            //   that.upload(count);
+            //    resolve(count);
+            // }
           } else if (res.code === 203) {
             that.setData({ filesPath: [] });
             ddToast({ type: "fail", text: "请检查图片是否合法" });
+            resolve(false);
           } else if (res.data.code === 210) {
             that.setData({ filesPath: [] });
             ddToast({ type: "fail", text: "图片格式不支持" });
+            resolve(false);
           } else {
             that.setData({ filesPath: [] });
             ddToast({ type: "fail", text: "哎呀，服务器似乎出了点问题" });
+            resolve(false);
           }
         },
         fail: function(res) {
@@ -140,6 +153,15 @@ Page({
           // dd.alert({ title: `上传失败：${JSON.stringify(res)}` });
         }
       });
+    }).then(res => {
+      if (typeof res === "number") {
+        if (res >= that.data.fileLists.length) {
+          // console.log(that.data.filesPath);
+          that.publish();
+        } else {
+          that.upload(res);
+        }
+      }
     });
   },
   onLoad(query) {
