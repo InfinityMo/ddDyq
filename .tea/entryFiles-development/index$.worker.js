@@ -1,11 +1,15 @@
+/**! __CODEPLACEHOLDER_START__ */ /*[PositionForHostEntryCodeBegin]*/ /**! __CODEPLACEHOLDER_END__ */
 if(!self.__appxInited) {
 self.__appxInited = 1;
 
 
 require('./config$');
+require('./importScripts$');
 
-
-      if( navigator.userAgent && (navigator.userAgent.indexOf('LyraVM') > 0 || navigator.userAgent.indexOf('AlipayIDE') > 0) ) {
+      function getUserAgentInPlatformWeb() {
+        return typeof navigator !== 'undefined' ? navigator.swuserAgent || navigator.userAgent || '' : '';
+      }
+      if(getUserAgentInPlatformWeb() && (getUserAgentInPlatformWeb().indexOf('LyraVM') > 0 || getUserAgentInPlatformWeb().indexOf('AlipayIDE') > 0) ) {
         var AFAppX = self.AFAppX.getAppContext ? self.AFAppX.getAppContext().AFAppX : self.AFAppX;
       } else {
         importScripts('https://appx/af-appx.worker.min.js');

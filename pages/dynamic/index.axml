@@ -67,7 +67,7 @@
         </view>
       </view>
     </view>
-    <view class="baseline-wrap flex-item-center" a:if="{{baselineShow}}">
+    <view class="baseline-wrap flex-item-center" hidden="{{!baselineShow}}">
       <view class="line"></view>
       <text>我是有底线的</text>
       <view class="line"></view>

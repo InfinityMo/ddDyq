@@ -215,10 +215,12 @@ Page({
       });
   },
   onLoad() {
+    getApp().tokenCallback = token => {
+      if (token != '') {
+        this.getDynamicData();
+      }
+    }
     // 页面加载
-    setTimeout(() => {
-      this.getDynamicData();
-    }, 2000);
   },
   onReady() {
     // 页面加载完成
