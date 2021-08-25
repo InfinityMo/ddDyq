@@ -7,7 +7,7 @@
       <view class="right-wrap">
         <!-- 用户信息 -->
         <view class="user-name">
-              {{list.topicUser.anonymousName ? list.topicUser.anonymousName:list.topicUser.username}}
+              {{list.topic.isAnonymous ? list.topic.anonymousName:list.topicUser.username}}
         </view>
         <view class="publish-time">{{list.topic.inTime}}</view>
         <!-- 动态 -->
@@ -29,9 +29,9 @@
               <image a:else class="icon" mode="scaleToFill" src="/image/system/thumb.png"/>
               <text class="num {{list.topic.isCurrentUserUp==='1' ? 'num-support-active':''}}" a:if="{{list.topic.upCount>0}}">{{list.topic.upCount}}</text>
             </view>
-            <view class="flex-item-center interaction-item" data-id="{{list.topic.id}}" data-authorName="{{list.topicUser.anonymousName ? list.topicUser.anonymousName:list.topicUser.username}}" onTap="toComment">
+            <view class="flex-item-center interaction-item" data-id="{{list.topic.id}}" data-commentId="" data-authorName="{{list.topic.isAnonymous ? list.topic.anonymousName:list.topicUser.username}}" data-anonymousName="{{list.currentAnonymousName}}" onTap="toComment">
               <image class="icon" mode="scaleToFill" src="/image/system/comment.png"/>
-              <text class="num" a:if="{{list.topic.comments.length>0}}">{{list.topic.comments.length}}</text>
+              <text class="num" a:if="{{list.comments.length>0}}">{{list.comments.length}}</text>
             </view>
             <button open-type="share" plain="{{true}}" hover-class="none" class="flex-item-center interaction-item share-btn" onTap="sharehandle" data-id="{{list.topic.id}}">
               <image class="icon" mode="scaleToFill" src="/image/system/forward.png"/>
@@ -42,36 +42,42 @@
           <view class="delete" a:if="{{list.topic.isCurrentUserRelease==='1'}}" onTap="deleteHandle" data-id="{{list.topic.id}}">删除</view>
         </view>
         <!-- 评论 -->
-        <view class="comment-wrap" a:if="{{list.topic.upIdNames.length>0||list.topic.comments.length>0}}">
-          <view class="flex-item-center support" a:if="{{list.topic.upIdNames.length>0}}">
+        <view class="comment-wrap" a:if="{{list.topic.upIdNames.length>0||list.comments.length>0}}">
+          <view class="flex-item-center support {{list.topic.upIdNames.length>0&&list.comments.length>0 ?'support-line':''}}" a:if="{{list.topic.upIdNames.length>0}}">
             <image class="fabulous" mode="scaleToFill" src="/image/system/fabulous.png"/>
             <view class="ell">
-            <text a:for="{{list.topic.upIdNames}}" a:for-index="supportIndex">{{item.userName}}{{supportIndex===list.topic.upIdNames.length-1 ? '':'，'}}</text>
+              <text a:for="{{list.topic.upIdNames}}" a:for-index="supportIndex">{{item.userName}}{{supportIndex===list.topic.upIdNames.length-1 ? '':'，'}}</text>
             </view>
           </view>
-          <view class="comment" a:if="{{list.topic.comments.length>0}}">
-            <view class="comment-item" a:for="{{list.topic.comments}}"
-             a:for-item="comment" key="{{item}}" onTap="toComment" 
-             data-topicId="{{comment.topicId}}" 
-             data-authorName="{{comment.username}}">
+          <view class="comment" a:if="{{list.comments.length>0}}">
+            <view class="comment-item" a:for="{{list.comments}}" a:for-item="comment" key="{{item}}" onTap="toComment"
+             data-id="{{list.topic.id}}"
+              data-commentId="{{comment.id}}"
+              data-authorName="{{comment.isAnonymous ?comment.anonymousName:comment.username}}"
+              data-anonymousName="{{list.currentAnonymousName}}">
               <text a:if="{{comment.commentId}}">
-                <text class="reply-user">{{comment.username}}</text>
+                <text class="reply-user">{{comment.isAnonymous ?comment.anonymousName:comment.username}}</text>
                 <text class="reply">回复</text>
                 <text class="reply-user">{{comment.commentUserName}}：</text>{{comment.content}}
               </text>
               <text a:else >
-                <text class="reply-user">{{comment.username}}：</text>{{comment.content}}</text>
+                <text class="reply-user">{{comment.isAnonymous ?comment.anonymousName:comment.username}}：</text>{{comment.content}}</text>
             </view>
           </view>
         </view>
       </view>
     </view>
+    <view class="baseline-wrap flex-item-center" a:if="{{baselineShow}}">
+      <view class="line"></view>
+      <text>我是有底线的</text>
+      <view class="line"></view>
+    </view>
   </scroll-view>
   <view class="flex-item-center flex-item-end text-wrap" hidden="{{!isShowInput}}">
     <view class="input-text-box-wrap">
-      <textarea class="input-text" fixed="{{true}}" auto-height="{{true}}" show-count="{{false}}" maxlength="200" placeholder="{{placeholder}}" onFocus="onFocus" onBlur="onBlur" focus="{{focus}}" adjust-positio="{{true}}" />
+      <textarea class="input-text" onInput="textareaInput" controlled="{{true}}" value="{{commentComment}}" fixed="{{true}}" auto-height="{{true}}" show-count="{{false}}" maxlength="200" placeholder="{{placeholder}}" onFocus="onFocus" onBlur="onBlur" focus="{{focus}}" adjust-positio="{{true}}" />
     </view>
-    <button>发布</button>
+    <button onTap="publishComment">发布</button>
   </view>
   <suspension isAnonymous="{{mode}}" isShowInput="{{isShowInput}}" />
 </view>

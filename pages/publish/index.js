@@ -79,6 +79,8 @@ Page({
         content: "加载中..."
       });
       this.upload();
+    } else {
+      this.publish();
     }
   },
   publish() {
@@ -94,8 +96,12 @@ Page({
       })
       .then(res => {
         dd.hideLoading();
+        const url =
+          this.data.radioCheck === "1"
+            ? "/pages/dynamic/index"
+            : "/pages/suggest/index";
         dd.switchTab({
-          url: "/pages/dynamic/index",
+          url,
           success: res => {
             const page = getCurrentPages().pop();
             if (page === undefined || page === null) return;

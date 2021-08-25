@@ -10,15 +10,18 @@ Page({
     shareId: "",
     total: 0,
     pageNo: 1,
-    dynamics: []
+    dynamics: [],
+    baselineShow: false,
+    commentObj: {},
+    commentComment: ""
   },
   toSupport(event) {
-    const id = event.target.dataset.id;
-    const anonymousName = event.target.dataset.anonymousName;
+    // const id = event.target.dataset.id;
+    // const anonymousName = event.target.dataset.anonymousName;
+    const { id, anonymousName } = event.target.dataset;
     const findIndex = this.data.dynamics.findIndex(
       item => item.topic.id === id
     );
-    // debugger
     if (findIndex >= 0) {
       const ownSupport = `dynamics[${findIndex}].topic.isCurrentUserUp`;
       const support = `dynamics[${findIndex}].topic.upIdNames`;
@@ -26,74 +29,107 @@ Page({
       const value =
         this.data.dynamics[findIndex].topic.isCurrentUserUp === "0" ? "1" : "0";
       const supportArr = this.data.dynamics[findIndex].topic.upIdNames;
-      console.log(this.data[upCount])
-      this.setData({
-        [ownSupport]: value,
-        [support]: [
-          {
-            userId: getApp().userData.id,
-            userName: getApp().userData.username
-          },
-          ...supportArr
-        ],
-        [upCount]:
-          value === "1" ? this.data[upCount] + 1 : this.data[upCount] - 1
+      const upCountValue = this.data.dynamics[findIndex].topic.upCount;
+      this.postSupport(id, anonymousName).then(res => {
+        if (res) {
+          // 点赞
+          if (value === "1") {
+            this.setData({
+              [ownSupport]: value,
+              [support]: [
+                {
+                  userId: getApp().userData.id,
+                  userName: getApp().globalData.isAnonymous
+                    ? anonymousName
+                    : getApp().userData.username
+                },
+                ...supportArr
+              ],
+              [upCount]: upCountValue + 1
+            });
+          } else {
+            //取消赞
+            // 获取当前用户点赞的index
+            const ownIndex = supportArr.findIndex(
+              item => item.userId == getApp().userData.id
+            );
+            if (ownIndex >= 0) {
+              this.setData({
+                [ownSupport]: value,
+                [upCount]: upCountValue - 1
+              });
+              this.$spliceData({ [support]: [ownIndex, 1] });
+            }
+          }
+        }
       });
-      this.postSupport(id, anonymousName);
     }
-    // dd.getNetworkType({
-    //   success: res => {
-    //     // dd.alert({
-    //     //   title: `${res.networkAvailable} - ${res.networkType}`
-    //     // });
-    //     if (res.networkAvailable) {
-    //       const id = event.target.dataset.id;
-    //       const findIndex = this.data.dynamics.findIndex(
-    //         item => item.id === id
-    //       );
-    //       if (findIndex >= 0) {
-    //         const ownSupport = `dynamics[${findIndex}].interaction.ownSupport`;
-    //         const support = `dynamics[${findIndex}].interaction.support`;
-    //         const value =
-    //           this.data.dynamics[findIndex].interaction.ownSupport === 0
-    //             ? 1
-    //             : 0;
-    //         const supportArr = this.data.dynamics[findIndex].interaction
-    //           .support;
-    //         this.setData({
-    //           [ownSupport]: value,
-    //           [support]: [{ userId: "234", name: "xxx" }, ...supportArr]
-    //         });
-    //       }
-    //     } else {
-    //       dd.showToast({
-    //         type: "fail",
-    //         content: "网络有问题",
-    //         duration: 3000
-    //       });
-    //     }
-    //   }
-    // });
   },
   postSupport(id, anonymousName) {
-    request
-      .post({
-        url: "dynamic/vote",
-        params: {
-          id: id,
-          anonymousName: getApp().globalData.isAnonymous ? anonymousName : "",
-          isAnonymous: getApp().globalData.isAnonymous
-        }
-      })
-      .then(res => {
-        // this.setData({ total: res.allTopicsNum, dynamics: [...res.topicList] });
-        // dd.stopPullDownRefresh();
-      });
+    return new Promise((resolve, reject) => {
+      request
+        .post(
+          {
+            url: "dynamic/vote",
+            params: {
+              id: id,
+              anonymousName: getApp().globalData.isAnonymous
+                ? anonymousName
+                : "",
+              anonymous: getApp().globalData.isAnonymous
+            }
+          },
+          false
+        )
+        .then(res => {
+          if (res) {
+            resolve(true);
+          }
+        });
+    });
   },
   toComment(event) {
-    const authorName = event.target.dataset.authorName;
-    this.setData({ placeholder: `回复${authorName}` });
+    // const  = .anonymousName;
+    // const  = event.target.dataset.commentId || "";
+    // const  = event.target.dataset.authorName;
+    const { anonymousName, commentId, authorName } = event.target.dataset;
+    const topicId = event.target.dataset.id || "";
+    this.setData({
+      placeholder: `回复${authorName}`,
+      commentObj: {
+        content: "",
+        topicId,
+        commentId,
+        anonymousName: getApp().globalData.isAnonymous ? anonymousName : "",
+        isAnonymous: getApp().globalData.isAnonymous
+      }
+    });
     this.onFocus();
+  },
+  textareaInput(e) {
+    const value = e.detail.value.trim();
+    if (value.length > 0) {
+      this.setData({ commentComment: value, "commentObj.content": value });
+    }
+  },
+  publishComment() {
+    request
+      .post({
+        url: "dynamic/comment",
+        params: this.data.commentObj
+      })
+      .then(res => {
+        console.log(JSON.stringify(res))
+        if (res) {
+          const topicIndex = this.data.dynamics.findIndex(
+            item => item.topic.id === res.topicId
+          );
+          if (topicIndex >= 0) {
+            const comments = `dynamics[${topicIndex}].comments`;
+            this.$spliceData({ [comments]: [this.data.dynamics.length, 0, { ...res }] });
+          }
+        }
+      });
   },
   // 转发
   sharehandle(e) {
@@ -158,14 +194,16 @@ Page({
     dd.navigateTo({ url });
   },
   lower(e) {
-    console.log(this.data.dynamics.length, this.data.total);
     if (this.data.dynamics.length < this.data.total) {
       this.setData({ pageNo: ++this.data.pageNo }, () => {
         this.getDynamicData();
       });
+    } else {
+      this.setData({ baselineShow: true });
     }
   },
   getDynamicData() {
+    this.setData({ baselineShow: false });
     request
       .get({ url: "dynamic", params: { pageNo: this.data.pageNo } })
       .then(res => {
@@ -186,13 +224,6 @@ Page({
     // 页面加载完成
   },
   onShow() {
-    // dd.getNetworkType({
-    //   success: res => {
-    //     dd.alert({
-    //       title: `${res.networkAvailable} - ${res.networkType}`
-    //     });
-    //   }
-    // });
     this.setData({ mode: getApp().globalData.isAnonymous });
     getApp().watch(value => {
       this.setData({ mode: value });
@@ -200,7 +231,6 @@ Page({
   },
   onHide() {
     // 页面隐藏
-    // this.setData({ mode: getApp().globalData.isAnonymous });
   },
   // onUnload () {
   //   // 页面被关闭
@@ -209,24 +239,11 @@ Page({
   //   // 标题被点击
   // },
   onPullDownRefresh() {
-    this.setData({ pageNo: 1 }, () => {
+    this.setData({ pageNo: 1, dynamics: [] }, () => {
       this.getDynamicData();
     });
-
-    // setTimeout(() => {
-    //   dd.stopPullDownRefresh();
-    // }, 2000);
-    // 页面被下拉
   }
   // onReachBottom () {
   //   // 页面被拉到底部
-  // },
-  // onShareAppMessage () {
-  //   // 返回自定义分享信息
-  //   return {
-  //     title: 'My App',
-  //     desc: 'My App description',
-  //     path: 'pages/index/index',
-  //   };
   // },
 });

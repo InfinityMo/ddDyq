@@ -78,3 +78,18 @@ view, text {
 .num-against-active {
   color: #f66970!important;
 }
+
+/* 底线 */
+.baseline-wrap{
+  font-size: 15px;
+  color: #aaa;
+}
+.baseline-wrap text{
+  padding:  10px;
+  flex-shrink: 0;
+}
+.baseline-wrap .line{
+  width: 50%;
+  background-color: #eee;
+  height: 1px;
+}
