@@ -119,14 +119,15 @@ Page({
         params: this.data.commentObj
       })
       .then(res => {
-        console.log(JSON.stringify(res))
         if (res) {
           const topicIndex = this.data.dynamics.findIndex(
             item => item.topic.id === res.topicId
           );
           if (topicIndex >= 0) {
             const comments = `dynamics[${topicIndex}].comments`;
-            this.$spliceData({ [comments]: [this.data.dynamics.length, 0, { ...res }] });
+            this.$spliceData({
+              [comments]: [this.data.dynamics.length, 0, { ...res }]
+            });
           }
         }
       });
@@ -215,17 +216,23 @@ Page({
       });
   },
   onLoad() {
-    getApp().tokenCallback = token => {
-      if (token != '') {
-        this.getDynamicData();
-      }
-    }
+    console.log("onLoad");
+    setTimeout(() => {
+      this.getDynamicData();
+    }, 2000);
+    // getApp().tokenCallback = token => {
+    //   if (token != '') {
+    //     this.getDynamicData();
+    //   }
+    // }
     // 页面加载
   },
   onReady() {
+    console.log("onReady");
     // 页面加载完成
   },
   onShow() {
+    console.log("onShow");
     this.setData({ mode: getApp().globalData.isAnonymous });
     getApp().watch(value => {
       this.setData({ mode: value });

@@ -1,24 +1,32 @@
+import { createUUID } from "/common/utils/utils";
 Page({
   data: {
     mode: false, //暗黑模式
     suspensionShow: false,
-    tabs: ["采纳建议", "本月建议"],
+    tabs: ["本月建议", "采纳建议"],
     tabIndex: 0,
-    adpotAdvise: false,
-    monthAdvise: true
+    adpotAdvise: true,
+    monthAdvise: false,
+    monthKey: "",
+    adoptKey: ""
   },
   tabClick(e) {
     const tabIndex = e.target.dataset.index;
     tabIndex === 0
-      ? this.setData({ tabIndex, adpotAdvise: false, monthAdvise: true })
-      : this.setData({ tabIndex, adpotAdvise: true, monthAdvise: false });
+      ? this.setData({ tabIndex, adpotAdvise: true, monthAdvise: false })
+      : this.setData({ tabIndex, adpotAdvise: false, monthAdvise: true });
   },
   onLoad(query) {
+    this.setData({ monthKey: createUUID(), adoptKey: createUUID() });
     // 页面加载
+    // getApp().tokenCallback = token => {
+    //   if (token != "") {
+    //     this.getDynamicData();
+    //   }
+    // };
   },
   onReady() {
     // 页面加载完成
-         
   },
   onShow() {
     // 页面显示
@@ -39,6 +47,9 @@ Page({
     // 标题被点击
   },
   onPullDownRefresh() {
+    this.data.tabIndex === 0
+      ? this.setData({ monthKey: createUUID() })
+      : this.setData({ adoptKey: createUUID() });
     // 页面被下拉
   },
   onReachBottom() {

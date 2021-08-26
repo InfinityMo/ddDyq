@@ -1,12 +1,13 @@
 .month-advise {}
 
 .scroll-view {
-  padding: 15px 15px 0 15px;
+  padding: 20px 15px 0 15px;
   color: #333;
+  height: calc(100vh - 48px);
 }
 
 .rank-title {
-  padding: 20px 15px 0 15px;
+  padding-bottom: 15px
 }
 
 .view-wrap {
@@ -98,9 +99,11 @@
 .commponent-dark .user {
   color: #fff;
 }
-.commponent-dark .view-wrap{
+
+.commponent-dark .view-wrap {
   background-color: #444;
 }
+
 .commponent-dark .content-words {
   color: #fff;
 }

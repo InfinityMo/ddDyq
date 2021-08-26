@@ -5,25 +5,92 @@ Page({
     adpotDeatil: {},
     adoptComment: [],
     placeholder: "一起讨论吧...",
-    focus: false
+    focus: false,
+    content: "",
+    commentObj: {}
   },
-  toSupport(event) {
-    const id = event.target.dataset.id;
-    const findIndex = this.data.dynamics.findIndex(item => item.id === id);
-    if (findIndex >= 0) {
-      const ownSupport = `dynamics[${findIndex}].interaction.ownSupport`;
-      const support = `dynamics[${findIndex}].interaction.support`;
-      const value =
-        this.data.dynamics[findIndex].interaction.ownSupport === 0 ? 1 : 0;
-      const supportArr = this.data.dynamics[findIndex].interaction.support;
-      if (value) {
-        this.setData({
-          [ownSupport]: value,
-          [support]: [{ userId: "234", name: "xxx" }, ...supportArr]
-        });
-      }
+  textareaInput(e) {
+    const content = e.detail.value.trim();
+    //  content: "",
+    //   topicId,
+    //   commentId,
+    //   anonymousName: getApp().globalData.isAnonymous ? anonymousName : "",
+    //   isAnonymous: getApp().globalData.isAnonymous
+    if (content.length > 0) {
+      this.setData({ content, "commentObj.content": content });
     }
   },
+  publishComment() {
+    const params = {
+      content: this.data.commentObj.content,
+      opinionId: this.data.commentObj.opinionId,
+      opinionCommentId: this.data.commentObj.opinionCommentId || "",
+      anonymousName: getApp().globalData.isAnonymous
+        ? this.data.adpotDeatil.anonymousName
+        : "",
+      isAnonymous: getApp().globalData.isAnonymous
+    };
+    request
+      .post({
+        url: "opinion/comment",
+        params
+      })
+      .then(res => {
+        // if (res) {
+        //   const topicIndex = this.data.dynamics.findIndex(
+        //     item => item.topic.id === res.topicId
+        //   );
+        //   if (topicIndex >= 0) {
+        //     const comments = `dynamics[${topicIndex}].comments`;
+        //     this.$spliceData({
+        //       [comments]: [this.data.dynamics.length, 0, { ...res }]
+        //     });
+        //   }
+        // }
+      });
+  },
+    toSupport(e) {
+      const { id, anonymousName, action } = e.target.dataset;
+        let countString = "";
+        let countValue = 0;
+        let actionString = "";
+        let actionValue = false;
+        if (action === "up") {
+          countString = `adpotDeatil.upCount`;
+          countValue = this.data.adpotDeatil.upCount;
+          actionString = `adpotDeatil.isCurrentUserUp`;
+          actionValue = this.data.adpotDeatil.isCurrentUserUp;
+        } else {
+          countString = `adpotDeatil.downCount`;
+          countValue = this.data.adpotDeatil.downCount;
+          actionString = `adpotDeatil.isCurrentUserDown`;
+          actionValue = this.data.adpotDeatil.isCurrentUserDown;
+        }
+        request
+          .post(
+            {
+              url: "opinion/vote",
+              params: {
+                id,
+                action,
+                anonymousName: getApp().globalData.isAnonymous
+                  ? anonymousName
+                  : "",
+                isAnonymous: getApp().globalData.isAnonymous
+              }
+            },
+            false
+          )
+          .then(res => {
+            if (res) {
+              this.setData({
+                [actionString]: !actionValue,
+                [countString]: actionValue ? countValue - 1 : countValue + 1
+              });
+            }
+          });
+      
+    },
   toComment(event) {
     const authorId = event.target.dataset.authorId;
     const authorName = event.target.dataset.authorName;
@@ -31,9 +98,11 @@ Page({
     this.onFocus();
   },
   replyComment(e) {
-    const userId = e.target.dataset.userId;
-    const userName = e.target.dataset.userName;
-    this.setData({ placeholder: `回复${userName}` });
+    const { opinionCommentId, authorName } = e.target.dataset;
+    this.setData({
+      placeholder: `回复${authorName}`,
+      "commentObj.opinionCommentId": opinionCommentId
+    });
     this.onFocus();
   },
   onFocus() {
@@ -56,9 +125,9 @@ Page({
       });
     }
   },
-  getDetailData() {
+  getDetailData(id) {
     request
-      .mock({ url: "suggestDetail", params: { id: "1", pageNo: 1 } })
+      .get({ url: "opinion/detail", params: { id, pageNo: 1 } })
       .then(res => {
         this.setData({
           adpotDeatil: { ...res.opinion },
@@ -66,13 +135,18 @@ Page({
         });
       });
   },
-  // onLoad (query) {
-  //   // 页面加载
-  //   console.info(`Page onLoad with query: ${JSON.stringify(query)}`);
-  // },
+  onLoad(query) {
+    // 页面加载
+    const { id = "8" } = query;
+    if (id) {
+      this.setData({ "commentObj.opinionId": id });
+      setTimeout(() => {
+        this.getDetailData(id);
+      }, 2000);
+    }
+  },
   onReady() {
     // 页面加载完成
-    this.getDetailData();
   },
   onShow() {
     // 页面显示
@@ -103,12 +177,12 @@ Page({
   // onReachBottom () {
   //   // 页面被拉到底部
   // },
-  onShareAppMessage () {
+  onShareAppMessage() {
     // 返回自定义分享信息
     return {
-      title: '畅言',
-      desc: 'My App description',
-      path: 'pages/detail/feedback/index',
+      title: "畅言",
+      desc: "My App description",
+      path: "pages/detail/feedback/index"
     };
-  },
+  }
 });

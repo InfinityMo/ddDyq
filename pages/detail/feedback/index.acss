@@ -12,30 +12,40 @@
   left: 0;
   bottom: 0;
   padding: 8px 15px;
-  background: #fff;
+  background-color: #fff;
   border-top: 1px solid #eee;
   box-sizing: border-box;
 }
 
-.input-text {
+.input-text-box-wrap {
   flex-grow: 1;
-  padding-left: 15px;
-  height: 28px;
-  font-size: 13px;
-  line-height: 28px;
+  padding: 5px 0;
   background: #F4F4F4;
   border-radius: 4px;
 }
 
+.input-text {
+  max-height: 80px!important;
+  padding: 0 5px;
+  font-size: 13px;
+  line-height: 18px;
+  background: #F4F4F4;
+  border-radius: 4px;
+  box-sizing: border-box;
+  overflow-y: scroll
+}
+
 .text-wrap button {
-  width: 44px;
+  width: 52px;
   height: 32px;
+  flex-shrink: 0;
   margin-left: 15px;
   font-size: 14px;
   line-height: 32px;
   text-align: center;
   color: #FFF;
   background: #3296FA;
+  /* opacity: 0.28; */
   border-radius: 3px;
   border: none;
 }

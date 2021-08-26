@@ -11,9 +11,9 @@
     </view>
     <view class="user-words user-words-detail">
       <view class="flex user">
-        <image mode="scaleToFill" src="{{adpotDeatil.user.avatar}}"/>
+        <image mode="scaleToFill" src="{{adpotDeatil.adoptUser.avatar}}"/>
         <view class="user-info">
-          <view>{{adpotDeatil.user.anonymousName}}</view>
+          <view>{{adpotDeatil.isAnonymous ? adpotDeatil.anonymousName:adpotDeatil.adoptUser.username}}</view>
           <text>{{adpotDeatil.inTime}}</text>
         </view>
       </view>
@@ -23,12 +23,12 @@
       <view class="title">解决方案</view>
       <view class="back-words">{{adpotDeatil.solution}}</view>
       <view class="flex flex-justify-end support-against">
-        <view class="flex-item-center support">
+        <view class="flex-item-center support" onTap="toSupport" data-id="{{adpotDeatil.id}}" data-action="up" data-anonymousName="{{adpotDeatil.anonymousName}}">
           <image a:if="{{adpotDeatil.isCurrentUserUp}}" mode="scaleToFill" src="/image/system/thumbActive.png"/>
           <image a:else mode="scaleToFill" src="/image/system/thumb.png"/>
           <text class="{{item.isCurrentUserUp ? 'num-support-active':''}}">{{adpotDeatil.upCount}}</text>
         </view>
-        <view class="flex-item-center against">
+        <view class="flex-item-center against" onTap="toSupport" data-id="{{adpotDeatil.id}}" data-action="down" data-anonymousName="{{adpotDeatil.anonymousName}}">
           <image a:if="{{adpotDeatil.isCurrentUserDown}}" mode="scaleToFill" src="/image/system/treadActive.png"/>
           <image a:else mode="scaleToFill" src="/image/system/tread.png"/>
           <text class="{{item.isCurrentUserDown ? 'num-against-active':''}}">{{adpotDeatil.downCount}}</text>
@@ -37,15 +37,15 @@
     </view>
   </view>
   <!-- 评论 -->
-  <view class="comment-box-wrap">
+  <view class="comment-box-wrap" a:if="{{adoptComment.length>0}}">
     <view class="comment-tip-box">评论（{{adoptComment.length}}）</view>
     <scroll-view class="scroll-adopt" scroll-y="{{true}}">
       <view class="user-words user-words-detail comment-detail" a:for="{{adoptComment}}">
         <view class="flex-between-center user">
           <view class="flex">
-            <image mode="scaleToFill" src="{{item.user.avatar}}"/>
+            <image mode="scaleToFill" src="{{item.adoptUser.avatar}}"/>
             <view class="user-info">
-              <view>{{item.user.anonymousName}}</view>
+              <view>{{item.adoptUser.anonymousName?item.adoptUser.anonymousName:item.adoptUser.username}}</view>
               <text>{{item.inTime}}</text>
             </view>
           </view>
@@ -62,16 +62,19 @@
             </view>
           </view>
         </view>
-        <view class="text reply" onTap="replyComment" data-userId="{{item.user.id}}" data-userName="{{item.user.anonymousName}}">
+        <view class="text reply" onTap="replyComment" data-opinionCommentId="{{item.id}}" data-authorName="{{item.adoptUser.anonymousName ?item.adoptUser.anonymousName:item.adoptUser.username }}">
           <text a:if="{{item.commentId}}">回复
-            <text class="reply-user-name">{{item.commentUserName}}：</text></text>{{item.content}}
+            <text class="reply-user-name">{{item.commentUsername}}：</text>
+          </text>{{item.content}}
         </view>
       </view>
     </scroll-view>
   </view>
   <view class="flex-item-center flex-between text-wrap input-wrap">
-    <input class="input-text" maxlength="200" placeholder="{{placeholder}}" onFocus="onFocus" onBlur="onBlur" focus="{{focus}}"   adjust-position />
-    <button>发布</button>
+    <view class="input-text-box-wrap">
+      <textarea class="input-text" onInput="textareaInput" controlled="{{true}}" value="{{commentComment}}" fixed="{{true}}" auto-height="{{true}}" show-count="{{false}}" maxlength="200" placeholder="{{placeholder}}" onFocus="onFocus" onBlur="onBlur" focus="{{focus}}" adjust-positio="{{true}}" />
+    </view>
+    <button onTap="publishComment">发布</button>
   </view>
   <suspension isAnonymous="{{mode}}" noTabBar="{{true}}" />
 </view>

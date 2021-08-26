@@ -15,9 +15,9 @@
           <!-- 文字 -->
           <view class="words" onTap="toDetail" data-id="{{list.topic.id}}">{{list.topic.content}}</view>
           <!-- 图片 -->
-          <view a:if="{{list.topic.avatars.length>0}}">
-            <view class="flex picture-wrap {{list.topic.avatars.length===1 ? 'pic-one':''}}">
-              <image class="picture" mode="{{list.topic.avatars.length===1 ?'widthFix':'aspectFill'}}" a:for="{{list.topic.avatars}}" src="{{item}}" onTap="previewImg" data-index="{{index}}" data-id="{{list.topic.id}}" />
+          <view a:if="{{list.topic.thumbnailAvatars.length>0}}">
+            <view class="flex picture-wrap {{list.topic.thumbnailAvatars.length===1 ? 'pic-one':''}}">
+              <image class="picture" mode="{{list.topic.thumbnailAvatars.length===1 ?'widthFix':'aspectFill'}}" a:for="{{list.topic.thumbnailAvatars}}" src="{{item}}" onTap="previewImg" data-index="{{index}}" data-id="{{list.topic.id}}" />
             </view>
           </view>
         </view>

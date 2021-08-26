@@ -6,10 +6,10 @@
     </view>
   </view>
   <view class="content">
-    <view hidden="{{adpotAdvise}}">
-      <adpotadvise className="{{mode ? 'commponent-dark':''}}" /></view>
-    <view hidden="{{monthAdvise}}">
+    <view hidden="{{monthAdvise}}" key="{{monthKey}}">
       <monthadvise className="{{mode ? 'commponent-dark':''}}" /></view>
+    <view hidden="{{adpotAdvise}}" key="{{adoptKey}}">
+      <adpotadvise className="{{mode ? 'commponent-dark':''}}" /></view>
   </view>
-    <suspension isAnonymous="{{mode}}"  />
+  <suspension isAnonymous="{{mode}}" />
 </view>

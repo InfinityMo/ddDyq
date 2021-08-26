@@ -1,13 +1,13 @@
 <view class="month-advise {{className}}">
-  <view class="rank-title">本月发言（{{advises.length}}）</view>
-  <scroll-view class="scroll-view" scroll-y="{{true}}">
+  <scroll-view class="scroll-view" scroll-y="{{true}}" onScrollToLower="lower">
+    <view class="rank-title" a:if="{{total>0}}">本月发言（{{total}}）</view>
     <!--<view class="history-line flex-between-center"><view class="line"></view><text class="text">以下为历史建议</text><view class="line"></view></view><view a:for="{{historyAdvise}}" a:for-item="first" class="history"><view class="year">{{first.year}}</view><view a:for="{{first.list}}" class="flex-between advise"><view class="date"><view class="month-date">{{item.day}}</view><text class="month">{{item.month}}月</text></view><view class="ell2 suggests">{{item.words}}</view><view><image class="rank-img" a:if="{{item.rank==='1'||item.rank==='2'||item.rank==='3'}}" mode="scaleToFill" src="/image/system/rank{{item.rank}}.png"/><text a:else class="rank-text">{{item.rank}}</text></view></view></view> -->
     <view a:for="{{advises}}" class="view-wrap">
       <view class="flex-between-center user-wrap">
         <view class="flex user">
-          <image mode="scaleToFill" src="{{item.user.avatar}}"/>
+          <image mode="scaleToFill" src="{{item.adoptUser.avatar}}"/>
           <view >
-            <view class="name">{{item.user.anonymousName}}</view>
+            <view class="name">{{item.anonymous ? item.adoptUser.anonymousName:item.adoptUser.username}}</view>
             <text class="time">{{item.inTime}}</text>
           </view>
         </view>
@@ -19,11 +19,18 @@
       <view class="content-words">
         <view class="words">{{item.content}}</view>
         <view class="content-support flex-item-center flex-justify-end">
-          <image a:if="{{item.isCurrentUserUp}}" class="icon" mode="scaleToFill" src="/image/system/thumbActive.png"/>
-          <image a:else class="icon" mode="scaleToFill" src="/image/system/thumb.png"/>
-          <text class="num {{item.isCurrentUserUp ?'num-active':''}}">{{item.upCount}}</text>
+          <view class="flex-item-center" onTap="toSupport" data-id="{{item.id}}" data-anonymousName="{{item.anonymousName}}">
+            <image a:if="{{item.isCurrentUserUp}}" class="icon" mode="scaleToFill" src="/image/system/thumbActive.png"/>
+            <image a:else class="icon" mode="scaleToFill" src="/image/system/thumb.png"/>
+            <text class="num {{item.isCurrentUserUp ?'num-active':''}}">{{item.upCount}}</text>
+          </view>
         </view>
       </view>
+    </view>
+    <view class="baseline-wrap flex-item-center" hidden="{{!baselineShow}}">
+      <view class="line"></view>
+      <text>我是有底线的</text>
+      <view class="line"></view>
     </view>
   </scroll-view>
 </view>

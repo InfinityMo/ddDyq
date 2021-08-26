@@ -1,5 +1,5 @@
 <view class="adopt {{className}}">
-  <view class="take-title">上月采纳建议</view>
+  <view class="take-title" a:if="{{adpot.length>0}}">上月采纳建议</view>
   <view a:for="{{adpot}}" class="item">
     <view class="top-box top-box{{item.ranking}} flex">
       <view class="top-wrap">
@@ -9,7 +9,7 @@
         </view>
         <view class="user-words">
           <view class="flex user">
-            <image mode="scaleToFill" src="{{item.user.avatar}}"/>
+            <image mode="scaleToFill" src="{{item.adoptUser.avatar}}"/>
             <view class="user-info">
               <view>{{item.user.anonymousName}}</view>
               <text>{{item.inTime}}</text>
@@ -23,12 +23,12 @@
     <view class="feed-back">
       <view class="back-words ell2">{{item.solution}}</view>
       <view class="flex flex-justify-end support-against">
-        <view class="flex-item-center support">
+        <view class="flex-item-center support" onTap="toSupport" data-id="{{item.id}}" data-action="up" data-anonymousName="{{item.anonymousName}}">
           <image a:if="{{item.isCurrentUserUp}}" mode="scaleToFill" src="/image/system/thumbActive.png"/>
           <image a:else mode="scaleToFill" src="/image/system/thumb.png"/>
           <text class="{{item.isCurrentUserUp ? 'num-support-active':''}}">{{item.upCount}}</text>
         </view>
-        <view class="flex-item-center against">
+        <view class="flex-item-center against" onTap="toSupport" data-id="{{item.id}}" data-action="down" data-anonymousName="{{item.anonymousName}}">
           <image a:if="{{item.isCurrentUserDown}}" mode="scaleToFill" src="/image/system/treadActive.png"/>
           <image a:else mode="scaleToFill" src="/image/system/tread.png"/>
           <text class="{{item.isCurrentUserDown ? 'num-against-active':''}}">{{item.downCount}}</text>

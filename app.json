@@ -1,11 +1,12 @@
 {
   "pages": [
-   
     "pages/dynamic/index",
-    "pages/suggest/index",
-     "pages/publish/index",
-    "pages/user/index",
     "pages/detail/feedback/index",
+    "pages/suggest/index",
+    
+    "pages/publish/index",
+    "pages/user/index",
+    
     "pages/detail/dynamicinfo/index"
   ],
   "window": {
