@@ -71,13 +71,13 @@ Page({
     const value = e.detail.value.trim();
     value.length > 0
       ? this.setData({ textareaFocus: true, content: value })
-      : this.setData({ textareaFocus: false });
+      : this.setData({ textareaFocus: false, content: '' });
   },
   submit(e) {
+    dd.showLoading({
+      content: "加载中..."
+    });
     if (this.data.fileLists.length > 0) {
-      dd.showLoading({
-        content: "加载中..."
-      });
       this.upload();
     } else {
       this.publish();
@@ -95,6 +95,14 @@ Page({
         }
       })
       .then(res => {
+        // 清除数据
+        this.setData({
+          radioCheck: "1",
+          content: "",
+          fileLists: [],
+          filesPath: [],
+          imgPaths: []
+        })
         dd.hideLoading();
         const url =
           this.data.radioCheck === "1"
@@ -152,7 +160,7 @@ Page({
             resolve(false);
           }
         },
-        fail: function(res) {
+        fail: function (res) {
           ddToast({ type: "fail", text: "哎呀，服务器似乎出了点问题" });
           that.setData({ filesPath: [] });
           resolve(false);
@@ -171,6 +179,8 @@ Page({
     });
   },
   onLoad(query) {
+
+    // Object.assign(this.$data, this.$options.data())
     // 页面加载
   },
   onReady() {
