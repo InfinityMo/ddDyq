@@ -2,22 +2,17 @@ import request from "/common/request/request";
 Page({
   data: {
     mode: false, //暗黑模式
-    adpotDeatil: {},
+    adpotDeatil:null,
     adoptComment: [],
     placeholder: "一起讨论吧...",
     focus: false,
-    content: "",
+    commentComment: "",
     commentObj: {}
   },
   textareaInput(e) {
     const content = e.detail.value.trim();
-    //  content: "",
-    //   topicId,
-    //   commentId,
-    //   anonymousName: getApp().globalData.isAnonymous ? anonymousName : "",
-    //   isAnonymous: getApp().globalData.isAnonymous
     if (content.length > 0) {
-      this.setData({ content, "commentObj.content": content });
+      this.setData({ commentComment: content, "commentObj.content": content });
     }
   },
   publishComment() {
@@ -36,61 +31,102 @@ Page({
         params
       })
       .then(res => {
-        // if (res) {
-        //   const topicIndex = this.data.dynamics.findIndex(
-        //     item => item.topic.id === res.topicId
-        //   );
-        //   if (topicIndex >= 0) {
-        //     const comments = `dynamics[${topicIndex}].comments`;
-        //     this.$spliceData({
-        //       [comments]: [this.data.dynamics.length, 0, { ...res }]
-        //     });
-        //   }
-        // }
+        if (res) {
+          this.$spliceData({
+            adoptComment: [this.data.adoptComment.length, 0, { ...res }]
+          });
+          this.setData({
+            placeholder: "一起讨论吧...",
+            commentComment: "",
+            commentObj: {}
+          });
+        }
       });
   },
-    toSupport(e) {
-      const { id, anonymousName, action } = e.target.dataset;
-        let countString = "";
-        let countValue = 0;
-        let actionString = "";
-        let actionValue = false;
-        if (action === "up") {
-          countString = `adpotDeatil.upCount`;
-          countValue = this.data.adpotDeatil.upCount;
-          actionString = `adpotDeatil.isCurrentUserUp`;
-          actionValue = this.data.adpotDeatil.isCurrentUserUp;
-        } else {
-          countString = `adpotDeatil.downCount`;
-          countValue = this.data.adpotDeatil.downCount;
-          actionString = `adpotDeatil.isCurrentUserDown`;
-          actionValue = this.data.adpotDeatil.isCurrentUserDown;
-        }
-        request
-          .post(
-            {
-              url: "opinion/vote",
-              params: {
-                id,
-                action,
-                anonymousName: getApp().globalData.isAnonymous
-                  ? anonymousName
-                  : "",
-                isAnonymous: getApp().globalData.isAnonymous
-              }
-            },
-            false
-          )
-          .then(res => {
-            if (res) {
-              this.setData({
-                [actionString]: !actionValue,
-                [countString]: actionValue ? countValue - 1 : countValue + 1
-              });
-            }
+  toSupport(e) {
+    const { id, anonymousName, action } = e.target.dataset;
+    let countString = "";
+    let countValue = 0;
+    let actionString = "";
+    let actionValue = false;
+    if (action === "up") {
+      countString = `adpotDeatil.upCount`;
+      countValue = this.data.adpotDeatil.upCount;
+      actionString = `adpotDeatil.isCurrentUserUp`;
+      actionValue = this.data.adpotDeatil.isCurrentUserUp;
+    } else {
+      countString = `adpotDeatil.downCount`;
+      countValue = this.data.adpotDeatil.downCount;
+      actionString = `adpotDeatil.isCurrentUserDown`;
+      actionValue = this.data.adpotDeatil.isCurrentUserDown;
+    }
+    request
+      .post(
+        {
+          url: "opinion/vote",
+          params: {
+            id,
+            action,
+            anonymousName: getApp().globalData.isAnonymous ? anonymousName : "",
+            isAnonymous: getApp().globalData.isAnonymous
+          }
+        },
+        false
+      )
+      .then(res => {
+        if (res) {
+          this.setData({
+            [actionString]: !actionValue,
+            [countString]: actionValue ? countValue - 1 : countValue + 1
           });
-      
-    },
+        }
+      });
+  },
+  commentToSupport(e) {
+    const { id, action } = e.target.dataset;
+    const anonymousName = this.data.adpotDeatil.anonymousName;
+    const findIndex = this.data.adoptComment.findIndex(item => item.id === id);
+    if (findIndex >= 0) {
+      let countString = "";
+      let countValue = 0;
+      let actionString = "";
+      let actionValue = false;
+      if (action === "up") {
+        countString = `adoptComment[${findIndex}].upCount`;
+        countValue = this.data.adoptComment[findIndex].upCount;
+        actionString = `adoptComment[${findIndex}].isCurrentUserUp`;
+        actionValue = this.data.adoptComment[findIndex].isCurrentUserUp;
+      } else {
+        countString = `adoptComment[${findIndex}].downCount`;
+        countValue = this.data.adoptComment[findIndex].downCount;
+        actionString = `adoptComment[${findIndex}].isCurrentUserDown`;
+        actionValue = this.data.adoptComment[findIndex].isCurrentUserDown;
+      }
+      request
+        .post(
+          {
+            url: "opinion/comment/vote",
+            params: {
+              id,
+              action,
+              anonymousName: getApp().globalData.isAnonymous
+                ? anonymousName
+                : "",
+              isAnonymous: getApp().globalData.isAnonymous
+            }
+          },
+          false
+        )
+        .then(res => {
+          if (res) {
+            this.setData({
+              [actionString]: !actionValue,
+              [countString]: actionValue ? countValue - 1 : countValue + 1
+            });
+          }
+        });
+    }
+  },
   toComment(event) {
     const authorId = event.target.dataset.authorId;
     const authorName = event.target.dataset.authorName;
@@ -137,7 +173,7 @@ Page({
   },
   onLoad(query) {
     // 页面加载
-    const { id = "8" } = query;
+    const { id } = query;
     if (id) {
       this.setData({ "commentObj.opinionId": id });
       setTimeout(() => {

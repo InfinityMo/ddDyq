@@ -5,8 +5,10 @@
   box-sizing: border-box;
 }
 
-.scroll-wrap {
-  height: 100%;
+.scroll-wrap {}
+
+.detail-scroll {
+  height: calc(100vh - 69px);
 }
 
 .dynamic-item {
@@ -66,7 +68,7 @@
 /* 一张图 */
 
 .pic-one .picture {
-  width: 100%;
+  max-width: 100%;
   max-height: 170px;
   overflow: hidden;
 }
@@ -118,6 +120,11 @@ button[plain] {
   color: #333;
 }
 
+.right-wrap .comment-wrap .support.support-line {
+  padding: 0 10px 5px 10px;
+  border-bottom: 1px solid #E9E9E9;
+}
+
 .comment-wrap .support .fabulous {
   width: 10px;
   height: 10px;
@@ -132,8 +139,8 @@ button[plain] {
 
 .comment {
   padding: 0 10px;
-  margin-top: 5px;
-  border-top: 1px solid #E9E9E9;
+  /* margin-top: 5px;
+  border-top: 1px solid #E9E9E9; */
 }
 
 .comment .comment-item {
@@ -173,7 +180,6 @@ button[plain] {
 }
 
 .input-text {
-  flex-grow: 1;
   max-height: 80px!important;
   padding: 0 5px;
   font-size: 13px;
@@ -218,13 +224,17 @@ button[plain] {
   color: #fff;
 }
 
+.dark-mode .comment-wrap .support.support-line {
+  border-bottom: 1px solid #444;
+}
+
 .dark-mode .comment-wrap {
   background-color: #303030;
 }
 
-.dark-mode .comment-wrap .comment {
+/* .dark-mode .comment-wrap .comment {
   border-top: 1px solid #444;
-}
+} */
 
 .dark-mode .share-btn {
   color: #fff;

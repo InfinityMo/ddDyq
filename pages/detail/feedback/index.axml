@@ -1,5 +1,5 @@
 <view class="adopt {{mode ? 'dark-mode':''}}">
-  <view class="item">
+  <view class="item" a:if="{{adpotDeatil}}">
     <view class="top-box top-box{{adpotDeatil.ranking}} flex">
       <view class="top-wrap">
         <view class="title flex">
@@ -50,12 +50,12 @@
             </view>
           </view>
           <view class="flex flex-justify-end support-against comment-support-against">
-            <view class="flex-item-center support">
+            <view class="flex-item-center support" onTap="commentToSupport" data-id="{{item.id}}" data-action="up">
               <image a:if="{{item.isCurrentUserUp}}" mode="scaleToFill" src="/image/system/thumbActiveSmall.png"/>
               <image a:else mode="scaleToFill" src="/image/system/thumbSmall.png"/>
               <text class="{{item.isCurrentUserUp ? 'num-support-active':''}}">{{item.upCount}}</text>
             </view>
-            <view class="flex-item-center against">
+            <view class="flex-item-center against"  onTap="commentToSupport" data-id="{{item.id}}" data-action="down">
               <image a:if="{{item.isCurrentUserDown}}" mode="scaleToFill" src="/image/system/treadActiveSmall.png"/>
               <image a:else mode="scaleToFill" src="/image/system/treadSmall.png"/>
               <text class="{{item.isCurrentUserDown ? 'num-against-active':''}}">{{item.downCount}}</text>

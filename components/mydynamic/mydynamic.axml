@@ -1,8 +1,8 @@
 <view>
-  <scroll-view class="scroll-wrap {{dynamics[0].isCurrentYear!==1 ? 'scroll-other':''}}" scroll-y="{{true}}">
+  <scroll-view class="scroll-wrap {{dynamics[0].currentYear ? 'scroll-other':''}}" scroll-y="{{true}}">
     <view class="outter" a:for="{{dynamics}}" a:for-item="first">
       <!-- 年 -->
-      <view class="year" a:if="{{first.isCurrentYear!==1}}">{{first.year}}年</view>
+      <view class="year" a:if="{{!first.currentYear}}">{{first.year}}年</view>
       <!-- 内容列表 -->
       <!-- 按月份排列 -->
       <view class="inner flex" a:for="{{first.list}}" a:for-item="inner">
@@ -18,14 +18,14 @@
           <!-- 对应日期动态 -->
           <view class="content-wrap flex" a:for="{{inner.list}}">
             <!-- 图片 -->
-            <view class="content-img" a:if="{{item.imgs.length>0}}">
-              <image a:if="{{item.imgs.length===1}}" class="img one-img" a:for="{{item.imgs}}" a:for-item="img" mode="aspectFill" src="{{img}}"/>
-              <image a:if="{{item.imgs.length===2}}" class="img two-img" a:for="{{item.imgs}}" a:for-item="img" mode="aspectFill" src="{{img}}"/>
-              <image a:if="{{item.imgs.length===4}}" class="img four-img" a:for="{{item.imgs}}" a:for-item="img" mode="aspectFill" src="{{img}}"/>
+            <view class="content-img" a:if="{{item.avatar&&item.avatar.length>0}}">
+              <image a:if="{{item.avatar.length===1}}" class="img one-img" a:for="{{item.avatar}}" a:for-item="img" mode="aspectFill" src="{{img}}"/>
+              <image a:if="{{item.avatar.length===2}}" class="img two-img" a:for="{{item.avatar}}" a:for-item="img" mode="aspectFill" src="{{img}}"/>
+              <image a:if="{{item.avatar.length===4}}" class="img four-img" a:for="{{item.avatar}}" a:for-item="img" mode="aspectFill" src="{{img}}"/>
             </view>
             <view class="words-wrap">
-              <view class="ell2 words">{{item.words}}</view>
-              <view class="img-total" a:if="{{item.imgs.length>0}}">共{{item.imgsTotal}}张</view>
+              <view class="ell2 words">{{item.content}}</view>
+              <view class="img-total" a:if="{{item.avatarCount>0}}">共{{item.avatarCount}}张</view>
             </view>
           </view>
         </view>

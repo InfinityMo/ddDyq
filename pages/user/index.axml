@@ -5,8 +5,8 @@
       <!-- 头像 -->
       <image class="avatar" mode="aspectFill" src="{{userInfo.avatar}}"/>
       <view>
-        <view class="name">{{userInfo.name}}</view>
-        <view class="company">{{userInfo.company}}</view>
+        <view class="name">{{userInfo.username}}</view>
+        <view class="company">{{userInfo.company||'上海联恩商钥互联网科技股份有限公司'}}</view>
       </view>
     </view>
     <view class="flex-between-center tabs-wrap">

@@ -110,6 +110,8 @@ Page({
     const value = e.detail.value.trim();
     if (value.length > 0) {
       this.setData({ commentComment: value, "commentObj.content": value });
+    } else {
+      this.setData({ commentComment: "", "commentObj.content": value });
     }
   },
   publishComment() {
@@ -127,6 +129,11 @@ Page({
             const comments = `dynamics[${topicIndex}].comments`;
             this.$spliceData({
               [comments]: [this.data.dynamics.length, 0, { ...res }]
+            });
+            this.setData({
+              commentComment: "",
+              commentObj: {},
+              placeholder: ""
             });
           }
         }
@@ -216,7 +223,6 @@ Page({
       });
   },
   onLoad() {
-    console.log("onLoad");
     setTimeout(() => {
       this.getDynamicData();
     }, 2000);

@@ -7,10 +7,7 @@ Page({
     mydynamicHide: false,
     mysuggestHide: true,
     userInfo: {
-      avatar: "/image/user/cat.png",
-      name: "Infinity",
-      userId: "tytrrwrw",
-      company: "上海联恩商钥互联网科技股份有限公司"
+      ...getApp().userData
     },
     dynamics
   },
@@ -22,6 +19,9 @@ Page({
   },
   onLoad(query) {
     // 页面加载
+    setTimeout(()=>{
+      this.setData({userInfo:{...getApp().userData}})
+    },2000)
     // console.info(`Page onLoad with query: ${JSON.stringify(query)}`);
   },
   onReady() {
