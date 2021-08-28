@@ -1,5 +1,5 @@
 <view>
-  <scroll-view class="scroll-wrap {{dynamics[0].currentYear ? 'scroll-other':''}}" scroll-y="{{true}}">
+  <scroll-view class="scroll-wrap {{dynamics[0].currentYear ? 'scroll-other':''}}" scroll-y="{{true}}" onScrollToLower="lower">
     <view class="outter" a:for="{{dynamics}}" a:for-item="first">
       <!-- 年 -->
       <view class="year" a:if="{{!first.currentYear}}">{{first.year}}年</view>
@@ -19,9 +19,12 @@
           <view class="content-wrap flex" a:for="{{inner.list}}">
             <!-- 图片 -->
             <view class="content-img" a:if="{{item.avatar&&item.avatar.length>0}}">
-              <image a:if="{{item.avatar.length===1}}" class="img one-img" a:for="{{item.avatar}}" a:for-item="img" mode="aspectFill" src="{{img}}"/>
-              <image a:if="{{item.avatar.length===2}}" class="img two-img" a:for="{{item.avatar}}" a:for-item="img" mode="aspectFill" src="{{img}}"/>
-              <image a:if="{{item.avatar.length===4}}" class="img four-img" a:for="{{item.avatar}}" a:for-item="img" mode="aspectFill" src="{{img}}"/>
+              <image a:if="{{item.avatar.length===1}}" class="img one-img" a:for="{{item.avatar}}" a:for-item="img" mode="aspectFill" 
+                src="{{img}}" />
+              <image a:if="{{item.avatar.length===2}}" class="img two-img" a:for="{{item.avatar}}" a:for-item="img" mode="aspectFill" 
+                src="{{img}}" />
+              <image a:if="{{item.avatar.length===4}}" class="img four-img" a:for="{{item.avatar}}" a:for-item="img" mode="aspectFill" 
+                src="{{img}}" />
             </view>
             <view class="words-wrap">
               <view class="ell2 words">{{item.content}}</view>
@@ -30,6 +33,11 @@
           </view>
         </view>
       </view>
+    </view>
+    <view class="baseline-wrap flex-item-center" hidden="{{!baselineShow}}">
+      <view class="line"></view>
+      <text>我是有底线的</text>
+      <view class="line"></view>
     </view>
   </scroll-view>
 </view>

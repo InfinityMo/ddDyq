@@ -1,12 +1,14 @@
-import { encodeUrl } from "/common/utils/utils";
+import { encodeUrl ,putData} from "/common/utils/utils";
 import request from "/common/request/request";
 Component({
   mixins: [],
   data: {
     currentTotal: 0,
     dynamics: [],
+    tempDynamic: [],
     pageNo: 1,
-    total: 0
+    total: 0,
+    baselineShow: false
   },
   props: {},
   didMount() {
@@ -14,64 +16,40 @@ Component({
       this.getData();
     }, 2000);
   },
-  didUpdate() {},
-  didUnmount() {},
+  didUpdate() { },
+  didUnmount() { },
   methods: {
     getData() {
-      request
-        .get({
-          url: "obtain/dynamic",
-          params: { pageNo: this.data.pageNo }
-        })
-        .then(res => {
-          // console.log();
-          const result = this.setBaseData(this.putData(res.list, "year"));
-          console.log(result);
-          //   console.log(this.putBase(this.putBase(res.list, "year"), "month"));
-          this.setData({
-            total: res.total,
-            dynamics: [...this.data.dynamics, ...result]
-          });
-          dd.stopPullDownRefresh();
+      this.setData({ baselineShow: false });
+      request.get({
+        url: "obtain/dynamic",
+        params: { pageNo: this.data.pageNo }
+      }).then(res => {
+        this.setData({
+          total: res.total,
+          tempDynamic: [...this.data.tempDynamic, ...res.list]
+        }, () => {
+          const result = this.setBaseData(putData(this.data.tempDynamic, "year"));
+          this.setData({ dynamics: [...result] })
+          // console.log(this.data.tempDynamic)
         });
+        dd.stopPullDownRefresh();
+      });
+    },
+    lower(e) {
+      if (this.data.tempDynamic.length < this.data.total) {
+        this.setData({ pageNo: ++this.data.pageNo }, () => {
+          this.getData();
+        });
+      } else {
+        this.setData({ baselineShow: true });
+      }
     },
     setBaseData(arr) {
       arr.forEach(item => {
-        item.list = this.putData(item.list, "day");
+        item.list = putData(item.list, "day");
       });
       return arr;
-    },
-    // 嵌套三层结构
-    putData(arr, key) {
-      let map = [],
-        result = [];
-      for (let i = 0; i < arr.length; i++) {
-        let obj = arr[i];
-        if (obj[key] && !map[obj[key]]) {
-          if (key === "year") {
-            result.push({
-              [key]: obj[key],
-              currentYear:obj.currentYear,
-              list: [obj]
-            });
-          } else {
-            result.push({
-              [key]: obj[key],
-              list: [obj]
-            });
-          }
-
-          map[obj[key]] = obj;
-        } else {
-          for (let j = 0; j < result.length; j++) {
-            let aj = result[j];
-            if (aj[key] === obj[key]) {
-              aj.list.push(obj);
-            }
-          }
-        }
-      }
-      return result;
     }
   }
 });

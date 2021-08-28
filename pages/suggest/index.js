@@ -47,10 +47,10 @@ Page({
     // 标题被点击
   },
   onPullDownRefresh() {
+    // 页面被下拉
     this.data.tabIndex === 0
       ? this.setData({ monthKey: createUUID() })
       : this.setData({ adoptKey: createUUID() });
-    // 页面被下拉
   },
   onReachBottom() {
     // 页面被拉到底部

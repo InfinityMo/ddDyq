@@ -95,19 +95,18 @@ Page({
         }
       })
       .then(res => {
+        const url =
+          this.data.radioCheck === "1"
+            ? "/pages/dynamic/index"
+            : "/pages/suggest/index";
         // 清除数据
         this.setData({
-          radioCheck: "1",
           content: "",
           fileLists: [],
           filesPath: [],
           imgPaths: []
         })
         dd.hideLoading();
-        const url =
-          this.data.radioCheck === "1"
-            ? "/pages/dynamic/index"
-            : "/pages/suggest/index";
         dd.switchTab({
           url,
           success: res => {

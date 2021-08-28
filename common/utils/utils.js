@@ -45,14 +45,14 @@ export const upload = (options) => {
     success: res => {
       dd.alert({ title: `上传成功：${JSON.stringify(res)}` });
     },
-    fail: function(res) {
+    fail: function (res) {
       dd.alert({ title: `上传失败：${JSON.stringify(res)}` });
     }
   });
 };
 
 // 生成uuid
-export const  createUUID =(length = 128)=> {
+export const createUUID = (length = 128) => {
   let chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('')
   let uuid = new Array(length)
   let rnd = 0
@@ -70,4 +70,39 @@ export const  createUUID =(length = 128)=> {
     }
   }
   return uuid.join('').replace(/[-]/g, '').toLowerCase()
+}
+
+// 嵌套三层结构
+export const putData = (arr, key) => {
+  let map = [],
+    result = [];
+  for (let i = 0; i < arr.length; i++) {
+    let obj = arr[i];
+    if (obj[key] && !map[obj[key]]) {
+      if (key === "year") {
+        result.push({
+          [key]: obj[key],
+          currentYear: obj.currentYear,
+          list: [obj]
+        });
+      } else {
+        result.push({
+          [key]: obj[key],
+          month: obj.month,
+          dateType: obj.dateType,
+          list: [obj]
+        });
+      }
+
+      map[obj[key]] = obj;
+    } else {
+      for (let j = 0; j < result.length; j++) {
+        let aj = result[j];
+        if (aj[key] === obj[key]) {
+          aj.list.push(obj);
+        }
+      }
+    }
+  }
+  return result;
 }

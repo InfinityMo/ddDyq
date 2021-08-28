@@ -3,7 +3,7 @@
     <!-- user -->
     <view class="flex user">
       <!-- 头像 -->
-      <image class="avatar" mode="aspectFill" src="{{userInfo.avatar}}"/>
+      <image class="avatar" mode="aspectFill" src="{{userInfo.avatar}}" />
       <view>
         <view class="name">{{userInfo.username}}</view>
         <view class="company">{{userInfo.company||'上海联恩商钥互联网科技股份有限公司'}}</view>
@@ -14,10 +14,10 @@
     </view>
   </view>
   <view class="content">
-    <view hidden="{{mydynamicHide}}">
+    <view hidden="{{mydynamicHide}}" key="{{mydynamicKey}}">
       <mydynamic /></view>
-    <view hidden="{{mysuggestHide}}">
+    <view hidden="{{mysuggestHide}}" key="{{mysuggestKey}}">
       <mysuggest className="{{mode ? 'mysuggest-dark':''}}" /></view>
   </view>
-    <suspension isAnonymous="{{mode}}" />
+  <suspension isAnonymous="{{mode}}" />
 </view>

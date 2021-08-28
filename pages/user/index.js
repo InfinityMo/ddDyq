@@ -1,4 +1,4 @@
-import { dynamics } from "/data/testData";
+import { createUUID } from "/common/utils/utils";
 Page({
   data: {
     mode: false, //暗黑模式
@@ -9,7 +9,9 @@ Page({
     userInfo: {
       ...getApp().userData
     },
-    dynamics
+    mydynamicKey: '',
+    mysuggestKey: ''
+
   },
   tabClick(e) {
     const tabIndex = e.target.dataset.index;
@@ -18,10 +20,11 @@ Page({
       : this.setData({ tabIndex, mydynamicHide: true, mysuggestHide: false });
   },
   onLoad(query) {
+    this.setData({ mydynamicKey: createUUID(), mysuggestKey: createUUID() });
     // 页面加载
-    setTimeout(()=>{
-      this.setData({userInfo:{...getApp().userData}})
-    },2000)
+    setTimeout(() => {
+      this.setData({ userInfo: { ...getApp().userData } })
+    }, 2000)
     // console.info(`Page onLoad with query: ${JSON.stringify(query)}`);
   },
   onReady() {
@@ -46,6 +49,9 @@ Page({
   },
   onPullDownRefresh() {
     // 页面被下拉
+    this.data.tabIndex === 0
+      ? this.setData({ mydynamicKey: createUUID() })
+      : this.setData({ mysuggestKey: createUUID() });
   },
   onReachBottom() {
     // 页面被拉到底部
