@@ -1,4 +1,4 @@
-<view>
+<view class="user-data-page">
   <scroll-view class="scroll-wrap {{dynamics[0].currentYear ? 'scroll-other':''}}" scroll-y="{{true}}" onScrollToLower="lower">
     <view class="outter" a:for="{{dynamics}}" a:for-item="first">
       <!-- 年 -->

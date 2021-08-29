@@ -12,7 +12,7 @@
 //   methods: {}
 // });
 
-import { encodeUrl, putData } from "/common/utils/utils";
+import { encodeUrl, putData2 } from "/common/utils/utils";
 import request from "/common/request/request";
 Component({
   mixins: [],
@@ -20,6 +20,7 @@ Component({
     currentTotal: 0,
     nowAdvise: [],
     historyAdvise: [],
+    tempHistory: [],
     pageNo: 1,
     total: 0,
     baselineShow: false
@@ -40,17 +41,28 @@ Component({
         params: { pageNo: this.data.pageNo }
       }).then(res => {
         const result = this.divideData(res.Opinion)
+        // console.log(result)
         // 分两组数据
         this.setData({
           total: res.alMyOpinionCount,
           nowAdvise: [...this.data.nowAdvise, ...result.now],
-          historyAdvise: [...this.data.historyAdvise, ...result.history]
+          tempHistory: [...this.data.tempHistory, ...result.history]
+        }, () => {
+          const resultData =putData2(this.data.tempHistory, "year")
+          this.setData({ historyAdvise: [...resultData] })
+          // console.log(this.data.tempDynamic)
         });
         dd.stopPullDownRefresh();
       });
     },
+    // setBaseData(arr) {
+    //   arr.forEach(item => {
+    //     item.list = putData(item.list, "day");
+    //   });
+    //   return arr;
+    // },
     lower(e) {
-      if ((this.data.nowAdvise.length + this.data.historyAdvise.length) < this.data.total) {
+      if ((this.data.nowAdvise.length + this.data.tempHistory.length) < this.data.total) {
         this.setData({ pageNo: ++this.data.pageNo }, () => {
           this.getData();
         });

@@ -1,7 +1,12 @@
+.user-data-page{
+  padding:0 15px ;
+}
 .page {
   padding: 10px 0;
 }
-
+.mysuggest-scroll{
+  padding: 0 15px 0 15px;
+}
 .title {
   /* padding-bottom: 10px; */
   padding: 20px 0 10px 0;
@@ -55,7 +60,9 @@
   font-size: 14px;
   line-height: 21px;
 }
-
+.suggest-content{
+  flex-grow: 1;
+}
 .rank-text-wrap {
   flex-shrink: 0;
   margin-left: 10px;
@@ -72,11 +79,11 @@
   color: #777;
 }
 
-/* .history-line {
-  padding-top: 10px;
-} */
+.history-line {
+  padding-top: 20px;
+}
 
-.history-line .text {
+ .history-line .text {
   flex-shrink: 0;
   padding: 0 10px;
   font-size: 13px;

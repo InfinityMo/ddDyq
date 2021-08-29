@@ -106,3 +106,26 @@ export const putData = (arr, key) => {
   }
   return result;
 }
+
+export const putData2 = (arr, key) => {
+  let map = [],
+    result = [];
+  for (let i = 0; i < arr.length; i++) {
+    let obj = arr[i];
+    if (obj[key] && !map[obj[key]]) {
+      result.push({
+        [key]: obj[key],
+        list: [obj]
+      });
+      map[obj[key]] = obj;
+    } else {
+      for (let j = 0; j < result.length; j++) {
+        let aj = result[j];
+        if (aj[key] === obj[key]) {
+          aj.list.push(obj);
+        }
+      }
+    }
+  }
+  return result;
+}
