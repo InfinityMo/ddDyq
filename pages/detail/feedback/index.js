@@ -2,12 +2,15 @@ import request from "/common/request/request";
 Page({
   data: {
     mode: false, //暗黑模式
-    adpotDeatil:null,
+    adpotDeatil: null,
     adoptComment: [],
     placeholder: "一起讨论吧...",
     focus: false,
     commentComment: "",
-    commentObj: {}
+    commentObj: {},
+    pageNo: 1,
+    total: 0,
+    baselineShow: false
   },
   textareaInput(e) {
     const content = e.detail.value.trim();
@@ -161,23 +164,35 @@ Page({
       });
     }
   },
-  getDetailData(id) {
+  getDetailData() {
+    this.setData({ baselineShow: false });
     request
-      .get({ url: "opinion/detail", params: { id, pageNo: 1 } })
+      .get({ url: "opinion/detail", params: { id: this.data.commentObj.opinionId, pageNo: this.data.pageNo } })
       .then(res => {
         this.setData({
+          total: res.solutionCommentCount,
           adpotDeatil: { ...res.opinion },
-          adoptComment: [...res.solutionComment]
+          adoptComment: [...this.data.adoptComment, ...res.solutionComment]
         });
+        dd.stopPullDownRefresh();
       });
+  },
+  lower(e) {
+    if (this.data.adoptComment.length < this.data.total) {
+      this.setData({ pageNo: ++this.data.pageNo }, () => {
+        this.getDetailData();
+      });
+    } else {
+      this.setData({ baselineShow: true });
+    }
   },
   onLoad(query) {
     // 页面加载
-    const { id } = query;
+    const { id  } = query;
     if (id) {
       this.setData({ "commentObj.opinionId": id });
       setTimeout(() => {
-        this.getDetailData(id);
+        this.getDetailData();
       }, 2000);
     }
   },
@@ -205,10 +220,9 @@ Page({
     this.setData({ isDelete: !this.data.isDelete });
   },
   onPullDownRefresh() {
-    setTimeout(() => {
-      dd.stopPullDownRefresh();
-    }, 2000);
-    // 页面被下拉
+    this.setData({ pageNo: 1, total: 0, adpotDeatil: null, adoptComment: [] }, () => {
+      this.getDetailData();
+    });
   },
   // onReachBottom () {
   //   // 页面被拉到底部

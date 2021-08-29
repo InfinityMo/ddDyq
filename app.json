@@ -1,10 +1,9 @@
 {
   "pages": [
-    "pages/user/index",
     "pages/dynamic/index",
     "pages/suggest/index",
     "pages/publish/index",
-
+    "pages/user/index",
     "pages/detail/dynamicinfo/index",
     "pages/detail/feedback/index"
   ],

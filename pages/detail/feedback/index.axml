@@ -4,14 +4,15 @@
       <view class="top-wrap">
         <view class="title flex">
           <view class="sub-title">TOP-{{adpotDeatil.ranking}}</view>
-          <image class="wave" mode="scaleToFill" src="/image/system/order{{adpotDeatil.ranking}}-wave.png"/>
+          <image class="wave" mode="scaleToFill" src="/image/system/order{{adpotDeatil.ranking}}-wave.png" />
         </view>
       </view>
-      <image class="order-bg" mode="scaleToFill" src="/image/system/order{{adpotDeatil.ranking}}-detail.png"/>
+      <image class="order-bg" mode="scaleToFill" src="/image/system/order{{adpotDeatil.ranking}}-detail.png" />
     </view>
     <view class="user-words user-words-detail">
       <view class="flex user">
-        <image mode="scaleToFill" src="{{adpotDeatil.adoptUser.avatar}}"/>
+        <!--<image mode="scaleToFill" src="{{adpotDeatil.adoptUser.avatar}}"/> -->
+        <image class="avatar" mode="aspectFill" src="{{adpotDeatil.isAnonymous ? '/image/system/anonymous.png':adpotDeatil.adoptUser.avatar ? adpotDeatil.adoptUser.avatar:'/image/system/defaultAvatar.png'}}" />
         <view class="user-info">
           <view>{{adpotDeatil.isAnonymous ? adpotDeatil.anonymousName:adpotDeatil.adoptUser.username}}</view>
           <text>{{adpotDeatil.inTime}}</text>
@@ -24,13 +25,13 @@
       <view class="back-words">{{adpotDeatil.solution}}</view>
       <view class="flex flex-justify-end support-against">
         <view class="flex-item-center support" onTap="toSupport" data-id="{{adpotDeatil.id}}" data-action="up" data-anonymousName="{{adpotDeatil.anonymousName}}">
-          <image a:if="{{adpotDeatil.isCurrentUserUp}}" mode="scaleToFill" src="/image/system/thumbActive.png"/>
-          <image a:else mode="scaleToFill" src="/image/system/thumb.png"/>
+          <image a:if="{{adpotDeatil.isCurrentUserUp}}" mode="scaleToFill" src="/image/system/thumbActive.png" />
+          <image a:else mode="scaleToFill" src="/image/system/thumb.png" />
           <text class="{{item.isCurrentUserUp ? 'num-support-active':''}}">{{adpotDeatil.upCount}}</text>
         </view>
         <view class="flex-item-center against" onTap="toSupport" data-id="{{adpotDeatil.id}}" data-action="down" data-anonymousName="{{adpotDeatil.anonymousName}}">
-          <image a:if="{{adpotDeatil.isCurrentUserDown}}" mode="scaleToFill" src="/image/system/treadActive.png"/>
-          <image a:else mode="scaleToFill" src="/image/system/tread.png"/>
+          <image a:if="{{adpotDeatil.isCurrentUserDown}}" mode="scaleToFill" src="/image/system/treadActive.png" />
+          <image a:else mode="scaleToFill" src="/image/system/tread.png" />
           <text class="{{item.isCurrentUserDown ? 'num-against-active':''}}">{{adpotDeatil.downCount}}</text>
         </view>
       </view>
@@ -38,26 +39,27 @@
   </view>
   <!-- 评论 -->
   <view class="comment-box-wrap" a:if="{{adoptComment.length>0}}">
-    <view class="comment-tip-box">评论（{{adoptComment.length}}）</view>
-    <scroll-view class="scroll-adopt" scroll-y="{{true}}">
+    <view class="comment-tip-box">评论（{{total}}）</view>
+    <scroll-view class="scroll-adopt adopt-comment-scroll" scroll-y="{{true}}" onScrollToLower="lower">
       <view class="user-words user-words-detail comment-detail" a:for="{{adoptComment}}">
         <view class="flex-between-center user">
           <view class="flex">
-            <image mode="scaleToFill" src="{{item.adoptUser.avatar}}"/>
+            <!--<image mode="scaleToFill" src="{{item.adoptUser.avatar}}" /> -->
+            <image class="avatar" mode="aspectFill" src="{{item.adoptUser.anonymousName ? '/image/system/anonymous.png':item.adoptUser.avatar ? item.adoptUser.avatar:'/image/system/defaultAvatar.png'}}" />
             <view class="user-info">
-              <view>{{item.adoptUser.anonymousName?item.adoptUser.anonymousName:item.adoptUser.username}}</view>
+              <view>{{item.adoptUser.anonymousName ? item.adoptUser.anonymousName:item.adoptUser.username}}</view>
               <text>{{item.inTime}}</text>
             </view>
           </view>
           <view class="flex flex-justify-end support-against comment-support-against">
             <view class="flex-item-center support" onTap="commentToSupport" data-id="{{item.id}}" data-action="up">
-              <image a:if="{{item.isCurrentUserUp}}" mode="scaleToFill" src="/image/system/thumbActiveSmall.png"/>
-              <image a:else mode="scaleToFill" src="/image/system/thumbSmall.png"/>
+              <image a:if="{{item.isCurrentUserUp}}" mode="scaleToFill" src="/image/system/thumbActiveSmall.png" />
+              <image a:else mode="scaleToFill" src="/image/system/thumbSmall.png" />
               <text class="{{item.isCurrentUserUp ? 'num-support-active':''}}">{{item.upCount}}</text>
             </view>
-            <view class="flex-item-center against"  onTap="commentToSupport" data-id="{{item.id}}" data-action="down">
-              <image a:if="{{item.isCurrentUserDown}}" mode="scaleToFill" src="/image/system/treadActiveSmall.png"/>
-              <image a:else mode="scaleToFill" src="/image/system/treadSmall.png"/>
+            <view class="flex-item-center against" onTap="commentToSupport" data-id="{{item.id}}" data-action="down">
+              <image a:if="{{item.isCurrentUserDown}}" mode="scaleToFill" src="/image/system/treadActiveSmall.png" />
+              <image a:else mode="scaleToFill" src="/image/system/treadSmall.png" />
               <text class="{{item.isCurrentUserDown ? 'num-against-active':''}}">{{item.downCount}}</text>
             </view>
           </view>
@@ -68,11 +70,18 @@
           </text>{{item.content}}
         </view>
       </view>
+      <view class="baseline-wrap flex-item-center" hidden="{{!baselineShow}}">
+        <view class="line"></view>
+        <text>我是有底线的</text>
+        <view class="line"></view>
+      </view>
     </scroll-view>
   </view>
   <view class="flex-item-center flex-between text-wrap input-wrap">
     <view class="input-text-box-wrap">
-      <textarea class="input-text" onInput="textareaInput" controlled="{{true}}" value="{{commentComment}}" fixed="{{true}}" auto-height="{{true}}" show-count="{{false}}" maxlength="200" placeholder="{{placeholder}}" onFocus="onFocus" onBlur="onBlur" focus="{{focus}}" adjust-positio="{{true}}" />
+      <textarea class="input-text" onInput="textareaInput" controlled="{{true}}" value="{{commentComment}}" fixed="{{true}}" 
+        auto-height="{{true}}" show-count="{{false}}" maxlength="200" placeholder="{{placeholder}}" onFocus="onFocus" onBlur="onBlur" 
+        focus="{{focus}}" adjust-positio="{{true}}" />
     </view>
     <button onTap="publishComment">发布</button>
   </view>

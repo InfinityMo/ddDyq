@@ -287,7 +287,9 @@
   color: #1890FF;
   padding-left: 3px;
 }
-
+.adopt-comment-scroll{
+  height:calc(100vh - 63px) ;
+}
 .dark-mode .comment-tip-box {
   color: #fff;
 }

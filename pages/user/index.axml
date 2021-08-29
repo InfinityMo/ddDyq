@@ -3,7 +3,7 @@
     <!-- user -->
     <view class="flex user">
       <!-- 头像 -->
-      <image class="avatar" mode="aspectFill" src="{{userInfo.avatar}}" />
+      <image class="avatar" mode="aspectFill" src="{{userInfo.avatar ? userInfo.avatar:'/image/system/defaultAvatar.png'}}" />
       <view>
         <view class="name">{{userInfo.username}}</view>
         <view class="company">{{userInfo.company||'上海联恩商钥互联网科技股份有限公司'}}</view>
