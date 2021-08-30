@@ -302,10 +302,21 @@
   color: #fff;
 }
 
-.dark-mode .input-wrap {
+/* .dark-mode .input-wrap {
+  background-color: #1E1E1E;
+} */
+.dark-mode .text-wrap {
+  border-top: 1px solid #444;
   background-color: #1E1E1E;
 }
 
+.dark-mode .text-wrap .input-text-box-wrap {
+  background-color: #333;
+}
+.dark-mode .text-wrap .input-text {
+  color: #fff;
+  background-color: #333;
+}
 /* .dark-mode .support-against .support {
   color: #fff
 }

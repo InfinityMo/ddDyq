@@ -1,5 +1,6 @@
 {
   "pages": [
+    
     "pages/dynamic/index",
     "pages/suggest/index",
     "pages/publish/index",

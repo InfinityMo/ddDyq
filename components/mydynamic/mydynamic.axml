@@ -14,9 +14,9 @@
             <view class="month-date">{{inner.day}}</view>
             <text class="month">{{inner.month}}月</text></view>
         </view>
-        <view>
+        <view class="dynamic-content-wrap-box">
           <!-- 对应日期动态 -->
-          <view class="content-wrap flex" a:for="{{inner.list}}">
+          <view class="content-wrap flex" a:for="{{inner.list}}" data-id="{{item.id}}" onTap="toDynamicDetail">
             <!-- 图片 -->
             <view class="content-img" a:if="{{item.avatar&&item.avatar.length>0}}">
               <image a:if="{{item.avatar.length===1}}" class="img one-img" a:for="{{item.avatar}}" a:for-item="img" mode="aspectFill" 

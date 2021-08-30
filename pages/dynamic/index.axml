@@ -1,4 +1,4 @@
-<view class="page {{mode ? 'dark-mode':''}}">
+<view class="page dynamic-page {{mode ? 'dark-mode':''}}">
   <scroll-view class="scroll-wrap" a:if="{{dynamics.length>0}}" scroll-y="{{true}}" onScrollToLower="lower">
     <view class="flex dynamic-item" a:for="{{dynamics}}" a:for-item="list" key="{{list.topic.id}}">
       <view class="left-wrap">
@@ -13,7 +13,7 @@
         <!-- 动态 -->
         <view class="words-pic-wrap">
           <!-- 文字 -->
-          <view class="words" onTap="toDetail" data-id="{{list.topic.id}}">{{list.topic.content}}</view>
+          <view class="words" data-id="{{list.topic.id}}">{{list.topic.content}}</view>
           <!-- 图片 -->
           <view a:if="{{list.topic.thumbnailAvatars.length>0}}">
             <view class="flex picture-wrap {{list.topic.thumbnailAvatars.length===1 ? 'pic-one':''}}">
@@ -37,7 +37,6 @@
               <image class="icon" mode="scaleToFill" src="/image/system/forward.png"/>
               <text class="num">分享</text>
             </button>
-            <!--<view class="flex-item-center interaction-item" onTap="sharehandle" data-id="{{list.id}}"></view> -->
           </view>
           <view class="delete" a:if="{{list.topic.isCurrentUserRelease==='1'}}" onTap="deleteHandle" data-id="{{list.topic.id}}">删除</view>
         </view>

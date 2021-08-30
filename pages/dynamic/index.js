@@ -157,20 +157,30 @@ Page({
   },
   // 删除
   deleteHandle(e) {
-    const id = e.target.dataset.id;
-    const findIndex = this.data.dynamics.findIndex(
-      item => item.topic.id === id
-    );
-    if (findIndex >= 0) {
-      request
-        .post({
-          url: "dynamic/delete",
-          params: { id }
-        })
-        .then(res => {
-          this.$spliceData({ dynamics: [findIndex, 1] });
-        });
-    }
+    dd.confirm({
+      title: '提示',
+      content: '确定删除该条动态？',
+      confirmButtonText: '是',
+      cancelButtonText: '否',
+      success: (result) => {
+        if (result.confirm) {
+          const id = e.target.dataset.id;
+          const findIndex = this.data.dynamics.findIndex(
+            item => item.topic.id === id
+          );
+          if (findIndex >= 0) {
+            request
+              .post({
+                url: "dynamic/delete",
+                params: { id }
+              })
+              .then(res => {
+                this.$spliceData({ dynamics: [findIndex, 1] });
+              });
+          }
+        }
+      },
+    });
   },
   onFocus() {
     this.setData({ focus: true, isShowInput: true });

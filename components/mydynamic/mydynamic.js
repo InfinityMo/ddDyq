@@ -22,8 +22,8 @@ Component({
       };
     }
   },
-  didUpdate() {},
-  didUnmount() {},
+  didUpdate() { },
+  didUnmount() { },
   methods: {
     getData() {
       this.setData({ baselineShow: false });
@@ -63,6 +63,11 @@ Component({
         item.list = putData(item.list, "day");
       });
       return arr;
+    },
+    toDynamicDetail(e) {
+      const { id } = e.target.dataset
+      const url = encodeUrl("/pages/detail/dynamicinfo/index", { id });
+      dd.navigateTo({ url });
     }
   }
 });

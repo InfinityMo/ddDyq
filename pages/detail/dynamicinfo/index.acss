@@ -103,7 +103,13 @@ button[plain] {
 }
 
 .share-btn {
+  height: 20px;
+  line-height: 20px;
   border: none;
+}
+.share-btn text{
+  display: inline-block;
+  height: 20px;
 }
 
 .comment-wrap {

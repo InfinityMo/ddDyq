@@ -29,7 +29,9 @@
   flex-shrink: 0;
   padding-right: 15px;
 }
-
+.dynamic-content-wrap-box{
+  flex-grow: 1;
+}
 .content-wrap {
   margin-bottom: 20px;
 }
