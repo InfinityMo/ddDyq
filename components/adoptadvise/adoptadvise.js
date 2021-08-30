@@ -7,9 +7,16 @@ Component({
   },
   props: {},
   didMount() {
-    setTimeout(() => {
+    // 页面加载
+    if (getApp().globalData.token) {
       this.getAdoptData();
-    }, 2000);
+    } else {
+      getApp().tokenCallback = token => {
+        if (token != "") {
+          this.getAdoptData();
+        }
+      };
+    }
   },
   didUpdate() {},
   didUnmount() {},

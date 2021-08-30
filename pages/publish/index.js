@@ -71,7 +71,7 @@ Page({
     const value = e.detail.value.trim();
     value.length > 0
       ? this.setData({ textareaFocus: true, content: value })
-      : this.setData({ textareaFocus: false, content: '' });
+      : this.setData({ textareaFocus: false, content: "" });
   },
   submit(e) {
     dd.showLoading({
@@ -101,18 +101,21 @@ Page({
             : "/pages/suggest/index";
         // 清除数据
         this.setData({
+          "radios[1].disabled": "0",
           content: "",
           fileLists: [],
           filesPath: [],
           imgPaths: []
-        })
+        });
         dd.hideLoading();
         dd.switchTab({
           url,
-          success: res => {
-            const page = getCurrentPages().pop();
-            if (page === undefined || page === null) return;
-            page.onLoad();
+          success() {
+            setTimeout(() => {
+              const page = getCurrentPages().pop();
+              if (page == undefined || page == null) return;
+              page.onLoad();
+            });
           }
         });
       });
@@ -159,7 +162,7 @@ Page({
             resolve(false);
           }
         },
-        fail: function (res) {
+        fail: function(res) {
           ddToast({ type: "fail", text: "哎呀，服务器似乎出了点问题" });
           that.setData({ filesPath: [] });
           resolve(false);
@@ -178,7 +181,6 @@ Page({
     });
   },
   onLoad(query) {
-
     // Object.assign(this.$data, this.$options.data())
     // 页面加载
   },

@@ -148,8 +148,7 @@ Page({
     // 返回自定义分享信息
     return {
       title: "动态",
-      desc:
-        "如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示",
+      desc:"",
       imageUrl:
         "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201605%2F10%2F20160510001106_2YjCN.thumb.700_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631869211&t=e83f3049c646769768f51ba6144ec26a",
       path
@@ -162,11 +161,14 @@ Page({
       item => item.topic.id === id
     );
     if (findIndex >= 0) {
-      this.$spliceData({ dynamics: [findIndex, 1] });
-      request.post({
-        url: "dynamic/delete",
-        params: { id }
-      });
+      request
+        .post({
+          url: "dynamic/delete",
+          params: { id }
+        })
+        .then(res => {
+          this.$spliceData({ dynamics: [findIndex, 1] });
+        });
     }
   },
   onFocus() {
@@ -215,26 +217,24 @@ Page({
     });
   },
   onLoad(query) {
+    // 页面加载
     const { id } = query;
     if (id) {
-      // this.setData({ "commentObj.opinionId": id });
-      setTimeout(() => {
+      if (getApp().globalData.token) {
         this.getDynamicData(id);
-      }, 2000);
+      } else {
+        getApp().tokenCallback = token => {
+          if (token != "") {
+            this.getDynamicData(id);
+          }
+        };
+      }
     }
-    // getApp().tokenCallback = token => {
-    //   if (token != '') {
-    //     this.getDynamicData();
-    //   }
-    // }
-    // 页面加载
   },
   onReady() {
-    console.log("onReady");
     // 页面加载完成
   },
   onShow() {
-    console.log("onShow");
     this.setData({ mode: getApp().globalData.isAnonymous });
     getApp().watch(value => {
       this.setData({ mode: value });

@@ -13,11 +13,11 @@ Page({
     dynamics: [],
     baselineShow: false,
     commentObj: {},
-    commentComment: ""
+    commentComment: "",
+    netWorkError: false,
+    errorNodata: true
   },
   toSupport(event) {
-    // const id = event.target.dataset.id;
-    // const anonymousName = event.target.dataset.anonymousName;
     const { id, anonymousName } = event.target.dataset;
     const findIndex = this.data.dynamics.findIndex(
       item => item.topic.id === id
@@ -89,9 +89,6 @@ Page({
     });
   },
   toComment(event) {
-    // const  = .anonymousName;
-    // const  = event.target.dataset.commentId || "";
-    // const  = event.target.dataset.authorName;
     const { anonymousName, commentId, authorName } = event.target.dataset;
     const topicId = event.target.dataset.id || "";
     this.setData({
@@ -143,7 +140,6 @@ Page({
   sharehandle(e) {
     const shareId = e.target.dataset.id;
     this.setData({ shareId });
-    // this.onShareAppMessage(id)
   },
   onShareAppMessage(option) {
     const id = this.data.shareId;
@@ -153,8 +149,7 @@ Page({
     // 返回自定义分享信息
     return {
       title: "动态",
-      desc:
-        "如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示如果在Page中定义了e函数，此时该页面右上角菜单中会显示分享按钮，反之不显示",
+      desc: "",
       imageUrl:
         "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201605%2F10%2F20160510001106_2YjCN.thumb.700_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631869211&t=e83f3049c646769768f51ba6144ec26a",
       path
@@ -167,11 +162,14 @@ Page({
       item => item.topic.id === id
     );
     if (findIndex >= 0) {
-      this.$spliceData({ dynamics: [findIndex, 1] });
-      request.post({
-        url: "dynamic/delete",
-        params: { id }
-      });
+      request
+        .post({
+          url: "dynamic/delete",
+          params: { id }
+        })
+        .then(res => {
+          this.$spliceData({ dynamics: [findIndex, 1] });
+        });
     }
   },
   onFocus() {
@@ -211,34 +209,45 @@ Page({
     }
   },
   getDynamicData() {
-    this.setData({ baselineShow: false });
+    this.setData({ baselineShow: false, netWorkError: false });
     request
       .get({ url: "dynamic", params: { pageNo: this.data.pageNo } })
       .then(res => {
-        this.setData({
-          total: res.allTopicsNum,
-          dynamics: [...this.data.dynamics, ...res.topicList]
-        });
+        this.setData(
+          {
+            total: res.allTopicsNum,
+            dynamics: [...this.data.dynamics, ...res.topicList]
+          },
+          () => {
+            this.setData({ errorNodata: this.data.dynamics.length > 0 });
+          }
+        );
         dd.stopPullDownRefresh();
+      })
+      .catch(err => {
+        this.setData({ netWorkError: true, errorNodata: false });
       });
   },
   onLoad() {
-    setTimeout(() => {
-      this.getDynamicData();
-    }, 2000);
-    // getApp().tokenCallback = token => {
-    //   if (token != '') {
-    //     this.getDynamicData();
-    //   }
-    // }
     // 页面加载
+    if (getApp().globalData.token) {
+      this.setData({ pageNo: 1, dynamics: [] }, () => {
+        this.getDynamicData();
+      });
+    } else {
+      getApp().tokenCallback = token => {
+        if (token != "") {
+          this.setData({ pageNo: 1, dynamics: [] }, () => {
+            this.getDynamicData();
+          });
+        }
+      };
+    }
   },
   onReady() {
-    console.log("onReady");
     // 页面加载完成
   },
   onShow() {
-    console.log("onShow");
     this.setData({ mode: getApp().globalData.isAnonymous });
     getApp().watch(value => {
       this.setData({ mode: value });

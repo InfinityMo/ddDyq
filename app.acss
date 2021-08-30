@@ -93,3 +93,9 @@ view, text {
   background-color: #eee;
   height: 1px;
 }
+.error-nodata{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh
+}

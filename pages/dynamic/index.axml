@@ -1,5 +1,5 @@
 <view class="page {{mode ? 'dark-mode':''}}">
-  <scroll-view class="scroll-wrap" scroll-y="{{true}}" onScrollToLower="lower">
+  <scroll-view class="scroll-wrap" a:if="{{dynamics.length>0}}" scroll-y="{{true}}" onScrollToLower="lower">
     <view class="flex dynamic-item" a:for="{{dynamics}}" a:for-item="list" key="{{list.topic.id}}">
       <view class="left-wrap">
         <image class="avatar" mode="aspectFill" src="{{list.topic.isAnonymous ? '/image/system/anonymous.png':list.topicUser.avatar ? list.topicUser.avatar:'/image/system/defaultAvatar.png'}}"/>
@@ -50,11 +50,7 @@
             </view>
           </view>
           <view class="comment" a:if="{{list.comments.length>0}}">
-            <view class="comment-item" a:for="{{list.comments}}" a:for-item="comment" key="{{item}}" onTap="toComment"
-             data-id="{{list.topic.id}}"
-              data-commentId="{{comment.id}}"
-              data-authorName="{{comment.isAnonymous ?comment.anonymousName:comment.username}}"
-              data-anonymousName="{{list.currentAnonymousName}}">
+            <view class="comment-item" a:for="{{list.comments}}" a:for-item="comment" key="{{item}}" onTap="toComment" data-id="{{list.topic.id}}" data-commentId="{{comment.id}}" data-authorName="{{comment.isAnonymous ?comment.anonymousName:comment.username}}" data-anonymousName="{{list.currentAnonymousName}}">
               <text a:if="{{comment.commentId}}">
                 <text class="reply-user">{{comment.isAnonymous ?comment.anonymousName:comment.username}}</text>
                 <text class="reply">回复</text>
@@ -73,6 +69,10 @@
       <view class="line"></view>
     </view>
   </scroll-view>
+  <view class="error-nodata" hidden="{{errorNodata}}">
+    <image a:if="{{netWorkError}}" mode="aspectFit" src="/image/system/networkError.png"/>
+    <image a:else mode="aspectFit" src="/image/system/noData.png"/>
+  </view>
   <view class="flex-item-center flex-item-end text-wrap" hidden="{{!isShowInput}}">
     <view class="input-text-box-wrap">
       <textarea class="input-text" onInput="textareaInput" controlled="{{true}}" value="{{commentComment}}" fixed="{{true}}" auto-height="{{true}}" show-count="{{false}}" maxlength="200" placeholder="{{placeholder}}" onFocus="onFocus" onBlur="onBlur" focus="{{focus}}" adjust-positio="{{true}}" />

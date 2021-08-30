@@ -1,4 +1,4 @@
-import { encodeUrl ,putData} from "/common/utils/utils";
+import { encodeUrl, putData } from "/common/utils/utils";
 import request from "/common/request/request";
 Component({
   mixins: [],
@@ -12,29 +12,42 @@ Component({
   },
   props: {},
   didMount() {
-    setTimeout(() => {
+    if (getApp().globalData.token) {
       this.getData();
-    }, 2000);
+    } else {
+      getApp().tokenCallback = token => {
+        if (token != "") {
+          this.getData();
+        }
+      };
+    }
   },
-  didUpdate() { },
-  didUnmount() { },
+  didUpdate() {},
+  didUnmount() {},
   methods: {
     getData() {
       this.setData({ baselineShow: false });
-      request.get({
-        url: "obtain/dynamic",
-        params: { pageNo: this.data.pageNo }
-      }).then(res => {
-        this.setData({
-          total: res.total,
-          tempDynamic: [...this.data.tempDynamic, ...res.list]
-        }, () => {
-          const result = this.setBaseData(putData(this.data.tempDynamic, "year"));
-          this.setData({ dynamics: [...result] })
-          // console.log(this.data.tempDynamic)
+      request
+        .get({
+          url: "obtain/dynamic",
+          params: { pageNo: this.data.pageNo }
+        })
+        .then(res => {
+          this.setData(
+            {
+              total: res.total,
+              tempDynamic: [...this.data.tempDynamic, ...res.list]
+            },
+            () => {
+              const result = this.setBaseData(
+                putData(this.data.tempDynamic, "year")
+              );
+              this.setData({ dynamics: [...result] });
+              // console.log(this.data.tempDynamic)
+            }
+          );
+          dd.stopPullDownRefresh();
         });
-        dd.stopPullDownRefresh();
-      });
     },
     lower(e) {
       if (this.data.tempDynamic.length < this.data.total) {

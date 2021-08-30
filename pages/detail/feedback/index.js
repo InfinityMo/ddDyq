@@ -41,7 +41,7 @@ Page({
           this.setData({
             placeholder: "一起讨论吧...",
             commentComment: "",
-            commentObj: {}
+            commentObj: { opinionId: this.data.commentObj.opinionId }
           });
         }
       });
@@ -167,7 +167,10 @@ Page({
   getDetailData() {
     this.setData({ baselineShow: false });
     request
-      .get({ url: "opinion/detail", params: { id: this.data.commentObj.opinionId, pageNo: this.data.pageNo } })
+      .get({
+        url: "opinion/detail",
+        params: { id: this.data.commentObj.opinionId, pageNo: this.data.pageNo }
+      })
       .then(res => {
         this.setData({
           total: res.solutionCommentCount,
@@ -188,12 +191,18 @@ Page({
   },
   onLoad(query) {
     // 页面加载
-    const { id  } = query;
+    const { id } = query;
     if (id) {
       this.setData({ "commentObj.opinionId": id });
-      setTimeout(() => {
+      if (getApp().globalData.token) {
         this.getDetailData();
-      }, 2000);
+      } else {
+        getApp().tokenCallback = token => {
+          if (token != "") {
+            this.getDetailData();
+          }
+        };
+      }
     }
   },
   onReady() {
@@ -220,9 +229,12 @@ Page({
     this.setData({ isDelete: !this.data.isDelete });
   },
   onPullDownRefresh() {
-    this.setData({ pageNo: 1, total: 0, adpotDeatil: null, adoptComment: [] }, () => {
-      this.getDetailData();
-    });
+    this.setData(
+      { pageNo: 1, total: 0, adpotDeatil: null, adoptComment: [] },
+      () => {
+        this.getDetailData();
+      }
+    );
   },
   // onReachBottom () {
   //   // 页面被拉到底部

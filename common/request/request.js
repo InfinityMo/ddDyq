@@ -11,18 +11,19 @@ const request = {
           options.params
         ),
         method: "GET",
-        timeout: 2000,
+        timeout: 1000,
         // 请求头
         headers: { token: getApp().globalData.token || "" },
         success: res => {
-          res.data && res.data.code === 200
-            ? resolve(res.data.detail)
-            : handleError({ error: 19 });
-          ddLoading.hide();
+          if (res.data && res.data.code !== 201) {
+            resolve(res.data.detail);
+            ddLoading.hide();
+          } else {
+            handleError({ error: 19 });
+          }
         },
         fail: err => {
           reject(err);
-          ddLoading.hide();
           handleError(err);
         }
       });
@@ -37,7 +38,7 @@ const request = {
         // 拼接完整请求地址
         url: `${getApp().globalData.host}/api/${options.url}`,
         method: "POST",
-        timeout: 2000,
+        timeout: 1000,
         // 请求参数
         data:
           options.params !== undefined
@@ -58,7 +59,6 @@ const request = {
         },
         fail: err => {
           reject(err);
-          ddLoading.hide();
           handleError(err);
         }
       });

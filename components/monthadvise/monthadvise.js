@@ -11,9 +11,16 @@ Component({
     className: ""
   },
   didMount() {
-    setTimeout(() => {
+    // 页面加载
+    if (getApp().globalData.token) {
       this.getCurrentData();
-    }, 2000);
+    } else {
+      getApp().tokenCallback = token => {
+        if (token != "") {
+          this.getCurrentData();
+        }
+      };
+    }
   },
   didUpdate() {},
   didUnmount() {},
