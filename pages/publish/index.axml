@@ -22,6 +22,7 @@
       </label>
     </radio-group>
   </view>
-  <button class="publish-btn {{!textareaFocus ? 'btn-disabled':''}}" onTap="submit">{{mode ? '匿名':'实名'}}发布</button>
+  <button a:if="{{btnDisabled}}" class="publish-btn {{btnDisabled ? 'btn-disabled-handle':''}}" onTap="tiphandle">{{mode ? '匿名':'实名'}}发布q</button>
+  <button a:else class="publish-btn {{!textareaFocus ? 'btn-disabled':''}}" onTap="submit">{{mode ? '匿名':'实名'}}发布</button>
   <suspension isAnonymous="{{mode}}" />
 </view>

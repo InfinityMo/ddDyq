@@ -4,6 +4,7 @@ Page({
   data: {
     mode: false, //暗黑模式
     textareaFocus: false,
+    btnDisabled: false,
     radios: [
       {
         name: "动态",
@@ -20,8 +21,7 @@ Page({
     radioCheck: "1",
     content: "",
     fileLists: [],
-    filesPath: [],
-    imgPaths: [], //服务器返回的路径
+    filesPath: [],//服务器返回的路径
     shareImg:
       "https://lianen-data-develop.oss-cn-shanghai.aliyuncs.com/topic/share/312908fe-69f3-48d9-ab22-cceb55627796.png?Expires=1631497546&OSSAccessKeyId=LTAI5t9iqts8pXE9AdrwCyDn&Signature=2ozlbNbx91JCuV03GyCDZhUPNFo%3D"
   },
@@ -77,13 +77,17 @@ Page({
   },
   submit(e) {
     dd.showLoading({
-      content: "加载中..."
+      content: "发布中..."
     });
+    this.setData({ btnDisabled: true })
     if (this.data.fileLists.length > 0) {
       this.upload();
     } else {
       this.publish();
     }
+  },
+  tiphandle(e) {
+    ddToast({ type: "none", text: "发布中，请耐心等待" });
   },
   publish() {
     request
@@ -98,6 +102,7 @@ Page({
       })
       .then(res => {
         if (res.code === 204) {
+          this.setData({ filesPath: [], btnDisabled: false });
           ddToast({ type: "fail", text: "部分文字无法通过审核，请检查" });
           return false;
         }
@@ -109,10 +114,10 @@ Page({
         this.setData({
           "radios[1].disabled": "0",
           textareaFocus: false,
+          btnDisabled: false,
           content: "",
           fileLists: [],
-          filesPath: [],
-          imgPaths: []
+          filesPath: []
         });
         dd.hideLoading();
         dd.switchTab({
@@ -147,25 +152,25 @@ Page({
             });
             resolve(count);
           } else if (res.code === 203) {
-            that.setData({ filesPath: [] });
+            that.setData({ filesPath: [], btnDisabled: false });
             ddToast({ type: "fail", text: "请检查图片是否合法" });
             resolve(false);
             dd.hideLoading();
           } else if (res.data.code === 210) {
-            that.setData({ filesPath: [] });
+            that.setData({ filesPath: [], btnDisabled: false });
             ddToast({ type: "fail", text: "图片格式不支持" });
             resolve(false);
             dd.hideLoading();
           } else {
-            that.setData({ filesPath: [] });
+            that.setData({ filesPath: [], btnDisabled: false });
             ddToast({ type: "fail", text: "哎呀，服务器似乎出了点问题" });
             resolve(false);
             dd.hideLoading();
           }
         },
-        fail: function(res) {
+        fail: function (res) {
           ddToast({ type: "fail", text: "哎呀，服务器似乎出了点问题" });
-          that.setData({ filesPath: [] });
+          that.setData({ filesPath: [], btnDisabled: false });
           resolve(false);
         }
       });
@@ -206,11 +211,10 @@ Page({
   },
   onHide() {
     // 页面隐藏
-    console.log("hide");
+
   },
   onUnload() {
     // 页面被关闭
-    console.log("Unload");
   },
   onTitleClick() {
     // 标题被点击

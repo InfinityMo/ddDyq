@@ -86,6 +86,9 @@
   background-color: #3296FA;
   border: none
 }
+.btn-disabled-handle{
+  opacity: 0.3
+}
 .btn-disabled{
   pointer-events: none;
   opacity: 0.3
