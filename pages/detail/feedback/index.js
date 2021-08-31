@@ -10,7 +10,9 @@ Page({
     commentObj: {},
     pageNo: 1,
     total: 0,
-    baselineShow: false
+    baselineShow: false,
+    netWorkError: false,
+    errorNodata: true
   },
   textareaInput(e) {
     const content = e.detail.value.trim();
@@ -177,6 +179,10 @@ Page({
           adpotDeatil: { ...res.opinion },
           adoptComment: [...this.data.adoptComment, ...res.solutionComment]
         });
+        dd.stopPullDownRefresh();
+      })
+      .catch(err => {
+        this.setData({ netWorkError: true, errorNodata: false });
         dd.stopPullDownRefresh();
       });
   },

@@ -3,7 +3,9 @@ import request from "/common/request/request";
 Component({
   mixins: [],
   data: {
-    adpot: []
+    adpot: [],
+    errorNodata: true,
+    netWorkError: false
   },
   props: {},
   didMount() {
@@ -28,9 +30,21 @@ Component({
           params: { type: "adopt", pageNo: 1 }
         })
         .then(res => {
-          this.setData({
-            adpot: [...res.opinion]
-          });
+          this.setData(
+            {
+              adpot: [...res.opinion]
+            },
+            () => {
+              this.setData({
+                errorNodata: this.data.adpot.length > 0,
+                netWorkError: false
+              });
+            }
+          );
+          dd.stopPullDownRefresh();
+        })
+        .catch(err => {
+          this.setData({ netWorkError: true, errorNodata: false });
           dd.stopPullDownRefresh();
         });
     },

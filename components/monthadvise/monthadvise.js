@@ -3,9 +3,22 @@ Component({
   mixins: [],
   data: {
     advises: [],
+    orderType: 0,
     pageNo: 1,
     total: 0,
-    baselineShow: false
+    orderTypeArray: [
+      {
+        id: 0,
+        name: "按点赞量排序"
+      },
+      {
+        id: 1,
+        name: "按时间排序"
+      }
+    ],
+    baselineShow: false,
+    errorNodata: true,
+    netWorkError: false
   },
   props: {
     className: ""
@@ -26,16 +39,33 @@ Component({
   didUnmount() {},
   methods: {
     getCurrentData() {
+      this.setData({ baselineShow: false, netWorkError: false });
       request
         .get({
           url: "opinion",
-          params: { type: "current", pageNo: this.data.pageNo }
+          params: {
+            type: "current",
+            pageNo: this.data.pageNo,
+            orderType: String(this.data.orderType) === "0" ? "rank" : "time"
+          }
         })
         .then(res => {
-          this.setData({
-            total: res.allOpinionsNum,
-            advises: [...this.data.advises, ...res.opinion]
-          });
+          this.setData(
+            {
+              total: res.allOpinionsNum,
+              advises: [...this.data.advises, ...res.opinion]
+            },
+            () => {
+              this.setData({
+                errorNodata: this.data.advises.length > 0,
+                netWorkError: false
+              });
+            }
+          );
+          dd.stopPullDownRefresh();
+        })
+        .catch(err => {
+          this.setData({ netWorkError: true, errorNodata: false });
           dd.stopPullDownRefresh();
         });
     },
@@ -70,6 +100,19 @@ Component({
             });
           }
         });
+    },
+    pickerChange(e) {
+      this.setData(
+        {
+          pageNo: 1,
+          advises: [],
+          baselineShow: false,
+          orderType: e.detail.value
+        },
+        () => {
+          this.getCurrentData();
+        }
+      );
     },
     lower(e) {
       if (this.data.advises.length < this.data.total) {

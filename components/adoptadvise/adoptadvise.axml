@@ -1,40 +1,43 @@
 <view class="adopt {{className}}">
-  <view class="take-title" a:if="{{adpot.length>0}}">上月采纳建议</view>
-  <view a:for="{{adpot}}" class="item">
-    <view class="top-box top-box{{item.ranking}} flex">
-      <view class="top-wrap">
-        <view class="title flex">
-          <view class="sub-title">TOP-{{item.ranking}}</view>
-          <image class="wave" mode="scaleToFill" src="/image/system/order{{item.ranking}}-wave.png" />
-        </view>
-        <view class="user-words">
-          <view class="flex user">
-            <image class="avatar" mode="aspectFill" src="{{item.isAnonymous ? '/image/system/anonymous.png':item.adoptUser.avatar ? item.adoptUser.avatar:'/image/system/defaultAvatar.png'}}" />
-            <view class="user-info">
-              <view>{{item.isAnonymous ? item.adoptUser.anonymousName:item.adoptUser.username}}</view>
-              <text>{{item.inTime}}</text>
-            </view>
+  <view>
+    <view class="take-title" a:if="{{adpot.length>0}}">上月采纳建议</view>
+    <view a:for="{{adpot}}" class="item">
+      <view class="top-box top-box{{item.ranking}} flex">
+        <view class="top-wrap">
+          <view class="title flex">
+            <view class="sub-title">TOP-{{item.ranking}}</view>
+            <image class="wave" mode="scaleToFill" src="/image/system/order{{item.ranking}}-wave.png" />
           </view>
-          <view class="ell2">{{item.content}}</view>
+          <view class="user-words">
+            <view class="flex user">
+              <image class="avatar" mode="aspectFill" src="{{item.isAnonymous ? '/image/system/anonymous.png':item.adoptUser.avatar ? item.adoptUser.avatar:'/image/system/defaultAvatar.png'}}" />
+              <view class="user-info">
+                <view>{{item.isAnonymous ? item.adoptUser.anonymousName:item.adoptUser.username}}</view>
+                <text>{{item.inTime}}</text>
+              </view>
+            </view>
+            <view class="ell2">{{item.content}}</view>
+          </view>
+        </view>
+        <image class="order-bg" mode="scaleToFill" src="/image/system/order{{item.ranking}}.png" />
+      </view>
+      <view class="feed-back">
+        <view class="back-words ell2">{{item.solution}}</view>
+        <view class="flex flex-justify-end support-against">
+          <view class="flex-item-center support" onTap="toSupport" data-id="{{item.id}}" data-action="up" data-anonymousName="{{item.anonymousName}}">
+            <image a:if="{{item.isCurrentUserUp}}" mode="scaleToFill" src="/image/system/thumbActive.png" />
+            <image a:else mode="scaleToFill" src="/image/system/thumb.png" />
+            <text class="{{item.isCurrentUserUp ? 'num-support-active':''}}">{{item.upCount}}</text>
+          </view>
+          <view class="flex-item-center against" onTap="toSupport" data-id="{{item.id}}" data-action="down" data-anonymousName="{{item.anonymousName}}">
+            <image a:if="{{item.isCurrentUserDown}}" mode="scaleToFill" src="/image/system/treadActive.png" />
+            <image a:else mode="scaleToFill" src="/image/system/tread.png" />
+            <text class="{{item.isCurrentUserDown ? 'num-against-active':''}}">{{item.downCount}}</text>
+          </view>
         </view>
       </view>
-      <image class="order-bg" mode="scaleToFill" src="/image/system/order{{item.ranking}}.png" />
+      <view class="adopt-detail-btn" data-id="{{item.id}}" onTap="toAdoptDeatil">查看详情</view>
     </view>
-    <view class="feed-back">
-      <view class="back-words ell2">{{item.solution}}</view>
-      <view class="flex flex-justify-end support-against">
-        <view class="flex-item-center support" onTap="toSupport" data-id="{{item.id}}" data-action="up" data-anonymousName="{{item.anonymousName}}">
-          <image a:if="{{item.isCurrentUserUp}}" mode="scaleToFill" src="/image/system/thumbActive.png" />
-          <image a:else mode="scaleToFill" src="/image/system/thumb.png" />
-          <text class="{{item.isCurrentUserUp ? 'num-support-active':''}}">{{item.upCount}}</text>
-        </view>
-        <view class="flex-item-center against" onTap="toSupport" data-id="{{item.id}}" data-action="down" data-anonymousName="{{item.anonymousName}}">
-          <image a:if="{{item.isCurrentUserDown}}" mode="scaleToFill" src="/image/system/treadActive.png" />
-          <image a:else mode="scaleToFill" src="/image/system/tread.png" />
-          <text class="{{item.isCurrentUserDown ? 'num-against-active':''}}">{{item.downCount}}</text>
-        </view>
-      </view>
-    </view>
-    <view class="adopt-detail-btn" data-id="{{item.id}}" onTap="toAdoptDeatil">查看详情</view>
   </view>
+  <dataerror dataErrorShow="{{errorNodata}}" netWorkError="{{netWorkError}}" noDataContent="建议" />
 </view>

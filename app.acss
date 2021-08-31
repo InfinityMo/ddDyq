@@ -27,10 +27,12 @@ view, text {
   display: flex;
   align-items: center;
 }
+
 .flex-item-end {
   display: flex;
   align-items: flex-end;
 }
+
 .flex-between {
   display: flex;
   justify-content: space-between;
@@ -80,22 +82,40 @@ view, text {
 }
 
 /* 底线 */
-.baseline-wrap{
+
+.baseline-wrap {
   font-size: 15px;
   color: #aaa;
 }
-.baseline-wrap text{
-  padding:  10px;
+
+.baseline-wrap text {
+  padding: 10px;
   flex-shrink: 0;
 }
-.baseline-wrap .line{
+
+.baseline-wrap .line {
   width: 50%;
   background-color: #eee;
   height: 1px;
 }
-.error-nodata{
+
+.error-nodata {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh
+  height: 100vh;
+  font-size: 15px;
+  text-align: center;
+}
+.user-error-nodata{
+  padding-top: 50px;
+  height: 100%
+}
+.error-text {
+  padding-top: 25px;
+  color: #333;
+}
+
+.dark-mode .error-text{
+  color: #fff
 }

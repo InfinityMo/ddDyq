@@ -15,7 +15,7 @@
   </view>
   <view class="content">
     <view hidden="{{mydynamicHide}}" key="{{mydynamicKey}}">
-      <mydynamic /></view>
+      <mydynamic className="{{mode ? 'mydynamic-dark':''}}" /></view>
     <view hidden="{{mysuggestHide}}" key="{{mysuggestKey}}">
       <mysuggest className="{{mode ? 'mysuggest-dark':''}}" /></view>
   </view>

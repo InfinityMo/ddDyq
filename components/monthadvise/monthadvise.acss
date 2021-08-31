@@ -10,6 +10,11 @@
   padding-bottom: 15px
 }
 
+.order-icon {
+  width: 16px;
+  height: 16px;
+}
+
 .view-wrap {
   /* margin-left: 20px; */
   /* width: 300px; */
@@ -104,6 +109,6 @@
   background-color: #444;
 }
 
-.commponent-dark .content-words {
+.commponent-dark .content-words, .commponent-dark .rank-title {
   color: #fff;
 }

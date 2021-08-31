@@ -21,7 +21,9 @@ Page({
     content: "",
     fileLists: [],
     filesPath: [],
-    imgPaths: [] //服务器返回的路径
+    imgPaths: [], //服务器返回的路径
+    shareImg:
+      "https://lianen-data-develop.oss-cn-shanghai.aliyuncs.com/topic/share/312908fe-69f3-48d9-ab22-cceb55627796.png?Expires=1631497546&OSSAccessKeyId=LTAI5t9iqts8pXE9AdrwCyDn&Signature=2ozlbNbx91JCuV03GyCDZhUPNFo%3D"
   },
   selectPicture() {
     dd.chooseImage({
@@ -95,6 +97,10 @@ Page({
         }
       })
       .then(res => {
+        if (res.code === 204) {
+          ddToast({ type: "fail", text: "部分文字无法通过审核，请检查" });
+          return false;
+        }
         const url =
           this.data.radioCheck === "1"
             ? "/pages/dynamic/index"
@@ -102,6 +108,7 @@ Page({
         // 清除数据
         this.setData({
           "radios[1].disabled": "0",
+          textareaFocus: false,
           content: "",
           fileLists: [],
           filesPath: [],
@@ -124,7 +131,6 @@ Page({
     let that = this;
     return new Promise((resolve, reject) => {
       const filePath = that.data.fileLists[count];
-      //  dd.hideLoading()
       dd.uploadFile({
         url: `${getApp().globalData.host}/api/upload`,
         fileType: "image",
@@ -139,40 +145,33 @@ Page({
             that.setData({
               filesPath: [res.detail.urls[0], ...that.data.filesPath]
             });
-            // that.upload(count);
-            // debugger
             resolve(count);
-            // if (count >= that.data.fileLists.length) {
-            //   resolve(true);
-            // } else {
-            //   that.upload(count);
-            //    resolve(count);
-            // }
           } else if (res.code === 203) {
             that.setData({ filesPath: [] });
             ddToast({ type: "fail", text: "请检查图片是否合法" });
             resolve(false);
+            dd.hideLoading();
           } else if (res.data.code === 210) {
             that.setData({ filesPath: [] });
             ddToast({ type: "fail", text: "图片格式不支持" });
             resolve(false);
+            dd.hideLoading();
           } else {
             that.setData({ filesPath: [] });
             ddToast({ type: "fail", text: "哎呀，服务器似乎出了点问题" });
             resolve(false);
+            dd.hideLoading();
           }
         },
         fail: function(res) {
           ddToast({ type: "fail", text: "哎呀，服务器似乎出了点问题" });
           that.setData({ filesPath: [] });
           resolve(false);
-          // dd.alert({ title: `上传失败：${JSON.stringify(res)}` });
         }
       });
     }).then(res => {
       if (typeof res === "number") {
         if (res >= that.data.fileLists.length) {
-          // console.log(that.data.filesPath);
           that.publish();
         } else {
           that.upload(res);
@@ -194,11 +193,24 @@ Page({
       this.setData({ mode: value });
     });
   },
+  onShareAppMessage(option) {
+    // 返回自定义分享信息
+    const { shareImg } = this.data;
+    const path = "pages/dynamic/index";
+    return {
+      title: "小程序",
+      desc: "",
+      imageUrl: shareImg,
+      path
+    };
+  },
   onHide() {
     // 页面隐藏
+    console.log("hide");
   },
   onUnload() {
     // 页面被关闭
+    console.log("Unload");
   },
   onTitleClick() {
     // 标题被点击

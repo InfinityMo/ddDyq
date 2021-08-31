@@ -134,6 +134,7 @@ button[plain] {
 .comment-wrap .support .fabulous {
   width: 10px;
   height: 10px;
+  flex-shrink: 0;
   margin-right: 5px;
 }
 

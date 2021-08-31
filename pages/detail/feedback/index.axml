@@ -38,7 +38,7 @@
     </view>
   </view>
   <!-- 评论 -->
-  <view class="comment-box-wrap" a:if="{{adoptComment.length>0}}">
+  <view class="comment-box-wrap" a:if="{{adpotDeatil&&adoptComment.length>0}}">
     <view class="comment-tip-box">评论（{{total}}）</view>
     <scroll-view class="scroll-adopt adopt-comment-scroll" scroll-y="{{true}}" onScrollToLower="lower">
       <view class="user-words user-words-detail comment-detail" a:for="{{adoptComment}}">
@@ -77,13 +77,12 @@
       </view>
     </scroll-view>
   </view>
-  <view class="flex-item-center flex-between text-wrap input-wrap">
+  <view class="flex-item-center flex-between text-wrap input-wrap" a:if="{{adpotDeatil}}">
     <view class="input-text-box-wrap">
-      <textarea class="input-text" onInput="textareaInput" controlled="{{true}}" value="{{commentComment}}" fixed="{{true}}" 
-        auto-height="{{true}}" show-count="{{false}}" maxlength="200" placeholder="{{placeholder}}" onFocus="onFocus" onBlur="onBlur" 
-        focus="{{focus}}" adjust-positio="{{true}}" />
+      <textarea class="input-text" onInput="textareaInput" controlled="{{true}}" value="{{commentComment}}" fixed="{{true}}" auto-height="{{true}}" show-count="{{false}}" maxlength="200" placeholder="{{placeholder}}" onFocus="onFocus" onBlur="onBlur" focus="{{focus}}" adjust-positio="{{true}}" />
     </view>
     <button onTap="publishComment">发布</button>
   </view>
+  <dataerror dataErrorShow="{{errorNodata}}" netWorkError="{{netWorkError}}" />
   <suspension isAnonymous="{{mode}}" noTabBar="{{true}}" />
 </view>

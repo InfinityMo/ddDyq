@@ -1,0 +1,10 @@
+<view class="error-nodata {{className}}" hidden="{{dataErrorShow}}">
+    <view a:if="{{netWorkError}}">
+      <image mode="aspectFit" src="/image/system/networkError.png"/>
+      <view class="error-text">哎呀，服务器似乎出了点问题~</view>
+    </view>
+    <view a:else>
+      <image mode="aspectFit" src="/image/system/noData.png"/>
+      <view class="error-text">快去发表一条{{noDataContent}}吧~</view>
+    </view>
+  </view>

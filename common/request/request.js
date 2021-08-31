@@ -51,7 +51,7 @@ const request = {
         },
         success: res => {
           if (res.data && res.data.code !== 201) {
-            resolve(res.data.detail);
+            resolve(res.data.detail || res.data);
             ddLoading.hide();
           } else {
             handleError({ error: 19 });
@@ -123,6 +123,7 @@ const handleError = err => {
     }
   }
   ddToast({ type: "fail", text: message });
+  ddLoading.hide();
 };
 
 export default request;

@@ -9,7 +9,9 @@ Component({
     tempHistory: [],
     pageNo: 1,
     total: 0,
-    baselineShow: false
+    baselineShow: false,
+    errorNodata: true,
+    netWorkError: false
   },
   props: {},
   didMount() {
@@ -45,10 +47,20 @@ Component({
             },
             () => {
               const resultData = putData2(this.data.tempHistory, "year");
-              this.setData({ historyAdvise: [...resultData] });
-              // console.log(this.data.tempDynamic)
+              this.setData({ historyAdvise: [...resultData] }, () => {
+                this.setData({
+                  errorNodata:
+                    this.data.historyAdvise.length > 0 ||
+                    this.data.nowAdvise.length > 0,
+                  netWorkError: true
+                });
+              });
             }
           );
+          dd.stopPullDownRefresh();
+        })
+        .catch(err => {
+          this.setData({ netWorkError: true, errorNodata: false });
           dd.stopPullDownRefresh();
         });
     },

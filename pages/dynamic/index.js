@@ -8,6 +8,8 @@ Page({
     isShowInput: false,
     placeholder: "",
     shareId: "",
+    shareImg:
+      "https://lianen-data-develop.oss-cn-shanghai.aliyuncs.com/topic/share/312908fe-69f3-48d9-ab22-cceb55627796.png?Expires=1631497546&OSSAccessKeyId=LTAI5t9iqts8pXE9AdrwCyDn&Signature=2ozlbNbx91JCuV03GyCDZhUPNFo%3D",
     total: 0,
     pageNo: 1,
     dynamics: [],
@@ -139,30 +141,35 @@ Page({
   // 转发
   sharehandle(e) {
     const shareId = e.target.dataset.id;
+    const target = this.data.dynamics.filter(
+      item => item.topic.id === shareId
+    )[0];
     this.setData({ shareId });
+    if (target && target.topic.avatars.length > 0) {
+      this.setData({ shareImg: target.topic.avatars[0] });
+    }
   },
   onShareAppMessage(option) {
-    const id = this.data.shareId;
-    const path = id
-      ? `pages/detail/dynamicinfo/index?id=${id}`
+    const { shareId, shareImg } = this.data;
+    const path = shareId
+      ? `pages/detail/dynamicinfo/index?id=${shareId}`
       : "pages/dynamic/index";
     // 返回自定义分享信息
     return {
-      title: "动态",
-      desc: "",
-      imageUrl:
-        "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201605%2F10%2F20160510001106_2YjCN.thumb.700_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631869211&t=e83f3049c646769768f51ba6144ec26a",
+      title: "小程序",
+      desc: shareId ? "您的好友给您分享了一条动态" : "",
+      imageUrl: shareImg,
       path
     };
   },
   // 删除
   deleteHandle(e) {
     dd.confirm({
-      title: '提示',
-      content: '确定删除该条动态？',
-      confirmButtonText: '是',
-      cancelButtonText: '否',
-      success: (result) => {
+      title: "提示",
+      content: "确定删除该条动态？",
+      confirmButtonText: "是",
+      cancelButtonText: "否",
+      success: result => {
         if (result.confirm) {
           const id = e.target.dataset.id;
           const findIndex = this.data.dynamics.findIndex(
@@ -179,7 +186,7 @@ Page({
               });
           }
         }
-      },
+      }
     });
   },
   onFocus() {
@@ -229,13 +236,17 @@ Page({
             dynamics: [...this.data.dynamics, ...res.topicList]
           },
           () => {
-            this.setData({ errorNodata: this.data.dynamics.length > 0 });
+            this.setData({
+              errorNodata: this.data.dynamics.length > 0,
+              netWorkError: false
+            });
           }
         );
         dd.stopPullDownRefresh();
       })
       .catch(err => {
         this.setData({ netWorkError: true, errorNodata: false });
+        dd.stopPullDownRefresh();
       });
   },
   onLoad() {

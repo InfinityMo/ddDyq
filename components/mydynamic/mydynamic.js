@@ -8,7 +8,9 @@ Component({
     tempDynamic: [],
     pageNo: 1,
     total: 0,
-    baselineShow: false
+    baselineShow: false,
+    errorNodata: true,
+    netWorkError: false
   },
   props: {},
   didMount() {
@@ -22,11 +24,11 @@ Component({
       };
     }
   },
-  didUpdate() { },
-  didUnmount() { },
+  didUpdate() {},
+  didUnmount() {},
   methods: {
     getData() {
-      this.setData({ baselineShow: false });
+      this.setData({ baselineShow: false, netWorkError: false });
       request
         .get({
           url: "obtain/dynamic",
@@ -42,10 +44,18 @@ Component({
               const result = this.setBaseData(
                 putData(this.data.tempDynamic, "year")
               );
-              this.setData({ dynamics: [...result] });
-              // console.log(this.data.tempDynamic)
+              this.setData({ dynamics: [...result] }, () => {
+                this.setData({
+                  errorNodata: this.data.dynamics.length > 0,
+                  netWorkError: false
+                });
+              });
             }
           );
+          dd.stopPullDownRefresh();
+        })
+        .catch(err => {
+          this.setData({ netWorkError: true, errorNodata: false });
           dd.stopPullDownRefresh();
         });
     },
@@ -65,7 +75,7 @@ Component({
       return arr;
     },
     toDynamicDetail(e) {
-      const { id } = e.target.dataset
+      const { id } = e.target.dataset;
       const url = encodeUrl("/pages/detail/dynamicinfo/index", { id });
       dd.navigateTo({ url });
     }

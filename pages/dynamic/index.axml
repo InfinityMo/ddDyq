@@ -44,7 +44,7 @@
         <view class="comment-wrap" a:if="{{list.topic.upIdNames.length>0||list.comments.length>0}}">
           <view class="flex-item-center support {{list.topic.upIdNames.length>0&&list.comments.length>0 ?'support-line':''}}" a:if="{{list.topic.upIdNames.length>0}}">
             <image class="fabulous" mode="scaleToFill" src="/image/system/fabulous.png"/>
-            <view class="ell">
+            <view class="ell2">
               <text a:for="{{list.topic.upIdNames}}" a:for-index="supportIndex">{{item.userName}}{{supportIndex===list.topic.upIdNames.length-1 ? '':'，'}}</text>
             </view>
           </view>
@@ -68,10 +68,7 @@
       <view class="line"></view>
     </view>
   </scroll-view>
-  <view class="error-nodata" hidden="{{errorNodata}}">
-    <image a:if="{{netWorkError}}" mode="aspectFit" src="/image/system/networkError.png"/>
-    <image a:else mode="aspectFit" src="/image/system/noData.png"/>
-  </view>
+  <dataerror dataErrorShow="{{errorNodata}}" netWorkError="{{netWorkError}}" noDataContent="动态" />
   <view class="flex-item-center flex-item-end text-wrap" hidden="{{!isShowInput}}">
     <view class="input-text-box-wrap">
       <textarea class="input-text" onInput="textareaInput" controlled="{{true}}" value="{{commentComment}}" fixed="{{true}}" auto-height="{{true}}" show-count="{{false}}" maxlength="200" placeholder="{{placeholder}}" onFocus="onFocus" onBlur="onBlur" focus="{{focus}}" adjust-positio="{{true}}" />

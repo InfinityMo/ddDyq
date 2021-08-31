@@ -1,6 +1,11 @@
 <view class="month-advise {{className}}">
-  <scroll-view class="scroll-view" scroll-y="{{true}}" onScrollToLower="lower">
-    <view class="rank-title" a:if="{{total>0}}">本月发言（{{total}}）</view>
+  <scroll-view class="scroll-view" scroll-y="{{true}}" onScrollToLower="lower" a:if="{{advises.length>0}}">
+    <view class="rank-title flex-between-center" a:if="{{total>0}}">
+      <view>本月发言（{{total}}）</view>
+      <picker onChange="pickerChange" value="{{orderType}}" range="{{orderTypeArray}}" range-key="name">
+        <image class="order-icon" mode="aspectFill" src="/image/system/order.png" />
+      </picker>
+    </view>
     <view a:for="{{advises}}" class="view-wrap">
       <view class="flex-between-center user-wrap">
         <view class="flex user">
@@ -32,4 +37,5 @@
       <view class="line"></view>
     </view>
   </scroll-view>
+  <dataerror dataErrorShow="{{errorNodata}}" netWorkError="{{netWorkError}}" noDataContent="建议" />
 </view>

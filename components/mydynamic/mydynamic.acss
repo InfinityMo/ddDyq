@@ -1,9 +1,10 @@
-.user-data-page{
-  padding:0 15px ;
+.user-data-page {
+  padding: 0 15px;
 }
+
 .scroll-wrap {
   padding: 20px 0;
-  height:calc(100vh - 140px)
+  height: calc(100vh - 140px)
 }
 
 .scroll-other {
@@ -29,9 +30,11 @@
   flex-shrink: 0;
   padding-right: 15px;
 }
-.dynamic-content-wrap-box{
+
+.dynamic-content-wrap-box {
   flex-grow: 1;
 }
+
 .content-wrap {
   margin-bottom: 20px;
 }
@@ -105,8 +108,22 @@
   line-height: 21px;
 }
 
+.none-picture-bg {
+  background-color: #f8f8f8;
+}
+
+.none-picture-bg .words-wrap {
+  padding: 5px 10px;
+}
+
 .img-total {
   font-size: 11px;
   line-height: 16px;
   color: #AAA;
+}
+
+/* 暗黑模式 */
+
+.mydynamic-dark .none-picture-bg {
+  background-color: #303030;
 }
