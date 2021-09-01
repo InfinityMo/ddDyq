@@ -106,8 +106,9 @@ Page({
     this.onFocus();
   },
   textareaInput(e) {
-    const value = e.detail.value.trim();
-    if (value.length > 0) {
+    // const value = e.detail.value.trim();
+    const { value } = e.detail;
+    if (value.trim().length > 0) {
       this.setData({ commentComment: value, "commentObj.content": value });
     } else {
       this.setData({ commentComment: "", "commentObj.content": value });
@@ -117,9 +118,9 @@ Page({
     if (!this.data.commentObj.topicId) {
       this.setData({
         "commentObj.topicId": this.data.dynamics[0].topic.id,
-        "commentObj.commentId":'',
-        "commentObj.anonymousName":getApp().globalData.isAnonymous ? this.data.dynamics[0].currentAnonymousName : "",
-        "commentObj.isAnonymous":getApp().globalData.isAnonymous,
+        "commentObj.commentId": '',
+        "commentObj.anonymousName": getApp().globalData.isAnonymous ? this.data.dynamics[0].currentAnonymousName : "",
+        "commentObj.isAnonymous": getApp().globalData.isAnonymous,
       });
     }
     request

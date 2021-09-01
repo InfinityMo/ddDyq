@@ -70,8 +70,9 @@ Page({
     this.setData({ radioCheck: e.detail.value });
   },
   textareaInput(e) {
-    const value = e.detail.value.trim();
-    value.length > 0
+    // const value = e.detail.value.trim();
+    const { value } = e.detail
+    value.trim().length > 0
       ? this.setData({ textareaFocus: true, content: value })
       : this.setData({ textareaFocus: false, content: "" });
   },
@@ -174,7 +175,7 @@ Page({
             dd.hideLoading();
           }
         },
-        fail: function(res) {
+        fail: function (res) {
           ddToast({ type: "fail", text: "哎呀，服务器似乎出了点问题" });
           that.setData({ filesPath: [], btnDisabled: false });
           resolve(false);

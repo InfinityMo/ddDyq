@@ -2,6 +2,7 @@
 
 view, text {
   word-break: break-all;
+  word-wrap:break-word
 }
 
 .flex {
@@ -118,4 +119,9 @@ view, text {
 
 .dark-mode .error-text{
   color: #fff
+}
+
+/* p评论换行 */
+.comment-flex .reply-user,.comment-flex .reply{
+  flex-shrink: 0;
 }

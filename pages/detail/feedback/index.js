@@ -16,8 +16,8 @@ Page({
     errorNodata: true
   },
   textareaInput(e) {
-    const content = e.detail.value.trim();
-    if (content.length > 0) {
+    const content = e.detail.value;
+    if (content.trim().length > 0) {
       this.setData({ commentComment: content, "commentObj.content": content });
     }
   },

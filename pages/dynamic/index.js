@@ -1,4 +1,4 @@
-import { encodeUrl,ddToast } from "/common/utils/utils";
+import { encodeUrl, ddToast } from "/common/utils/utils";
 import request from "/common/request/request";
 Page({
   data: {
@@ -106,8 +106,9 @@ Page({
     this.onFocus();
   },
   textareaInput(e) {
-    const value = e.detail.value.trim();
-    if (value.length > 0) {
+    // const value = e.detail.value.trim();
+    const { value } = e.detail;
+    if (value.trim().length > 0) {
       this.setData({ commentComment: value, "commentObj.content": value });
     } else {
       this.setData({ commentComment: "", "commentObj.content": value });

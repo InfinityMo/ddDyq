@@ -63,6 +63,7 @@
 }
 
 .right-wrap .dynamic-content-words {
+  display: block;
   font-size: 15px;
 }
 
