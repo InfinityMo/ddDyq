@@ -1,4 +1,5 @@
 import request from "/common/request/request";
+import { ddToast } from "/common/utils/utils";
 Page({
   data: {
     mode: false, //暗黑模式
@@ -36,6 +37,15 @@ Page({
         params
       })
       .then(res => {
+        if (res.code === 204) {
+          this.setData({
+            placeholder: "一起讨论吧...",
+            commentComment: "",
+            commentObj: { opinionId: this.data.commentObj.opinionId }
+          });
+          ddToast({ type: "fail", text: "部分文字无法通过审核，请检查" });
+          return false;
+        }
         if (res) {
           this.$spliceData({
             adoptComment: [this.data.adoptComment.length, 0, { ...res }]

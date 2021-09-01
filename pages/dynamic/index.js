@@ -1,4 +1,4 @@
-import { encodeUrl } from "/common/utils/utils";
+import { encodeUrl,ddToast } from "/common/utils/utils";
 import request from "/common/request/request";
 Page({
   data: {
@@ -9,7 +9,7 @@ Page({
     placeholder: "",
     shareId: "",
     shareImg:
-      "https://lianen-data-develop.oss-cn-shanghai.aliyuncs.com/topic/share/312908fe-69f3-48d9-ab22-cceb55627796.png?Expires=1631497546&OSSAccessKeyId=LTAI5t9iqts8pXE9AdrwCyDn&Signature=2ozlbNbx91JCuV03GyCDZhUPNFo%3D",
+      "https://lianen-data-develop.oss-cn-shanghai.aliyuncs.com/topic/share/45cd733d-c529-45b8-ac60-abba81927981.png?Expires=1631554229&OSSAccessKeyId=LTAI5t9iqts8pXE9AdrwCyDn&Signature=T5nYSZnFL00jVQU%2B2TT08ZARKec%3D",
     total: 0,
     pageNo: 1,
     dynamics: [],
@@ -120,6 +120,15 @@ Page({
         params: this.data.commentObj
       })
       .then(res => {
+        if (res.code === 204) {
+          this.setData({
+            commentComment: "",
+            commentObj: {},
+            placeholder: ""
+          });
+          ddToast({ type: "fail", text: "部分文字无法通过审核，请检查" });
+          return false;
+        }
         if (res) {
           const topicIndex = this.data.dynamics.findIndex(
             item => item.topic.id === res.topicId
@@ -193,7 +202,7 @@ Page({
     this.setData({ focus: true, isShowInput: true });
   },
   onBlur() {
-    this.setData({ focus: false, isShowInput: false });
+    this.setData({ focus: false, isShowInput: false, commentComment: "" });
   },
   onKeyboardHide() {
     this.onBlur();

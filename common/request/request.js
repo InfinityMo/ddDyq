@@ -99,28 +99,29 @@ const request = {
 
 // 错误处理方法
 const handleError = err => {
-  let message = "请求错误";
-  if (err.error) {
+  let message = "哎呀，服务器似乎出了点问题";
+  if (err.error === 12) {
+    message = "您的网络似乎出了点问题";
     // 判断错误码
-    switch (err.error) {
-      case 11:
-        message = "无权跨域";
-        break;
-      case 12:
-        message = "网络出错";
-        break;
-      case 13:
-        message = "超时";
-        break;
-      case 14:
-        message = "解码失败";
-        break;
-      case 19:
-        message = "哎呀，服务器似乎出了点问题";
-        break;
-      default:
-        break;
-    }
+    // switch (err.error) {
+    //   case 11:
+    //     message = "无权跨域";
+    //     break;
+    //   case 12:
+    //     message = "网络出错";
+    //     break;
+    //   case 13:
+    //     message = "超时";
+    //     break;
+    //   case 14:
+    //     message = "解码失败";
+    //     break;
+    //   case 19:
+    //     message = "哎呀，服务器似乎出了点问题";
+    //     break;
+    //   default:
+    //     break;
+    // }
   }
   ddToast({ type: "fail", text: message });
   ddLoading.hide();

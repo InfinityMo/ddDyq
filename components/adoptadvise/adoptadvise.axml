@@ -39,5 +39,5 @@
       <view class="adopt-detail-btn" data-id="{{item.id}}" onTap="toAdoptDeatil">查看详情</view>
     </view>
   </view>
-  <dataerror dataErrorShow="{{errorNodata}}" netWorkError="{{netWorkError}}" noDataContent="建议" />
+  <dataerror className="user-error-nodata" dataErrorShow="{{errorNodata}}" netWorkError="{{netWorkError}}" noDataContent="建议" />
 </view>

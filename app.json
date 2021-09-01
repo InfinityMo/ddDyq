@@ -6,6 +6,7 @@
     "pages/user/index",
     "pages/detail/dynamicinfo/index",
     "pages/detail/feedback/index"
+    
   ],
   "window": {
     "defaultTitle": "畅言",

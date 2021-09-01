@@ -37,5 +37,5 @@
       <view class="line"></view>
     </view>
   </scroll-view>
-  <dataerror dataErrorShow="{{errorNodata}}" netWorkError="{{netWorkError}}" noDataContent="建议" />
+  <dataerror className="user-error-nodata" dataErrorShow="{{errorNodata}}" netWorkError="{{netWorkError}}" noDataContent="建议" />
 </view>

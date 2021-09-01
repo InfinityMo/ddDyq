@@ -55,6 +55,10 @@
   color: #333;
 }
 
+.right-wrap .dynamic-content-words {
+  font-size: 15px;
+}
+
 .picture-wrap {
   flex-wrap: wrap;
 }
@@ -107,7 +111,8 @@ button[plain] {
   line-height: 20px;
   border: none;
 }
-.share-btn text{
+
+.share-btn text {
   display: inline-block;
   height: 20px;
 }

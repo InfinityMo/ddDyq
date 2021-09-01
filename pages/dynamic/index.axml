@@ -13,7 +13,7 @@
         <!-- 动态 -->
         <view class="words-pic-wrap">
           <!-- 文字 -->
-          <view class="words" data-id="{{list.topic.id}}">{{list.topic.content}}</view>
+          <view class="words dynamic-content-words" data-id="{{list.topic.id}}">{{list.topic.content}}</view>
           <!-- 图片 -->
           <view a:if="{{list.topic.thumbnailAvatars.length>0}}">
             <view class="flex picture-wrap {{list.topic.thumbnailAvatars.length===1 ? 'pic-one':''}}">
@@ -28,10 +28,12 @@
               <image a:if="{{list.topic.isCurrentUserUp==='1'}}" class="icon" mode="scaleToFill" src="/image/system/thumbActive.png"/>
               <image a:else class="icon" mode="scaleToFill" src="/image/system/thumb.png"/>
               <text class="num {{list.topic.isCurrentUserUp==='1' ? 'num-support-active':''}}" a:if="{{list.topic.upCount>0}}">{{list.topic.upCount}}</text>
+              <text class="num" a:else>点赞</text>
             </view>
             <view class="flex-item-center interaction-item" data-id="{{list.topic.id}}" data-commentId="" data-authorName="{{list.topic.isAnonymous ? list.topic.anonymousName:list.topicUser.username}}" data-anonymousName="{{list.currentAnonymousName}}" onTap="toComment">
               <image class="icon" mode="scaleToFill" src="/image/system/comment.png"/>
               <text class="num" a:if="{{list.comments.length>0}}">{{list.comments.length}}</text>
+              <text class="num" a:else>评论</text>
             </view>
             <button open-type="share" plain="{{true}}" hover-class="none" class="flex-item-center interaction-item share-btn" onTap="sharehandle" data-id="{{list.topic.id}}">
               <image class="icon" mode="scaleToFill" src="/image/system/forward.png"/>

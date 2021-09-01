@@ -4,9 +4,11 @@
   padding: 10px 15px;
   box-sizing: border-box;
 }
-.dynamic-page{
+
+.dynamic-page {
   padding: 10px 0;
 }
+
 .scroll-wrap {
   height: 100vh;
 }
@@ -15,9 +17,11 @@
   padding: 10px 15px;
   border-top: 1px solid #E9E9E9;
 }
+
 .dynamic-item:first-child {
   border-top: 0;
 }
+
 .left-wrap {
   flex-shrink: 0;
 }
@@ -56,6 +60,10 @@
   font-size: 13px;
   line-height: 19px;
   color: #333;
+}
+
+.right-wrap .dynamic-content-words {
+  font-size: 15px;
 }
 
 .picture-wrap {
@@ -110,10 +118,12 @@ button[plain] {
   line-height: 20px;
   border: none;
 }
-.share-btn text{
+
+.share-btn text {
   display: inline-block;
   height: 20px;
 }
+
 .comment-wrap {
   padding: 5px 0;
   margin-top: 12px;
@@ -236,12 +246,15 @@ button[plain] {
 .dark-mode .comment-wrap .support.support-line {
   border-bottom: 1px solid #444;
 }
+
 .dark-mode .dynamic-item {
-   border-top: 1px solid #444;
+  border-top: 1px solid #444;
 }
-.dark-mode .dynamic-item:first-child{
+
+.dark-mode .dynamic-item:first-child {
   border-top: 0;
 }
+
 .dark-mode .comment-wrap {
   background-color: #303030;
 }

@@ -21,9 +21,9 @@ Page({
     radioCheck: "1",
     content: "",
     fileLists: [],
-    filesPath: [],//服务器返回的路径
+    filesPath: [], //服务器返回的路径
     shareImg:
-      "https://lianen-data-develop.oss-cn-shanghai.aliyuncs.com/topic/share/312908fe-69f3-48d9-ab22-cceb55627796.png?Expires=1631497546&OSSAccessKeyId=LTAI5t9iqts8pXE9AdrwCyDn&Signature=2ozlbNbx91JCuV03GyCDZhUPNFo%3D"
+      "https://lianen-data-develop.oss-cn-shanghai.aliyuncs.com/topic/share/45cd733d-c529-45b8-ac60-abba81927981.png?Expires=1631554229&OSSAccessKeyId=LTAI5t9iqts8pXE9AdrwCyDn&Signature=T5nYSZnFL00jVQU%2B2TT08ZARKec%3D"
   },
   selectPicture() {
     dd.chooseImage({
@@ -79,7 +79,7 @@ Page({
     dd.showLoading({
       content: "发布中..."
     });
-    this.setData({ btnDisabled: true })
+    this.setData({ btnDisabled: true });
     if (this.data.fileLists.length > 0) {
       this.upload();
     } else {
@@ -90,12 +90,18 @@ Page({
     ddToast({ type: "none", text: "发布中，请耐心等待" });
   },
   publish() {
+    const pictureArr = [];
+    this.data.filesPath.forEach(item => {
+      if (item) {
+        pictureArr.push(item);
+      }
+    });
     request
       .post({
         url: "add",
         params: {
           content: this.data.content,
-          avatar: this.data.filesPath.join(),
+          avatar: pictureArr.join(),
           isDynamic: this.data.radioCheck === "1",
           isAnonymous: getApp().globalData.isAnonymous
         }
@@ -168,7 +174,7 @@ Page({
             dd.hideLoading();
           }
         },
-        fail: function (res) {
+        fail: function(res) {
           ddToast({ type: "fail", text: "哎呀，服务器似乎出了点问题" });
           that.setData({ filesPath: [], btnDisabled: false });
           resolve(false);
@@ -211,7 +217,6 @@ Page({
   },
   onHide() {
     // 页面隐藏
-
   },
   onUnload() {
     // 页面被关闭

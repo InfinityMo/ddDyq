@@ -11,10 +11,9 @@
     </view>
     <view class="user-words user-words-detail">
       <view class="flex user">
-        <!--<image mode="scaleToFill" src="{{adpotDeatil.adoptUser.avatar}}"/> -->
         <image class="avatar" mode="aspectFill" src="{{adpotDeatil.isAnonymous ? '/image/system/anonymous.png':adpotDeatil.adoptUser.avatar ? adpotDeatil.adoptUser.avatar:'/image/system/defaultAvatar.png'}}" />
         <view class="user-info">
-          <view>{{adpotDeatil.isAnonymous ? adpotDeatil.anonymousName:adpotDeatil.adoptUser.username}}</view>
+          <view>{{adpotDeatil.isAnonymous ? adpotDeatil.adoptUser.anonymousName:adpotDeatil.adoptUser.username}}</view>
           <text>{{adpotDeatil.inTime}}</text>
         </view>
       </view>
