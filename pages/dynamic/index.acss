@@ -63,7 +63,8 @@
 }
 
 .right-wrap .dynamic-content-words {
-  display: block;
+  display: inline-block;
+  word-break: break-word;
   font-size: 15px;
 }
 

@@ -1,8 +1,8 @@
 .user-data-page{
   padding:0 15px ;
 }
-.page {
-  padding: 10px 0;
+.mysuggest-page {
+ padding-bottom: 10px;
 }
 .mysuggest-scroll{
   padding: 0 15px 0 15px;

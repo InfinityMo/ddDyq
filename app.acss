@@ -4,7 +4,9 @@ view, text {
   word-break: break-all;
   word-wrap:break-word
 }
-
+text{
+    word-break: break-word;
+}
 .flex {
   display: flex;
 }
@@ -104,12 +106,12 @@ view, text {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  /* height: 100vh; */
   font-size: 15px;
   text-align: center;
 }
 .user-error-nodata{
-  padding-top: 50px;
+  padding-top: 80px;
   /* height: calc() */
 }
 .error-text {

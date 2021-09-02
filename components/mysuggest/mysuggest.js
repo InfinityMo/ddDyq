@@ -42,7 +42,7 @@ Component({
           this.setData(
             {
               total: res.alMyOpinionCount,
-              nowAdvise: [...this.data.nowAdvise, ...result.now],
+              nowAdvise: [],
               tempHistory: [...this.data.tempHistory, ...result.history]
             },
             () => {

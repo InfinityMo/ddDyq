@@ -1,4 +1,4 @@
-<view class="page {{className}}">
+<view class="mysuggest-page {{className}}">
   <scroll-view a:if="{{nowAdvise.length>0||historyAdvise.length>0}}" class="scroll-wrap mysuggest-scroll" scroll-y="{{true}}" onScrollToLower="lower">
     <view class="advise-wrap" a:if="{{nowAdvise.length>0}}">
       <view class="title">本月建议</view>

@@ -161,7 +161,7 @@ Page({
   // onFocus() {
   //   this.setData({ focus: true });
   // },
-  onFocus: debounce(function(e) {
+  onFocus: debounce(function (e) {
     this.setData({ focus: true });
   }, 200),
   onBlur() {
@@ -189,19 +189,35 @@ Page({
         params: { id: this.data.commentObj.opinionId, pageNo: this.data.pageNo }
       })
       .then(res => {
-        this.setData(
-          {
-            total: res.solutionCommentCount,
-            adpotDeatil: { ...res.opinion },
-            adoptComment: [...this.data.adoptComment, ...res.solutionComment]
-          },
-          () => {
-            this.setData({
-              errorNodata: Object.keys(this.data.adpotDeatil).length > 0,
-              netWorkError: false
-            });
-          }
-        );
+        if (Object.keys(res.opinion).length > 0) {
+          this.setData(
+            {
+              total: res.solutionCommentCount,
+              adpotDeatil: { ...res.opinion },
+              adoptComment: [...this.data.adoptComment, ...res.solutionComment]
+            },
+            () => {
+              this.setData({
+                errorNodata: Object.keys(this.data.adpotDeatil).length > 0,
+                netWorkError: false
+              });
+            }
+          );
+        } else {
+          this.setData(
+            {
+              total: 0,
+              adpotDeatil: null,
+              adoptComment: []
+            },
+            () => {
+              this.setData({
+                errorNodata: false,
+                netWorkError: false
+              });
+            }
+          );
+        }
         dd.stopPullDownRefresh();
       })
       .catch(err => {
@@ -220,18 +236,18 @@ Page({
   },
   onLoad(query) {
     // 页面加载
-    const { id  } = query;
+    const { id } = query;
     if (id) {
-        this.setData({ "commentObj.opinionId": id });
-        if (getApp().globalData.token) {
-          this.getDetailData();
-        } else {
-          getApp().tokenCallback = token => {
-            if (token != "") {
-              this.getDetailData();
-            }
-          };
-        }
+      this.setData({ "commentObj.opinionId": id });
+      if (getApp().globalData.token) {
+        this.getDetailData();
+      } else {
+        getApp().tokenCallback = token => {
+          if (token != "") {
+            this.getDetailData();
+          }
+        };
+      }
     }
   },
   onReady() {

@@ -13,7 +13,7 @@
         <!-- 动态 -->
         <view class="words-pic-wrap">
           <!-- 文字 -->
-          <view class="words dynamic-content-words" onTap="toDetail" data-id="{{list.topic.id}}">{{list.topic.content}}</view>
+          <text class="words dynamic-content-words" onTap="toDetail" data-id="{{list.topic.id}}">{{list.topic.content}}</text>
           <!-- 图片 -->
           <view a:if="{{list.topic.thumbnailAvatars.length>0}}">
             <view class="flex picture-wrap {{list.topic.thumbnailAvatars.length===1 ? 'pic-one':''}}">
@@ -83,6 +83,6 @@
     </view>
     <button onTap="publishComment">发布</button>
   </view>
-  <dataerror dataErrorShow="{{errorNodata}}" netWorkError="{{netWorkError}}" errorMsg="您来晚一步，数据已经被删除了~" />
+  <dataerror className="user-error-nodata" dataErrorShow="{{errorNodata}}" netWorkError="{{netWorkError}}" errorMsg="您来晚一步，数据已经被删除了~" />
   <suspension isAnonymous="{{mode}}" noTabBar="{{true}}" />
 </view>
