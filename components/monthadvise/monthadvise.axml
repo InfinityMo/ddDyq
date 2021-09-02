@@ -21,7 +21,7 @@
         </view>
       </view>
       <view class="content-words">
-        <view class="words">{{item.content}}</view>
+        <view class="words"><text>{{item.content}}</text></view>
         <view class="content-support flex-item-center flex-justify-end">
           <view class="flex-item-center" onTap="toSupport" data-id="{{item.id}}" data-anonymousName="{{item.anonymousName}}">
             <image a:if="{{item.isCurrentUserUp}}" class="icon" mode="scaleToFill" src="/image/system/thumbActive.png" />
@@ -37,5 +37,5 @@
       <view class="line"></view>
     </view>
   </scroll-view>
-  <dataerror className="user-error-nodata" dataErrorShow="{{errorNodata}}" netWorkError="{{netWorkError}}" noDataContent="建议" />
+  <dataerror className="user-error-nodata" dataErrorShow="{{errorNodata}}" netWorkError="{{netWorkError}}" errorMsg="快去发表一条建议吧~" />
 </view>

@@ -67,11 +67,15 @@
   width: calc( (100% - 4px) / 3);
   height: calc( (100vw - 101px) / 3);
   margin: 0 2px 2px 0;
+  background-color: rgba(119, 119, 119, .1)
 }
 
 /* 一张图 */
 
 .pic-one .picture {
+  width: auto;
+  height: auto;
+  margin: 0;
   max-width: 100%;
   max-height: 170px;
   overflow: hidden;
@@ -158,7 +162,7 @@ button[plain] {
 .comment .comment-item {
   padding-top: 5px;
   font-size: 13px;
-  line-height: 21px;
+  line-height: 18px;
 }
 
 .comment .reply-user {

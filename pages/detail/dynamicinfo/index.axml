@@ -59,13 +59,13 @@
             <view class="comment-item" a:for="{{list.comments}}" a:for-item="comment" key="{{item}}" onTap="toComment" data-id="{{list.topic.id}}" 
               data-commentId="{{comment.id}}" data-authorName="{{comment.isAnonymous ?comment.anonymousName:comment.username}}" 
               data-anonymousName="{{list.currentAnonymousName}}">
-              <text a:if="{{comment.commentId}}" class="flex comment-flex">
+              <text a:if="{{comment.commentId}}">
                 <text class="reply-user">{{comment.isAnonymous ? comment.anonymousName:comment.username}}</text>
                 <text class="reply">回复</text>
                 <text class="reply-user">{{comment.commentUserName}}：</text>
                 <text>{{comment.content}}</text>
               </text>
-              <text a:else class="flex comment-flex">
+              <text a:else>
                 <text class="reply-user">{{comment.isAnonymous ? comment.anonymousName:comment.username}}：</text>
                 <text>{{comment.content}}</text>
               </text>
@@ -83,6 +83,6 @@
     </view>
     <button onTap="publishComment">发布</button>
   </view>
-  <dataerror dataErrorShow="{{errorNodata}}" netWorkError="{{netWorkError}}" />
+  <dataerror dataErrorShow="{{errorNodata}}" netWorkError="{{netWorkError}}" errorMsg="您来晚一步，数据已经被删除了~" />
   <suspension isAnonymous="{{mode}}" noTabBar="{{true}}" />
 </view>

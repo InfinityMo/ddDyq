@@ -9,7 +9,7 @@
           <text class="month">{{item.month}}月</text>
         </view>
         <!-- 内容 -->
-        <view class="suggests suggest-content">{{item.content}}</view>
+        <view class="suggests suggest-content"><text>{{item.content}}</text></view>
         <!-- 排名 -->
         <view class="rank-text-wrap">
           <image class="rank-img" a:if="{{item.rank==='1'||item.rank==='2'||item.rank==='3'}}" mode="scaleToFill" src="/image/system/rank{{item.rank}}.png" />
@@ -32,7 +32,9 @@
           <text class="month">{{item.month}}月</text>
         </view>
         <!-- 内容 -->
-        <view class="suggests suggest-content">{{item.content}}</view>
+        <view class="suggests suggest-content">
+          <text>{{item.content}}</text>
+        </view>
         <!-- 排名 -->
         <view class="rank-text-wrap">
           <image class="rank-img" a:if="{{item.rank==='1'||item.rank==='2'||item.rank==='3'}}" mode="scaleToFill" src="/image/system/rank{{item.rank}}.png" />
@@ -47,5 +49,5 @@
       <view class="line"></view>
     </view>
   </scroll-view>
-  <dataerror className="user-error-nodata" dataErrorShow="{{errorNodata}}" netWorkError="{{netWorkError}}" noDataContent="建议" />
+  <dataerror className="user-error-nodata" dataErrorShow="{{errorNodata}}" netWorkError="{{netWorkError}}" errorMsg="您还没有发表过建议哦~" />
 </view>

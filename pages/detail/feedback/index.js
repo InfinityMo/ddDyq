@@ -1,5 +1,5 @@
 import request from "/common/request/request";
-import { ddToast } from "/common/utils/utils";
+import { ddToast, debounce } from "/common/utils/utils";
 Page({
   data: {
     mode: false, //暗黑模式
@@ -11,6 +11,8 @@ Page({
     commentObj: {},
     pageNo: 1,
     total: 0,
+    shareImg:
+      "https://lianen-data-develop.oss-cn-shanghai.aliyuncs.com/topic/share/45cd733d-c529-45b8-ac60-abba81927981.png?Expires=1631554229&OSSAccessKeyId=LTAI5t9iqts8pXE9AdrwCyDn&Signature=T5nYSZnFL00jVQU%2B2TT08ZARKec%3D",
     baselineShow: false,
     netWorkError: false,
     errorNodata: true
@@ -156,9 +158,12 @@ Page({
     });
     this.onFocus();
   },
-  onFocus() {
+  // onFocus() {
+  //   this.setData({ focus: true });
+  // },
+  onFocus: debounce(function(e) {
     this.setData({ focus: true });
-  },
+  }, 200),
   onBlur() {
     this.setData({ focus: false, placeholder: "一起讨论吧..." });
   },
@@ -184,11 +189,19 @@ Page({
         params: { id: this.data.commentObj.opinionId, pageNo: this.data.pageNo }
       })
       .then(res => {
-        this.setData({
-          total: res.solutionCommentCount,
-          adpotDeatil: { ...res.opinion },
-          adoptComment: [...this.data.adoptComment, ...res.solutionComment]
-        });
+        this.setData(
+          {
+            total: res.solutionCommentCount,
+            adpotDeatil: { ...res.opinion },
+            adoptComment: [...this.data.adoptComment, ...res.solutionComment]
+          },
+          () => {
+            this.setData({
+              errorNodata: Object.keys(this.data.adpotDeatil).length > 0,
+              netWorkError: false
+            });
+          }
+        );
         dd.stopPullDownRefresh();
       })
       .catch(err => {
@@ -207,18 +220,18 @@ Page({
   },
   onLoad(query) {
     // 页面加载
-    const { id } = query;
+    const { id  } = query;
     if (id) {
-      this.setData({ "commentObj.opinionId": id });
-      if (getApp().globalData.token) {
-        this.getDetailData();
-      } else {
-        getApp().tokenCallback = token => {
-          if (token != "") {
-            this.getDetailData();
-          }
-        };
-      }
+        this.setData({ "commentObj.opinionId": id });
+        if (getApp().globalData.token) {
+          this.getDetailData();
+        } else {
+          getApp().tokenCallback = token => {
+            if (token != "") {
+              this.getDetailData();
+            }
+          };
+        }
     }
   },
   onReady() {
@@ -252,15 +265,13 @@ Page({
       }
     );
   },
-  // onReachBottom () {
-  //   // 页面被拉到底部
-  // },
   onShareAppMessage() {
     // 返回自定义分享信息
     return {
-      title: "畅言",
-      desc: "My App description",
-      path: "pages/detail/feedback/index"
+      title: "小程序",
+      desc: "您的好友给您分享了一条建议",
+      imageUrl: this.data.shareImg,
+      path: `pages/detail/feedback/index?id=${this.data.commentObj.opinionId}`
     };
   }
 });

@@ -52,7 +52,7 @@ Component({
                   errorNodata:
                     this.data.historyAdvise.length > 0 ||
                     this.data.nowAdvise.length > 0,
-                  netWorkError: true
+                  netWorkError: false
                 });
               });
             }

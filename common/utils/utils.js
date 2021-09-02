@@ -34,8 +34,8 @@ export const ddLoading = {
   }
 };
 
-export const upload = (options) => {
-  console.log(`${getApp().globalData.host}/${options.url}`)
+export const upload = options => {
+  console.log(`${getApp().globalData.host}/${options.url}`);
   dd.uploadFile({
     url: `${getApp().globalData.host}/${options.url}`,
     fileType: "image",
@@ -45,7 +45,7 @@ export const upload = (options) => {
     success: res => {
       dd.alert({ title: `上传成功：${JSON.stringify(res)}` });
     },
-    fail: function (res) {
+    fail: function(res) {
       dd.alert({ title: `上传失败：${JSON.stringify(res)}` });
     }
   });
@@ -53,25 +53,56 @@ export const upload = (options) => {
 
 // 生成uuid
 export const createUUID = (length = 128) => {
-  let chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('')
-  let uuid = new Array(length)
-  let rnd = 0
-  let r
+  let chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".split(
+    ""
+  );
+  let uuid = new Array(length);
+  let rnd = 0;
+  let r;
   for (let i = 0; i < length; i++) {
     if (i === 8 || i === 13 || i === 18 || i === 23) {
-      uuid[i] = '-'
+      uuid[i] = "-";
     } else if (i === 14) {
-      uuid[i] = '4'
+      uuid[i] = "4";
     } else {
-      if (rnd <= 0x02) { rnd = 0x2000000 + (Math.random() * 0x1000000) | 0 }
-      r = rnd & 0xf
-      rnd = rnd >> 4
-      uuid[i] = chars[(i === 19) ? (r & 0x3) | 0x8 : r]
+      if (rnd <= 0x02) {
+        rnd = (0x2000000 + Math.random() * 0x1000000) | 0;
+      }
+      r = rnd & 0xf;
+      rnd = rnd >> 4;
+      uuid[i] = chars[i === 19 ? (r & 0x3) | 0x8 : r];
     }
   }
-  return uuid.join('').replace(/[-]/g, '').toLowerCase()
+  return uuid
+    .join("")
+    .replace(/[-]/g, "")
+    .toLowerCase();
+};
+// 防抖
+export const debounce = (func, wait) => {
+  let timer;
+  return function() {
+    let context = this; // 注意 this 指向
+    let args = arguments; // arguments中存着e
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, wait);
+  };
+};
+// 节流
+export function throttle(fn, interval) {
+  var enterTime = 0; //触发的时间
+  var gapTime = interval || 300; //间隔时间，如果interval不传，则默认300ms
+  return function() {
+    var context = this;
+    var backTime = new Date(); //第一次函数return即触发的时间
+    if (backTime - enterTime > gapTime) {
+      fn.call(context, arguments);
+      enterTime = backTime; //赋值给第一次触发的时间，这样就保存了第二次触发的时间
+    }
+  };
 }
-
 // 嵌套三层结构
 export const putData = (arr, key) => {
   let map = [],
@@ -105,7 +136,7 @@ export const putData = (arr, key) => {
     }
   }
   return result;
-}
+};
 
 export const putData2 = (arr, key) => {
   let map = [],
@@ -128,4 +159,4 @@ export const putData2 = (arr, key) => {
     }
   }
   return result;
-}
+};

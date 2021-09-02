@@ -7,7 +7,6 @@ Component({
     errorNodata: true,
     netWorkError: false
   },
-  props: {},
   didMount() {
     // 页面加载
     if (getApp().globalData.token) {

@@ -1,4 +1,3 @@
-/**! __CODEPLACEHOLDER_START__ */ /*[PositionForClientEntryCodeBegin]*/ /**! __CODEPLACEHOLDER_END__ */
 require('@alipay/appx-compiler/lib/sjsEnvInit');
 require('./config$');
 

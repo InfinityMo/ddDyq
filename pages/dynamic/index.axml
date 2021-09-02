@@ -59,13 +59,13 @@
             <view class="comment-item" a:for="{{list.comments}}" a:for-item="comment" key="{{item}}" onTap="toComment" data-id="{{list.topic.id}}" 
               data-commentId="{{comment.id}}" data-authorName="{{comment.isAnonymous ?comment.anonymousName:comment.username}}" 
               data-anonymousName="{{list.currentAnonymousName}}">
-              <text a:if="{{comment.commentId}}" class="flex comment-flex">
+              <text a:if="{{comment.commentId}}">
                 <text class="reply-user">{{comment.isAnonymous ?comment.anonymousName:comment.username}}</text>
                 <text class="reply">回复</text>
                 <text class="reply-user">{{comment.commentUserName}}：</text>
                 <text>{{comment.content}}</text>
               </text>
-              <text a:else class="flex comment-flex">
+              <text a:else >
                 <text class="reply-user">{{comment.isAnonymous ?comment.anonymousName:comment.username}}：</text>
                 <text>{{comment.content}}</text>
               </text>
@@ -80,7 +80,7 @@
       <view class="line"></view>
     </view>
   </scroll-view>
-  <dataerror dataErrorShow="{{errorNodata}}" netWorkError="{{netWorkError}}" noDataContent="动态" />
+  <dataerror dataErrorShow="{{errorNodata}}" netWorkError="{{netWorkError}}" errorMsg="快去发表一条动态吧~" />
   <view class="flex-item-center flex-item-end text-wrap" hidden="{{!isShowInput}}">
     <view class="input-text-box-wrap">
       <textarea class="input-text" onInput="textareaInput" controlled="{{true}}" value="{{commentComment}}" fixed="{{true}}" 

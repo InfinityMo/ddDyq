@@ -24,7 +24,7 @@
               <image a:if="{{item.avatar.length===4}}" class="img four-img" a:for="{{item.avatar}}" a:for-item="img" mode="aspectFill" src="{{img}}" />
             </view>
             <view class="words-wrap">
-              <view class="ell2 words">{{item.content}}</view>
+              <view class="ell2 words"><text>{{item.content}}</text></view>
               <view class="img-total" a:if="{{item.avatarCount>0}}">共{{item.avatarCount}}张</view>
             </view>
           </view>
@@ -37,5 +37,5 @@
       <view class="line"></view>
     </view>
   </scroll-view>
-  <dataerror className="user-error-nodata" dataErrorShow="{{errorNodata}}" netWorkError="{{netWorkError}}" noDataContent="动态" />
+  <dataerror className="user-error-nodata" dataErrorShow="{{errorNodata}}" netWorkError="{{netWorkError}}" errorMsg="您还没有发表过动态哦~" />
 </view>

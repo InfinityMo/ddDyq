@@ -110,7 +110,7 @@ view, text {
 }
 .user-error-nodata{
   padding-top: 50px;
-  height: 100%
+  /* height: calc() */
 }
 .error-text {
   padding-top: 25px;

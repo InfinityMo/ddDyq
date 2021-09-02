@@ -5,7 +5,9 @@
 .scroll-wrap {
   height: 100%;
 }
-
+.feed-back-wrap{
+  height: calc(100vh - 63px);
+}
 .text-wrap {
   position: fixed;
   width: 100%;
@@ -187,7 +189,9 @@
 .adopt .comment-box-wrap {
   padding-bottom: 50px;
 }
-
+.adopt .feed-back-comment-wrap{
+  padding-bottom: 20px
+}
 .adopt .user-words.user-words-detail.comment-detail .text {
   padding: 5px 0 0 0;
   font-size: 13px;
@@ -288,7 +292,7 @@
   padding-left: 3px;
 }
 .adopt-comment-scroll{
-  height:calc(100vh - 63px) ;
+  /* height:calc(100vh - 63px) ; */
 }
 .dark-mode .comment-tip-box {
   color: #fff;

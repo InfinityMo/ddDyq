@@ -5,6 +5,6 @@
     </view>
     <view a:else>
       <image mode="aspectFit" src="/image/system/noData.png"/>
-      <view class="error-text">快去发表一条{{noDataContent}}吧~</view>
+      <view class="error-text">{{errorMsg}}</view>
     </view>
   </view>
