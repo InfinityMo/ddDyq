@@ -13,7 +13,7 @@ Page({
         disabled: "0"
       },
       {
-        name: "意见板",
+        name: "建议板",
         value: "2",
         disabled: "0"
       }

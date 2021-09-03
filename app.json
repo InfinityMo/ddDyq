@@ -27,7 +27,7 @@
         "pagePath": "pages/suggest/index",
         "icon": "image/system/suggest.png",
         "activeIcon": "image/system/suggestActive.png",
-        "name": "意见栏"
+        "name": "建议板"
       },
       {
         "pagePath": "pages/publish/index",

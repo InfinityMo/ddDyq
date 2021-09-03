@@ -18,7 +18,7 @@
           <text class="radio-text">{{item.name}}</text>
         </view>
         <view class="tip" a:if="{{item.value==='1'}}">现在为{{mode ? '匿名':'实名'}}状态</view>
-        <view class="tip" a:else>意见板不可配图</view>
+        <view class="tip" a:else>建议板不可配图</view>
       </label>
     </radio-group>
   </view>
