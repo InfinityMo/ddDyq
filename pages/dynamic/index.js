@@ -167,7 +167,7 @@ Page({
         "https://lianen-data-develop.oss-cn-shanghai.aliyuncs.com/topic/share/45cd733d-c529-45b8-ac60-abba81927981.png?Expires=1631554229&OSSAccessKeyId=LTAI5t9iqts8pXE9AdrwCyDn&Signature=T5nYSZnFL00jVQU%2B2TT08ZARKec%3D"
     });
     const path = shareId
-      ? `pages/detail/dynamicinfo/index?id=${shareId}`
+      ? `pages/detail/dynamicinfo/index?id=${shareId}&isShare=1`
       : "pages/dynamic/index";
     // 返回自定义分享信息
     return {

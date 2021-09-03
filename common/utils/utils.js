@@ -35,7 +35,6 @@ export const ddLoading = {
 };
 
 export const upload = options => {
-  console.log(`${getApp().globalData.host}/${options.url}`);
   dd.uploadFile({
     url: `${getApp().globalData.host}/${options.url}`,
     fileType: "image",

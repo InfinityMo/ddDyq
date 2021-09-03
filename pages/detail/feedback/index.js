@@ -161,7 +161,7 @@ Page({
   // onFocus() {
   //   this.setData({ focus: true });
   // },
-  onFocus: debounce(function (e) {
+  onFocus: debounce(function(e) {
     this.setData({ focus: true });
   }, 200),
   onBlur() {
@@ -235,18 +235,46 @@ Page({
     }
   },
   onLoad(query) {
-    // 页面加载
-    const { id } = query;
-    if (id) {
-      this.setData({ "commentObj.opinionId": id });
-      if (getApp().globalData.token) {
-        this.getDetailData();
-      } else {
-        getApp().tokenCallback = token => {
-          if (token != "") {
-            this.getDetailData();
-          }
-        };
+    if (query.isShare === "1") {
+      if (query.id) {
+        if (getApp().globalData.token) {
+          dd.switchTab({
+            url: "/pages/dynamic/index",
+            success() {
+              dd.redirectTo({
+                url: `/pages/detail/feedback/index?id=${query.id}`
+              });
+            }
+          });
+        } else {
+          getApp().tokenCallback = token => {
+            if (token != "") {
+              dd.switchTab({
+                url: "/pages/dynamic/index",
+                success() {
+                  dd.redirectTo({
+                    url: `/pages/detail/feedback/index?id=${query.id}`
+                  });
+                }
+              });
+            }
+          };
+        }
+      }
+    } else {
+      // 页面加载
+      const { id } = query;
+      if (id) {
+        this.setData({ "commentObj.opinionId": id });
+        if (getApp().globalData.token) {
+          this.getDetailData();
+        } else {
+          getApp().tokenCallback = token => {
+            if (token != "") {
+              this.getDetailData();
+            }
+          };
+        }
       }
     }
   },
@@ -287,7 +315,7 @@ Page({
       title: "小程序",
       desc: "您的好友给您分享了一条建议",
       imageUrl: this.data.shareImg,
-      path: `pages/detail/feedback/index?id=${this.data.commentObj.opinionId}`
+      path: `pages/detail/feedback/index?id=${this.data.commentObj.opinionId}&isShare=1`
     };
   }
 });

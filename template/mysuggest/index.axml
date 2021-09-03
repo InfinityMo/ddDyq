@@ -1,5 +1,0 @@
-<template name="mysuggest">
-    <view class="modal" hidden="{{hidden}}" >
-   <input placeholder="Input" />
-    </view>
-</template>

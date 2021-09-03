@@ -1,5 +1,0 @@
-<template name="mydynamic" >
-    <view  hidden="{{hidden}}" >
-   11111
-    </view>
-</template>

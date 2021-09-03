@@ -37,12 +37,11 @@ Component({
         })
         .then(res => {
           const result = this.divideData(res.Opinion);
-          // console.log(result)
           // 分两组数据
           this.setData(
             {
               total: res.alMyOpinionCount,
-              nowAdvise: [],
+              nowAdvise: [...this.data.nowAdvise, ...result.now],
               tempHistory: [...this.data.tempHistory, ...result.history]
             },
             () => {

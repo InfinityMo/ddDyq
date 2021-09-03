@@ -1,7 +1,6 @@
 import request from "/common/request/request";
 App({
   globalData: {
-    // host: "http://42510579yw.imdo.co",
     host: "http://47.100.240.53",
     token: ""
   },
@@ -14,37 +13,11 @@ App({
     // 获取authodCode
     this.getAuthCode();
     // 更新app
-    this.updateApp();
-    // 第一次打开
-    // options.query == {number:1}
-    // dd.getNetworkType({
-    //   success: res => {
-    //     dd.alert({
-    //       title: `${res.networkAvailable} - ${res.networkType}`
-    //     });
-    //   }
-    // });
   },
   onShow(options) {
-    // 从后台被 scheme 重新打开
-    // options.query == {number:1}
-    // let storageData = dd.getStorageSync({ key: "userMode" }).data;
-    // if (!storageData || !storageData.isAnonymous) {
-    //   dd.confirm({
-    //     title: "提示",
-    //     content: "是否开启匿名状态？",
-    //     confirmButtonText: "确定",
-    //     cancelButtonText: "取消",
-    //     success: result => {
-    //       dd.setStorageSync({
-    //         key: "userMode",
-    //         data: {
-    //           isAnonymous: result.confirm
-    //         }
-    //       });
-    //     }
-    //   });
-    // }
+    this.updateApp();
+  },
+  onHide() {
   },
   getAuthCode() {
     dd.getAuthCode({
