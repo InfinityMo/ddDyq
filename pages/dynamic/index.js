@@ -116,6 +116,9 @@ Page({
     }
   },
   publishComment() {
+    if (!this.data.commentObj.content) {
+      return false;
+    }
     request
       .post({
         url: "dynamic/comment",
@@ -274,13 +277,13 @@ Page({
         this.getDynamicData();
       });
     } else {
-      getApp().tokenCallback = token => {
-        if (token != "") {
+      getApp()
+        .getAuthCode()
+        .then(res => {
           this.setData({ pageNo: 1, dynamics: [] }, () => {
             this.getDynamicData();
           });
-        }
-      };
+        });
     }
   },
   onReady() {

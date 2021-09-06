@@ -74,9 +74,10 @@
 .radio-item .tip {
   color: #aaa;
 }
-
+.publish-btn-box{
+  padding: 33px 0 25px 0;
+}
 .publish-btn {
-  margin: 33px 0 15px 0;
   height: 44px;
   line-height: 44px;
   color: #fff;

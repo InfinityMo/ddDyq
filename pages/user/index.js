@@ -21,7 +21,7 @@ Page({
       : this.setData({ tabIndex, mydynamicHide: true, mysuggestHide: false });
   },
   onLoad(query) {
-    this.setData({ mydynamicKey: createUUID(), mysuggestKey: createUUID() });
+    // this.setData({ mydynamicKey: createUUID(), mysuggestKey: createUUID() });
     // 页面加载
   },
   onReady() {
@@ -30,7 +30,11 @@ Page({
   },
   onShow() {
     // 页面显示
-    this.setData({ mode: getApp().globalData.isAnonymous });
+    this.setData({
+      mode: getApp().globalData.isAnonymous,
+      mydynamicKey: createUUID(),
+      mysuggestKey: createUUID()
+    });
     getApp().watch(value => {
       this.setData({ mode: value });
     });

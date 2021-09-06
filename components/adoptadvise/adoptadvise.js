@@ -12,11 +12,16 @@ Component({
     if (getApp().globalData.token) {
       this.getAdoptData();
     } else {
-      getApp().tokenCallback = token => {
-        if (token != "") {
+      // getApp().tokenCallback = token => {
+      //   if (token != "") {
+      //     this.getAdoptData();
+      //   }
+      // };
+      getApp()
+        .getAuthCode()
+        .then(res => {
           this.getAdoptData();
-        }
-      };
+        });
     }
   },
   didUpdate() {},

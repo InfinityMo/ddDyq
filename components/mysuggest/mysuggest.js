@@ -18,11 +18,16 @@ Component({
     if (getApp().globalData.token) {
       this.getData();
     } else {
-      getApp().tokenCallback = token => {
-        if (token != "") {
+      // getApp().tokenCallback = token => {
+      //   if (token != "") {
+      //     this.getData();
+      //   }
+      // };
+      getApp()
+        .getAuthCode()
+        .then(res => {
           this.getData();
-        }
-      };
+        });
     }
   },
   didUpdate() {},

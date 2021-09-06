@@ -115,6 +115,9 @@ Page({
     }
   },
   publishComment() {
+    if (!this.data.commentObj.content) {
+      return false;
+    }
     if (!this.data.commentObj.topicId) {
       this.setData({
         "commentObj.topicId": this.data.dynamics[0].topic.id,
@@ -284,25 +287,43 @@ Page({
         if (getApp().globalData.token) {
           dd.switchTab({
             url: "/pages/dynamic/index",
-            success() {
-              dd.redirectTo({
+            complete() {
+              dd.alert({
+                title: "111"
+              });
+              dd.navigateTo({
                 url: `/pages/detail/dynamicinfo/index?id=${query.id}`
               });
             }
           });
         } else {
-          getApp().tokenCallback = token => {
-            if (token != "") {
+          getApp()
+            .getAuthCode()
+            .then(res => {
               dd.switchTab({
                 url: "/pages/dynamic/index",
-                success() {
-                  dd.redirectTo({
+                complete() {
+                  dd.alert({
+                    title: "222"
+                  });
+                  dd.navigateTo({
                     url: `/pages/detail/dynamicinfo/index?id=${query.id}`
                   });
                 }
               });
-            }
-          };
+            });
+          // getApp().tokenCallback = token => {
+          //   if (token != "") {
+          //     dd.switchTab({
+          //       url: "/pages/dynamic/index",
+          //       complete() {
+          //         dd.navigateTo({
+          //           url: `/pages/detail/dynamicinfo/index?id=${query.id}`
+          //         });
+          //       }
+          //     });
+          //   }
+          // };
         }
       }
     } else {
@@ -313,11 +334,16 @@ Page({
         if (getApp().globalData.token) {
           this.getDynamicData();
         } else {
-          getApp().tokenCallback = token => {
-            if (token != "") {
+          // getApp().tokenCallback = token => {
+          //   if (token != "") {
+          //     this.getDynamicData();
+          //   }
+          // };
+          getApp()
+            .getAuthCode()
+            .then(res => {
               this.getDynamicData();
-            }
-          };
+            });
         }
       }
     }

@@ -19,7 +19,9 @@ const request = {
             resolve(res.data.detail);
             ddLoading.hide();
           } else {
+            reject(res);
             handleError({ error: 19 });
+            ddLoading.hide();
           }
         },
         fail: err => {
@@ -54,7 +56,9 @@ const request = {
             resolve(res.data.detail || res.data);
             ddLoading.hide();
           } else {
+            reject(res);
             handleError({ error: 19 });
+            ddLoading.hide();
           }
         },
         fail: err => {

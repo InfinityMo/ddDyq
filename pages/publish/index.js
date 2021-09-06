@@ -71,7 +71,7 @@ Page({
   },
   textareaInput(e) {
     // const value = e.detail.value.trim();
-    const { value } = e.detail
+    const { value } = e.detail;
     value.trim().length > 0
       ? this.setData({ textareaFocus: true, content: value })
       : this.setData({ textareaFocus: false, content: "" });
@@ -137,6 +137,10 @@ Page({
             });
           }
         });
+      })
+      .catch(err => {
+        dd.hideLoading();
+        this.setData({ filesPath: [], btnDisabled: false });
       });
   },
   upload(count = 0) {
@@ -155,7 +159,7 @@ Page({
           if (res.code === 200) {
             count++;
             that.setData({
-              filesPath: [res.detail.urls[0], ...that.data.filesPath]
+              filesPath: [...that.data.filesPath, res.detail.urls[0]]
             });
             resolve(count);
           } else if (res.code === 203) {
@@ -175,7 +179,7 @@ Page({
             dd.hideLoading();
           }
         },
-        fail: function (res) {
+        fail: function(res) {
           ddToast({ type: "fail", text: "哎呀，服务器似乎出了点问题" });
           that.setData({ filesPath: [], btnDisabled: false });
           resolve(false);

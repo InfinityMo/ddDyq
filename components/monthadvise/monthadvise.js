@@ -28,11 +28,16 @@ Component({
     if (getApp().globalData.token) {
       this.getCurrentData();
     } else {
-      getApp().tokenCallback = token => {
-        if (token != "") {
+      // getApp().tokenCallback = token => {
+      //   if (token != "") {
+      //     this.getCurrentData();
+      //   }
+      // };
+      getApp()
+        .getAuthCode()
+        .then(res => {
           this.getCurrentData();
-        }
-      };
+        });
     }
   },
   didUpdate() {},

@@ -21,9 +21,14 @@ Page({
     const content = e.detail.value;
     if (content.trim().length > 0) {
       this.setData({ commentComment: content, "commentObj.content": content });
+    } else {
+      this.setData({ commentComment: "", "commentObj.content": content });
     }
   },
   publishComment() {
+    if (!this.data.commentObj.content) {
+      return false;
+    }
     const params = {
       content: this.data.commentObj.content,
       opinionId: this.data.commentObj.opinionId,
@@ -247,8 +252,9 @@ Page({
             }
           });
         } else {
-          getApp().tokenCallback = token => {
-            if (token != "") {
+          getApp()
+            .getAuthCode()
+            .then(res => {
               dd.switchTab({
                 url: "/pages/dynamic/index",
                 success() {
@@ -257,8 +263,19 @@ Page({
                   });
                 }
               });
-            }
-          };
+            });
+          // getApp().tokenCallback = token => {
+          //   if (token != "") {
+          //     dd.switchTab({
+          //       url: "/pages/dynamic/index",
+          //       success() {
+          //         dd.redirectTo({
+          //           url: `/pages/detail/feedback/index?id=${query.id}`
+          //         });
+          //       }
+          //     });
+          //   }
+          // };
         }
       }
     } else {
@@ -269,11 +286,16 @@ Page({
         if (getApp().globalData.token) {
           this.getDetailData();
         } else {
-          getApp().tokenCallback = token => {
-            if (token != "") {
+          getApp()
+            .getAuthCode()
+            .then(res => {
               this.getDetailData();
-            }
-          };
+            });
+          // getApp().tokenCallback = token => {
+          //   if (token != "") {
+          //     this.getDetailData();
+          //   }
+          // };
         }
       }
     }

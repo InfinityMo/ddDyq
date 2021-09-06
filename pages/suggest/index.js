@@ -19,7 +19,6 @@ Page({
       : this.setData({ tabIndex, adpotAdvise: false, monthAdvise: true });
   },
   onLoad(query) {
-    this.setData({ monthKey: createUUID() });
     // 页面加载
     // getApp().tokenCallback = token => {
     //   if (token != "") {
@@ -32,7 +31,7 @@ Page({
   },
   onShow() {
     // 页面显示
-    this.setData({ mode: getApp().globalData.isAnonymous, adoptKey: createUUID() });
+    this.setData({ mode: getApp().globalData.isAnonymous,monthKey: createUUID(), adoptKey: createUUID() });
     getApp().watch(value => {
       this.setData({ mode: value });
     });

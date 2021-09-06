@@ -1,8 +1,8 @@
 import request from "/common/request/request";
 App({
   globalData: {
-    // host: "http://47.100.240.53",
-    host: "http://106.14.44.233",
+    host: "http://47.100.240.53",
+    //host: "http://106.14.44.233",
     token: ""
   },
   userData: {},
@@ -12,7 +12,7 @@ App({
     const storageData = dd.getStorageSync({ key: "userMode" }).data;
     this.globalData.isAnonymous = storageData ? storageData.isAnonymous : false;
     // 获取authodCode
-    this.getAuthCode();
+    //this.getAuthCode();
     // 更新app
   },
   onShow(options) {
@@ -20,21 +20,45 @@ App({
   },
   onHide() {},
   getAuthCode() {
-    dd.getAuthCode({
-      success: res => {
-        const { authCode } = res;
-        this.getUserInfo(authCode);
-      },
-      fail: function(err) {}
+    return new Promise((resolve, reject) => {
+      dd.getAuthCode({
+        success: res => {
+          const { authCode } = res;
+          request
+            .post({ url: "userInfo", params: { authCode } })
+            .then(res => {
+              this.globalData.token = res.token || "";
+              resolve(true);
+              this.userData = { ...res.user };
+              if (this.tokenCallback) {
+                this.tokenCallback(res.token);
+              }
+            })
+            .catch(err => {
+              resolve(false);
+            });
+        },
+        fail: function(err) {
+           resolve(false);
+        }
+      });
     });
   },
-  getUserInfo(authCode) {
-    request.post({ url: "userInfo", params: { authCode } }).then(res => {
-      this.globalData.token = res.token || "";
-      this.userData = { ...res.user };
-      if (this.tokenCallback) {
-        this.tokenCallback(res.token);
-      }
+  getUserInfo() {
+    return new Promise((resolve, reject) => {
+      request
+        .post({ url: "userInfo", params: { authCode: this.authCode } })
+        .then(res => {
+          this.globalData.token = res.token || "";
+          resolve(true);
+          this.userData = { ...res.user };
+          if (this.tokenCallback) {
+            this.tokenCallback(res.token);
+          }
+        })
+        .catch(err => {
+          resolve(false);
+        });
     });
   },
   updateApp() {

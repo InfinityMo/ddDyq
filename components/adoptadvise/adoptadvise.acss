@@ -130,7 +130,7 @@
 
 .adopt-detail-btn {
   padding: 10px 0;
-  text-align-last: center;
+  text-align: center;
   font-size: 13px;
   line-height: 19px;
   color: #AAA
