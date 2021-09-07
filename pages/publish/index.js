@@ -131,7 +131,7 @@ Page({
           fileLists: [],
           filesPath: []
         });
-
+        ddToast({ type: "success", text: "发布成功" });
         dd.hideLoading();
         dd.switchTab({
           url,
@@ -211,6 +211,7 @@ Page({
   },
   onShow() {
     // 页面显示
+    dd.hideLoading();
     this.setData({ mode: getApp().globalData.isAnonymous });
     getApp().watch(value => {
       this.setData({ mode: value });

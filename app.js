@@ -1,8 +1,8 @@
 import request from "/common/request/request";
 App({
   globalData: {
-    //host: "http://47.100.240.53",
-    host: "http://106.14.44.233",
+    host: "http://47.100.240.53",
+    //host: "http://106.14.44.233",
     token: ""
   },
   userData: {},
