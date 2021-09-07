@@ -81,11 +81,11 @@
     </view>
   </scroll-view>
   <dataerror className="user-error-nodata" dataErrorShow="{{errorNodata}}" netWorkError="{{netWorkError}}" errorMsg="快去发表一条动态吧~" />
-  <view class="flex-item-center flex-item-end text-wrap" hidden="{{!isShowInput}}">
+  <view class="flex-item-center flex-item-end text-wrap" hidden="{{!isShowInput}}" style="bottom:{{`${textareaBottom}px`}}">
     <view class="input-text-box-wrap">
       <textarea class="input-text" onInput="textareaInput" controlled="{{true}}" value="{{commentComment}}" fixed="{{true}}" 
         auto-height="{{true}}" show-count="{{false}}" maxlength="200" placeholder="{{placeholder}}" onFocus="onFocus" onBlur="onBlur" 
-        focus="{{focus}}" adjust-positio="{{true}}" />
+        focus="{{focus}}" adjust-position="{{false}}" />
     </view>
     <button onTap="publishComment">发布</button>
   </view>

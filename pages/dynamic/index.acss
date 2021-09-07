@@ -190,7 +190,6 @@ button[plain] {
   position: fixed;
   width: 100%;
   left: 0;
-  bottom: 0;
   padding: 8px 15px;
   background-color: #fff;
   border-top: 1px solid #eee;

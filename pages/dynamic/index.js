@@ -17,7 +17,9 @@ Page({
     commentObj: {},
     commentComment: "",
     netWorkError: false,
-    errorNodata: true
+    errorNodata: true,
+    keyboardHeight: 0,
+    textareaBottom: 0
   },
   toSupport(event) {
     const { id, anonymousName } = event.target.dataset;
@@ -200,7 +202,13 @@ Page({
                 params: { id }
               })
               .then(res => {
-                this.$spliceData({ dynamics: [findIndex, 1] });
+                this.$spliceData({ dynamics: [findIndex, 1] }, () => {
+                  if (this.data.dynamics.length <= 0) {
+                    this.setData({ pageNo: 1 }, () => {
+                      this.getDynamicData();
+                    });
+                  }
+                });
               });
           }
         }
@@ -216,7 +224,22 @@ Page({
   onBlur() {
     this.setData({ focus: false, isShowInput: false, commentComment: "" });
   },
+  onKeyboardShow(res) {
+    if (res.data.height != this.data.keyboardHeight) {
+      const dValue = res.data.height - this.data.keyboardHeight;
+      dValue > 0 && dValue < 80
+        ? this.setData({
+            keyboardHeight: res.data.height,
+            textareaBottom: dValue
+          })
+        : this.setData({
+            keyboardHeight: res.data.height,
+            textareaBottom: 0
+          });
+    }
+  },
   onKeyboardHide() {
+    this.setData({ textareaBottom: 0, keyboardHeight: 0 });
     this.onBlur();
   },
   // 预览图片
@@ -249,7 +272,16 @@ Page({
   getDynamicData() {
     this.setData({ baselineShow: false, netWorkError: false });
     request
-      .get({ url: "dynamic", params: { pageNo: this.data.pageNo } })
+      .get({
+        url: "dynamic",
+        params: {
+          pageNo: this.data.pageNo,
+          id:
+            this.data.dynamics.length > 0
+              ? this.data.dynamics[this.data.dynamics.length - 1].topic.id
+              : 0
+        }
+      })
       .then(res => {
         this.setData(
           {

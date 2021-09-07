@@ -15,7 +15,9 @@ Page({
       "https://lianen-data-develop.oss-cn-shanghai.aliyuncs.com/topic/share/45cd733d-c529-45b8-ac60-abba81927981.png?Expires=1631554229&OSSAccessKeyId=LTAI5t9iqts8pXE9AdrwCyDn&Signature=T5nYSZnFL00jVQU%2B2TT08ZARKec%3D",
     baselineShow: false,
     netWorkError: false,
-    errorNodata: true
+    errorNodata: true,
+    keyboardHeight: 0,
+    textareaBottom: 0
   },
   textareaInput(e) {
     const content = e.detail.value;
@@ -172,7 +174,22 @@ Page({
   onBlur() {
     this.setData({ focus: false, placeholder: "一起讨论吧..." });
   },
+  onKeyboardShow(res) {
+    if (res.data.height != this.data.keyboardHeight) {
+      const dValue = res.data.height - this.data.keyboardHeight;
+      dValue > 0 && dValue < 80
+        ? this.setData({
+            keyboardHeight: res.data.height,
+            textareaBottom: 30
+          })
+        : this.setData({
+            keyboardHeight: res.data.height,
+            textareaBottom: 0
+          });
+    }
+  },
   onKeyboardHide() {
+    this.setData({ textareaBottom: 0, keyboardHeight: 0 });
     this.onBlur();
   },
   previewImg(e) {
@@ -191,7 +208,14 @@ Page({
     request
       .get({
         url: "opinion/detail",
-        params: { id: this.data.commentObj.opinionId, pageNo: this.data.pageNo }
+        params: {
+          id: this.data.commentObj.opinionId,
+          pageNo: this.data.pageNo,
+          commentId:
+            this.data.adoptComment.length > 0
+              ? this.data.adoptComment[this.data.adoptComment.length - 1].id
+              : 0
+        }
       })
       .then(res => {
         if (Object.keys(res.opinion).length > 0) {
@@ -245,9 +269,11 @@ Page({
         if (getApp().globalData.token) {
           dd.switchTab({
             url: "/pages/dynamic/index",
-            success() {
-              dd.redirectTo({
-                url: `/pages/detail/feedback/index?id=${query.id}`
+            complete() {
+              setTimeout(() => {
+                dd.navigateTo({
+                  url: `/pages/detail/feedback/index?id=${query.id}`
+                });
               });
             }
           });
@@ -257,9 +283,11 @@ Page({
             .then(res => {
               dd.switchTab({
                 url: "/pages/dynamic/index",
-                success() {
-                  dd.redirectTo({
-                    url: `/pages/detail/feedback/index?id=${query.id}`
+                complete() {
+                  setTimeout(() => {
+                    dd.navigateTo({
+                      url: `/pages/detail/feedback/index?id=${query.id}`
+                    });
                   });
                 }
               });

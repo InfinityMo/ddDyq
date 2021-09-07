@@ -51,6 +51,10 @@ Component({
           params: {
             type: "current",
             pageNo: this.data.pageNo,
+            id:
+              this.data.advises.length > 0
+                ? this.data.advises[this.data.advises.length - 1].id
+                : 0,
             orderType: String(this.data.orderType) === "0" ? "rank" : "time"
           }
         })

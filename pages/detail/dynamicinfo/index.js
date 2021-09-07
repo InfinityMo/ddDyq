@@ -17,7 +17,9 @@ Page({
     commentObj: {},
     commentComment: "",
     netWorkError: false,
-    errorNodata: true
+    errorNodata: true,
+    keyboardHeight: 0,
+    textareaBottom: 0
   },
   toSupport(event) {
     const { id, anonymousName } = event.target.dataset;
@@ -228,7 +230,24 @@ Page({
       commentComment: ""
     });
   },
+  onKeyboardShow(res) {
+    if (res.data.height != this.data.keyboardHeight) {
+      const dValue = res.data.height - this.data.keyboardHeight;
+      dValue > 0 && dValue < 80
+        ? this.setData(
+            {
+              keyboardHeight: res.data.height,
+              textareaBottom: 30
+            }
+          )
+        : this.setData({
+            keyboardHeight: res.data.height,
+            textareaBottom: 0
+          });
+    }
+  },
   onKeyboardHide() {
+    this.setData({ textareaBottom: 0, keyboardHeight: 0 });
     this.onBlur();
   },
   // 预览图片
@@ -288,11 +307,10 @@ Page({
           dd.switchTab({
             url: "/pages/dynamic/index",
             complete() {
-              dd.alert({
-                title: "111"
-              });
-              dd.navigateTo({
-                url: `/pages/detail/dynamicinfo/index?id=${query.id}`
+              setTimeout(() => {
+                dd.navigateTo({
+                  url: `/pages/detail/dynamicinfo/index?id=${query.id}`
+                });
               });
             }
           });
@@ -303,11 +321,10 @@ Page({
               dd.switchTab({
                 url: "/pages/dynamic/index",
                 complete() {
-                  dd.alert({
-                    title: "222"
-                  });
-                  dd.navigateTo({
-                    url: `/pages/detail/dynamicinfo/index?id=${query.id}`
+                  setTimeout(() => {
+                    dd.navigateTo({
+                      url: `/pages/detail/dynamicinfo/index?id=${query.id}`
+                    });
                   });
                 }
               });

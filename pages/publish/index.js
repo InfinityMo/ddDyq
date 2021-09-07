@@ -108,6 +108,11 @@ Page({
         }
       })
       .then(res => {
+        if (res.code === 203) {
+          this.setData({ filesPath: [], btnDisabled: false });
+          ddToast({ type: "fail", text: "请检查图片是否合法" });
+          return false;
+        }
         if (res.code === 204) {
           this.setData({ filesPath: [], btnDisabled: false });
           ddToast({ type: "fail", text: "部分文字无法通过审核，请检查" });
@@ -126,6 +131,7 @@ Page({
           fileLists: [],
           filesPath: []
         });
+
         dd.hideLoading();
         dd.switchTab({
           url,
@@ -139,6 +145,7 @@ Page({
         });
       })
       .catch(err => {
+        ddToast({ type: "fail", text: "发布失败" });
         dd.hideLoading();
         this.setData({ filesPath: [], btnDisabled: false });
       });

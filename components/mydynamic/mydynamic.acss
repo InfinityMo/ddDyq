@@ -27,6 +27,8 @@
 }
 
 .date {
+  min-width: 28px;
+  text-align: right;
   flex-shrink: 0;
   padding-right: 15px;
 }
