@@ -54,16 +54,16 @@ const request = {
         success: res => {
           if (res.data && res.data.code !== 201) {
             resolve(res.data.detail || res.data);
-            ddLoading.hide();
+            if (isLoading) ddLoading.hide();
           } else {
             reject(res);
             handleError({ error: 19 });
-            ddLoading.hide();
+            if (isLoading) ddLoading.hide();
           }
         },
         fail: err => {
           reject(err);
-          handleError(err);
+          handleError(err, isLoading);
         }
       });
     });
@@ -102,7 +102,7 @@ const request = {
 };
 
 // 错误处理方法
-const handleError = err => {
+const handleError = (err, isLoading) => {
   let message = "哎呀，服务器似乎出了点问题";
   if (err.error === 12) {
     message = "您的网络似乎出了点问题";
@@ -128,7 +128,7 @@ const handleError = err => {
     // }
   }
   ddToast({ type: "fail", text: message });
-  ddLoading.hide();
+  if (isLoading) ddLoading.hide();
 };
 
 export default request;

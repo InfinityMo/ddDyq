@@ -98,16 +98,20 @@ Page({
       }
     });
     request
-      .post({
-        url: "add",
-        params: {
-          content: this.data.content,
-          avatar: pictureArr.join(),
-          isDynamic: this.data.radioCheck === "1",
-          isAnonymous: getApp().globalData.isAnonymous
-        }
-      })
+      .post(
+        {
+          url: "add",
+          params: {
+            content: this.data.content,
+            avatar: pictureArr.join(),
+            isDynamic: this.data.radioCheck === "1",
+            isAnonymous: getApp().globalData.isAnonymous
+          }
+        },
+        false
+      )
       .then(res => {
+        dd.hideLoading();
         if (res.code === 203) {
           this.setData({ filesPath: [], btnDisabled: false });
           ddToast({ type: "fail", text: "请检查图片是否合法" });
@@ -131,8 +135,6 @@ Page({
           fileLists: [],
           filesPath: []
         });
-        ddToast({ type: "success", text: "发布成功" });
-        dd.hideLoading();
         dd.switchTab({
           url,
           success() {
@@ -145,9 +147,33 @@ Page({
         });
       })
       .catch(err => {
-        ddToast({ type: "fail", text: "发布失败" });
+        // ddToast({ type: "fail", text: "发布失败" });
+        // dd.hideLoading();
+        // this.setData({ filesPath: [], btnDisabled: false });
         dd.hideLoading();
-        this.setData({ filesPath: [], btnDisabled: false });
+        const url =
+          this.data.radioCheck === "1"
+            ? "/pages/dynamic/index"
+            : "/pages/suggest/index";
+        // 清除数据
+        this.setData({
+          "radios[1].disabled": "0",
+          textareaFocus: false,
+          btnDisabled: false,
+          content: "",
+          fileLists: [],
+          filesPath: []
+        });
+        dd.switchTab({
+          url,
+          success() {
+            setTimeout(() => {
+              const page = getCurrentPages().pop();
+              if (page == undefined || page == null) return;
+              page.onLoad();
+            });
+          }
+        });
       });
   },
   upload(count = 0) {
@@ -211,7 +237,7 @@ Page({
   },
   onShow() {
     // 页面显示
-    dd.hideLoading();
+    // dd.hideLoading();
     this.setData({ mode: getApp().globalData.isAnonymous });
     getApp().watch(value => {
       this.setData({ mode: value });
