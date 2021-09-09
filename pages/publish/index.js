@@ -36,6 +36,9 @@ Page({
     });
   },
   compressImg(files) {
+    dd.showLoading({
+      content: "图片上传中..."
+    });
     dd.compressImage({
       filePaths: [...files],
       compressLevel: 2,
@@ -44,6 +47,9 @@ Page({
           fileLists: [...this.data.fileLists, ...res.filePaths],
           "radios[1].disabled": "1"
         });
+      },
+      complete: res => {
+        dd.hideLoading();
       }
     });
   },
@@ -122,6 +128,11 @@ Page({
           ddToast({ type: "fail", text: "部分文字无法通过审核，请检查" });
           return false;
         }
+        if (res.code === 429) {
+          this.setData({ filesPath: [], btnDisabled: false });
+          ddToast({ type: "fail", text: "服务器繁忙，请重试~" });
+          return false;
+        }
         const url =
           this.data.radioCheck === "1"
             ? "/pages/dynamic/index"
@@ -135,45 +146,47 @@ Page({
           fileLists: [],
           filesPath: []
         });
-        dd.switchTab({
-          url,
-          success() {
-            setTimeout(() => {
-              const page = getCurrentPages().pop();
-              if (page == undefined || page == null) return;
-              page.onLoad();
-            });
-          }
+        setTimeout(() => {
+          dd.switchTab({
+            url,
+            success() {
+              setTimeout(() => {
+                const page = getCurrentPages().pop();
+                if (page == undefined || page == null) return;
+                page.onLoad();
+              });
+            }
+          });
         });
       })
       .catch(err => {
-        // ddToast({ type: "fail", text: "发布失败" });
-        // dd.hideLoading();
-        // this.setData({ filesPath: [], btnDisabled: false });
+        ddToast({ type: "fail", text: "发布失败" });
         dd.hideLoading();
-        const url =
-          this.data.radioCheck === "1"
-            ? "/pages/dynamic/index"
-            : "/pages/suggest/index";
-        // 清除数据
-        this.setData({
-          "radios[1].disabled": "0",
-          textareaFocus: false,
-          btnDisabled: false,
-          content: "",
-          fileLists: [],
-          filesPath: []
-        });
-        dd.switchTab({
-          url,
-          success() {
-            setTimeout(() => {
-              const page = getCurrentPages().pop();
-              if (page == undefined || page == null) return;
-              page.onLoad();
-            });
-          }
-        });
+        this.setData({ filesPath: [], btnDisabled: false });
+        // dd.hideLoading();
+        // const url =
+        //   this.data.radioCheck === "1"
+        //     ? "/pages/dynamic/index"
+        //     : "/pages/suggest/index";
+        // // 清除数据
+        // this.setData({
+        //   "radios[1].disabled": "0",
+        //   textareaFocus: false,
+        //   btnDisabled: false,
+        //   content: "",
+        //   fileLists: [],
+        //   filesPath: []
+        // });
+        // dd.switchTab({
+        //   url,
+        //   success() {
+        //     setTimeout(() => {
+        //       const page = getCurrentPages().pop();
+        //       if (page == undefined || page == null) return;
+        //       page.onLoad();
+        //     });
+        //   }
+        // });
       });
   },
   upload(count = 0) {
@@ -237,7 +250,7 @@ Page({
   },
   onShow() {
     // 页面显示
-    // dd.hideLoading();
+    dd.hideLoading();
     this.setData({ mode: getApp().globalData.isAnonymous });
     getApp().watch(value => {
       this.setData({ mode: value });

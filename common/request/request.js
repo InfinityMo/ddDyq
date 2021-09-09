@@ -11,7 +11,7 @@ const request = {
           options.params
         ),
         method: "GET",
-        timeout: 1000,
+        timeout: 5000,
         // 请求头
         headers: { token: getApp().globalData.token || "" },
         success: res => {
@@ -40,7 +40,7 @@ const request = {
         // 拼接完整请求地址
         url: `${getApp().globalData.host}/api/${options.url}`,
         method: "POST",
-        timeout: 1000,
+        timeout: 5000,
         // 请求参数
         data:
           options.params !== undefined

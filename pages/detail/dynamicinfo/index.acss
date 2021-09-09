@@ -9,6 +9,8 @@
 
 .detail-scroll {
   height: calc(100vh - 69px);
+  padding-bottom: 70px;
+  box-sizing: border-box;
 }
 
 .dynamic-item {
