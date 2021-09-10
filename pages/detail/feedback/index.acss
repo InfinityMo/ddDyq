@@ -33,7 +33,7 @@
   background: #F4F4F4;
   border-radius: 4px;
   box-sizing: border-box;
-  overflow-y: scroll
+  overflow-y: auto
 }
 
 .text-wrap button {
