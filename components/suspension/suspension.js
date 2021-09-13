@@ -1,3 +1,4 @@
+import { ddToast } from "/common/utils/utils";
 Component({
   mixins: [],
   data: {
@@ -5,7 +6,7 @@ Component({
   },
   props: {
     isAnonymous: false,
-    isShowInput:false
+    isShowInput: false
   },
   didMount() {
     const storageData = dd.getStorageSync({ key: "userMode" }).data;
@@ -35,6 +36,7 @@ Component({
       });
       const isAnonymous = getApp().globalData.isAnonymous;
       getApp().globalData.isAnonymous = !isAnonymous;
+      ddToast({ type: "none", text: !isAnonymous ? "匿名模式" : "实名模式" });
       this.setData({ _isAnonymous: !isAnonymous });
     }
   }

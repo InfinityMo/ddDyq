@@ -71,9 +71,9 @@ App({
       updateManager.onUpdateReady(function(ret) {
         dd.confirm({
           title: "更新提示",
-          content: "新版本已经准备好，是否重启应用？",
-          confirmButtonText: "是",
-          cancelButtonText: "否",
+          content: "修复了一些已知问题，提升了用户体验。",
+          confirmButtonText: "更新",
+          cancelButtonText: "暂不更新",
           success: function(res) {
             if (res.confirm) {
               // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启

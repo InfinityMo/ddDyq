@@ -77,7 +77,7 @@
   </scroll-view>
   <view class="flex-item-center flex-item-end text-wrap" a:if="{{dynamics.length>0}}" style="bottom:{{`${textareaBottom}px`}}">
     <view class="input-text-box-wrap">
-      <textarea class="input-text" onInput="textareaInput" enableNative="{{false}}" controlled="{{true}}" value="{{commentComment}}" 
+      <textarea class="input-text" onInput="textareaInput" enableNative="{{false}}" value="{{commentComment}}" 
         fixed="{{true}}" auto-height="{{true}}" show-count="{{false}}" maxlength="200" placeholder="{{placeholder}}" onFocus="onFocus" 
         onBlur="onBlur" focus="{{focus}}" adjust-position="{{true}}" />
     </view>

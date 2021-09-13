@@ -80,7 +80,7 @@
   </scroll-view>
   <view class="flex-item-center flex-between text-wrap input-wrap" a:if="{{adpotDeatil}}" style="bottom:{{`${textareaBottom}px`}}">
     <view class="input-text-box-wrap">
-      <textarea class="input-text" onInput="textareaInput" controlled="{{true}}" value="{{commentComment}}" fixed="{{true}}" auto-height="{{true}}" show-count="{{false}}" maxlength="200" placeholder="{{placeholder}}" onFocus="onFocus" onBlur="onBlur" focus="{{focus}}" adjust-positio="{{true}}" />
+      <textarea class="input-text" onInput="textareaInput" value="{{commentComment}}" fixed="{{true}}" auto-height="{{true}}" show-count="{{false}}" maxlength="200" placeholder="{{placeholder}}" onFocus="onFocus" onBlur="onBlur" focus="{{focus}}" adjust-positio="{{true}}" />
     </view>
     <button onTap="publishComment">发布</button>
   </view>

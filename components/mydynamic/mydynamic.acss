@@ -45,9 +45,10 @@
   display: flex;
   flex-wrap: wrap;
   flex-shrink: 0;
-  padding-right: 10px;
+  margin-right: 10px;
   width: 71px;
   height: 71px;
+  background-color: rgba(119, 119, 119, .1);
   overflow: hidden
 }
 
@@ -69,6 +70,10 @@
   width: 71px;
   height: 71px;
   /* border-radius: 2px;  */
+}
+
+.content-img .one-img {
+  margin: 0;
 }
 
 .two-img {

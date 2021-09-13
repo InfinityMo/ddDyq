@@ -1,5 +1,5 @@
 <view class="page {{mode ? 'dark-mode':''}}">
-  <textarea class="text-area" name="content" controlled="{{true}}" enableNative="{{false}}" value="{{content}}" maxlength="500"  auto-height placeholder="说点想说的吧..." onInput="textareaInput" />
+  <textarea class="text-area" name="content"  enableNative="{{false}}" value="{{content}}" maxlength="500"  auto-height placeholder="说点想说的吧..." onInput="textareaInput" />
   <view class="flex pic-wrap">
     <view class="img-item" a:for="{{fileLists}}" a:for-item="pic">
       <image class="img" onTap="previewImg" data-index="{{index}}" mode="aspectFill" src="{{pic}}"/>
